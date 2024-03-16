@@ -1,4 +1,11 @@
-import { Avatar, Button, Container, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Container,
+  Skeleton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -14,6 +21,7 @@ export default function CustomerBookingPage() {
   const {
     data: item,
     isLoading,
+    isSuccess,
     refetch,
   } = useQuery({
     queryKey: ["customerBooking", param.id],
@@ -34,6 +42,14 @@ export default function CustomerBookingPage() {
   const handleSendBill = () => {
     sendBill();
   };
+
+  if (isLoading && !isSuccess) {
+    return <Skeleton height={80} />;
+  }
+
+  if (item?.status === "completed") {
+    return <Typography>หมดเวลาแล้ว</Typography>;
+  }
 
   return (
     <Container maxWidth="sm">

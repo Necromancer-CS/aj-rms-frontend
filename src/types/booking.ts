@@ -5,7 +5,7 @@ export interface CustomerBookingPayload {
   deskNo: string;
 }
 
-export type CustomerBookingStatus = "processing" | "preparing";
+export type CustomerBookingStatus = "processing" | "preparing" | "completed";
 
 export interface CustomerBookingItem {
   _id: string;
