@@ -21,7 +21,7 @@ interface Props {
 export default function PrintQrCode() {
   const param = useParams();
   const navigate = useNavigate();
-  const qrValue = `/customer-booking/${param.id}`;
+  const qrValue = `${import.meta.env.VITE_DOMAIN}/customer-booking/${param.id}`;
 
   const { data: item, isLoading } = useQuery({
     queryKey: ["customerBooking", param.id],
