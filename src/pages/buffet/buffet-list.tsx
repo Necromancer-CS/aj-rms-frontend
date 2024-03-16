@@ -39,6 +39,7 @@ const BuffetTableList = () => {
     onSuccess(data) {
       setOpenConfirmDialog(false);
       toast.success("Delete Success : " + data.data.packageName);
+      console.log(data);
       refetch();
     },
   });
