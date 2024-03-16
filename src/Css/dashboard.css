@@ -1,0 +1,107 @@
+.cardDashboardMonth {
+  color: white;
+  background-color: red;
+  width: 100%;
+  height: 250px;
+  border-radius: 30px;
+  box-shadow: 0 0 50px #ccc;
+  box-sizing: border-box;
+}
+
+.cardDashboardYear {
+  color: white;
+  background-color: green;
+  width: 100%;
+  height: 250px;
+}
+
+.cardDashboardTotal {
+  color: white;
+  background-color: darkviolet;
+  width: 100%;
+  height: 250px;
+}
+
+.containerDashboard {
+  padding: 5px;
+}
+
+.cardDashboard {
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+}
+
+.logoContainer {
+  text-align: left;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.cardDashboardHeaderTotalMoney {
+  color: white;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  height: 180px;
+  width: 100%;
+  padding-left: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: right;
+}
+
+.cardDashboardHeaderProfit {
+  color: white;
+  background: linear-gradient(to right, #4caf50, #8bc34a);
+  /* สีเขียว */
+  height: 180px;
+  width: 100%;
+  padding-left: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: right;
+}
+
+.cardDashboardHeaderPercentage {
+  color: white;
+  background: linear-gradient(to right, #ff0000, #f1795e);
+  /* สีแดง */
+  height: 180px;
+  width: 100%;
+  padding-left: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: right;
+}
+
+.cardDashboardHeaderTotalAmount {
+  color: white;
+  background: linear-gradient(to right, #0066cc, #3399ff);
+  /* สีน้ำเงิน */
+  height: 180px;
+  width: 100%;
+  padding-left: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: right;
+}
+
+.value {
+  width: 60%;
+  font-size: 35px;
+  font-family: cursive;
+  padding-right: 50px;
+  text-align: right;
+}
