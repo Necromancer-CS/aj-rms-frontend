@@ -35,12 +35,11 @@ const MainDashboard = () => {
             </Card>
           </Paper>
           <br />
-          <Paper elevation={6}>
-            <Card>
-              <TotalOpenDesk />
-              <SalesMonthly />
-            </Card>
-          </Paper>
+          <Stack spacing={3}>
+            <TotalOpenDesk />
+
+            <SalesMonthly />
+          </Stack>
         </Box>
       </Box>
     </>
