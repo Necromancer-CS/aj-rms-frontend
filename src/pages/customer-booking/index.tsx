@@ -1,7 +1,10 @@
 import {
   Avatar,
   Button,
+  Card,
+  CardContent,
   Container,
+  Paper,
   Skeleton,
   Stack,
   Typography,
@@ -10,7 +13,9 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ConfirmDialog from "src/components/dialog/confirm";
+import { readBilling } from "src/functions/billing";
 import { getCustomerBookingById, updateOrderBill } from "src/functions/booking";
+import { customerBookingStatusText } from "src/helper/customer-booking";
 
 export default function CustomerBookingPage() {
   const param = useParams();
@@ -26,6 +31,13 @@ export default function CustomerBookingPage() {
   } = useQuery({
     queryKey: ["customerBooking", param.id],
     queryFn: () => getCustomerBookingById(param.id!).then((res) => res.data),
+    enabled: !!param.id,
+  });
+
+  // ดึงข้อมูล billing
+  const { data: billingRead } = useQuery({
+    queryKey: ["billingRead", param.id],
+    queryFn: () => readBilling(param.id!).then((res) => res.data),
     enabled: !!param.id,
   });
 
@@ -52,11 +64,12 @@ export default function CustomerBookingPage() {
   }
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="xl">
       <Stack
         sx={{
           maxWidth: "320px",
           width: "100%",
+          height: "100%",
           mx: "auto",
           pt: 10,
           position: "relative",
@@ -64,7 +77,15 @@ export default function CustomerBookingPage() {
         spacing={2}
       >
         <Stack direction="row" justifyContent="center">
-          <Avatar></Avatar>
+          <Avatar
+            src="../../../public/assets/7.png"
+            alt="Logo"
+            sx={{
+              height: "100%",
+              width: "100%",
+              border: "solid",
+            }}
+          />
         </Stack>
 
         <Stack direction="row" justifyContent="space-between">
@@ -72,9 +93,48 @@ export default function CustomerBookingPage() {
           <Typography>{`คุณ : ${item?.customerName}`}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
-          <Typography>แพ็กเกจ : {item?.packageName}</Typography>
+          <Typography>แพ็คเกจ : {item?.packageName}</Typography>
+          <Stack direction="row" spacing={1}>
+            <Typography>ราคาแพ็คเกจ :</Typography>
+            <Typography>
+              {billingRead && billingRead[0] && billingRead[0].packagePrice}
+            </Typography>
+          </Stack>
         </Stack>
-
+        <Stack direction="row" justifyContent="space-between">
+          <Stack direction="row" spacing={1}>
+            <Typography>จำนวน :</Typography>
+            <Typography>
+              {billingRead && billingRead[0] && billingRead[0].countPerson}
+            </Typography>
+            <Typography>ท่าน</Typography>
+          </Stack>
+        </Stack>
+        <Stack direction="row" spacing={1}>
+          {item?.status === "processing" && (
+            <Stack direction="row" spacing={1}>
+              <Typography>ยอดที่ต้องชำระ :</Typography>
+              <Typography>
+                {billingRead && billingRead[0] && billingRead[0].totalPrice}
+              </Typography>
+              <Typography>บาท</Typography>
+            </Stack>
+          )}
+        </Stack>
+        <Stack direction="row" spacing={1}>
+          {item?.status === "processing" && (
+            <Stack direction="row" spacing={1}>
+              <Typography>แจ้งสถานะ : </Typography>
+              <Typography
+                sx={{
+                  color: "#FF8C00",
+                }}
+              >
+                {customerBookingStatusText(item?.status ?? "preparing")}
+              </Typography>
+            </Stack>
+          )}
+        </Stack>
         <Button
           variant="contained"
           fullWidth
@@ -106,7 +166,7 @@ export default function CustomerBookingPage() {
             }}
             onClick={() => navigate(`/customer-booking/${item?.qrLink}/order`)}
           >
-            รายการที่สี่ง
+            รายการที่สั่ง
           </Button>
           <Button
             variant="outlined"
@@ -127,6 +187,7 @@ export default function CustomerBookingPage() {
           </Button>
         </Stack>
       </Stack>
+
       {/* Confirm Dialog */}
       <ConfirmDialog
         title="ยืนยันการชำระเงิน"

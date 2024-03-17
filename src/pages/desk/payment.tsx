@@ -196,7 +196,7 @@ export default function DeskPaymentPage() {
                 alignItems="center"
                 justifyContent={"center"}
               >
-                <Typography variant="h4">เปิดโต๊ะ</Typography>
+                <Typography variant="h4">ชำระเงิน</Typography>
               </Stack>
             </CardContent>
           </Card>
@@ -271,7 +271,7 @@ export default function DeskPaymentPage() {
                 </Stack>
 
                 <Stack direction="row" spacing={2}>
-                  {/* แพ็กเกจบุฟเฟ่ต์ */}
+                  {/* แพ็คเกจ */}
                   <Controller
                     render={({ field }) => (
                       <FormControl
@@ -279,8 +279,8 @@ export default function DeskPaymentPage() {
                         error={!!errors.packageId?.message}
                         disabled
                       >
-                        <InputLabel>แพ็กเกจบุฟเฟ่ต์</InputLabel>
-                        <Select {...field} label="แพ็กเกจบุฟเฟ่ต์">
+                        <InputLabel>แพ็คเกจ</InputLabel>
+                        <Select {...field} label="แพ็คเกจ">
                           {buffetList?.map((item) => (
                             <MenuItem key={item._id} value={item._id}>
                               {`${item.packageName}  (${item.packagePrice} ฿)`}
@@ -361,6 +361,7 @@ export default function DeskPaymentPage() {
                       fullWidth
                       label="เงินทอน"
                       type="number"
+                      disabled
                     />
                   )}
                 />

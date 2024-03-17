@@ -42,7 +42,7 @@ const EditBuffet = () => {
     update(params.id, data)
       .then((res) => {
         console.log(res.data);
-        toast.success("Edit Success : " + res.data.packageName);
+        toast.success("แก้ไขเสร็จสิ้น : " + res.data.packageName);
         navigate("/admin/buffet/list");
       })
       .catch((error) => console.log(error));
@@ -75,7 +75,7 @@ const EditBuffet = () => {
                   <Grid item xs={12} sm={6}>
                     <TextField
                       id="packageName"
-                      label="ชื่อแพ็กเกจ"
+                      label="ชื่อแพ็คเกจ"
                       variant="outlined"
                       fullWidth
                       name="packageName"

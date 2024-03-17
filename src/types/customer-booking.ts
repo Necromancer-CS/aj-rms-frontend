@@ -1,0 +1,1 @@
+export type customerBookingStatus = 'preparing' | 'processing' | 'completed';

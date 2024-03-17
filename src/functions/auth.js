@@ -7,6 +7,7 @@ export const register = async (dataRegister) => {
 export const login = async (dataLogin) => {
   return await axios.post(import.meta.env.VITE_API + "/login", dataLogin);
 };
+
 //การสร้าง currentUser
 export const currentUser = async (authtoken) => {
   return await axios.post(

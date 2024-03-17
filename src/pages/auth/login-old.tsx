@@ -43,12 +43,12 @@ export default function LoginPage() {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    const dataRegister = new FormData(event.currentTarget);
-    const FormRegister = {
-      email: dataRegister.get("email"),
-      password: dataRegister.get("password"),
+    const dataLogin = new FormData(event.currentTarget);
+    const formLogin = {
+      email: dataLogin.get("email"),
+      password: dataLogin.get("password"),
     };
-    login(FormRegister)
+    login(formLogin)
       .then((res) => {
         signIn(res.data.user);
         toast.success(
@@ -90,7 +90,7 @@ export default function LoginPage() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: "url(./assets/9.png)",
+          backgroundImage: "url(./assets/7.png)",
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"
