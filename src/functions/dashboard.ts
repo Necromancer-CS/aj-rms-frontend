@@ -1,12 +1,13 @@
 import axios from "axios";
-//การแสดงข้อมูล totalOpenDesk
-export const totalOpenDesk = async () => {
-    return await axios.get(import.meta.env.VITE_API + "/dashboard-totalOpenDesk");
-};
 
 //การแสดงข้อมูล totalPrice
 export const totalPrice = async () => {
     return await axios.get(import.meta.env.VITE_API + "/dashboard-totalPrice");
+};
+
+//การแสดงข้อมูล totalOpenDesk
+export const totalOpenDesk = async () => {
+    return await axios.get(import.meta.env.VITE_API + "/dashboard-totalOpenDesk");
 };
 
 //การแสดงข้อมูล topPackage
