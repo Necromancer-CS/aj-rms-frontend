@@ -44,12 +44,6 @@ const mockMenu: MenuList[] = [
     icon: <TableChartTwoToneIcon />,
   },
   {
-    role: "employee",
-    title: "ชำระเงิน",
-    href: "/admin/desk/payment",
-    icon: <PointOfSaleTwoToneIcon />,
-  },
-  {
     role: "chef",
     title: "รายการอาหาร",
     href: "/admin/order",
@@ -75,7 +69,7 @@ const mockMenu: MenuList[] = [
   },
   {
     role: "admin",
-    title: "จัดการแพ็กเกจ",
+    title: "จัดการแพ็คเกจ",
     href: "/admin/buffet/list",
     icon: <FastfoodTwoToneIcon />,
   },
@@ -120,7 +114,7 @@ export default function AdminSideMenu() {
         onBreakPoint={setBroken}
         backgroundColor="#121212"
         breakPoint="md"
-        style={{ height: "100%" }}
+        style={{ maxHeight: "100%" }}
       >
         <div
           style={{ display: "flex", flexDirection: "column", height: "100%" }}
@@ -130,11 +124,6 @@ export default function AdminSideMenu() {
               {/* LOGO */}
               <MenuItem
                 onClick={() => setisCollapsed(!isCollapsed)}
-                // icon={
-                //   isCollapsed ? (
-                //     <MenuOutlinedIcon sx={{ color: "#ffffff" }} />
-                //   ) : undefined
-                // }
                 style={{
                   margin: "10px 0 20px 0",
                   backgroundColor: "#2c2c2c",
@@ -148,10 +137,15 @@ export default function AdminSideMenu() {
                     alignItems="center"
                     ml="15px"
                   >
-                    <Typography>RESTAURANT AJ</Typography>
+                    <Typography> A&J BUFFET GRILL</Typography>
                     <IconButton onClick={() => setisCollapsed(!isCollapsed)}>
                       <MenuOutlinedIcon sx={{ color: "#ffffff" }} />
                     </IconButton>
+                  </Box>
+                )}
+                {isCollapsed && (
+                  <Box display="flex" alignItems="center" ml="15px">
+                    <MenuOutlinedIcon sx={{ color: "#ffffff" }} />
                   </Box>
                 )}
               </MenuItem>
@@ -166,51 +160,92 @@ export default function AdminSideMenu() {
                       alt="profile-user"
                       width="64px"
                       height="64px"
-                      src={`/assets/1.png`}
+                      src={`/assets/7.png`}
                       style={{ cursor: "pointer", borderRadius: "50%" }}
                     />
                   </Box>
 
                   <Typography sx={{ pt: 1, textAlign: "center" }}>
-                    RESTAURANT AJ
+                    A&J BUFFET GRILL
                   </Typography>
                 </Box>
               )}
 
-              {mockMenu
-                // .filter((v) => v.role === user?.role)
-                .map((item) => (
-                  <RouterLink key={item.title} href={item.href}>
-                    <MenuItem
-                      sx={{
+              {isCollapsed && (
+                <Box alignItems="center" ml="15px">
+                  {mockMenu
+                    // .filter((v) => v.role === user?.role)
+                    .map((item) => (
+                      <RouterLink key={item.title} href={item.href}>
+                        <MenuItem
+                          sx={{
+                            color: "white",
+                            alignItems: "center",
+                            py: 2,
+                            svg: {
+                              color: "white",
+                            },
+                          }}
+                        >
+                          <ListItemIcon>{item.icon}</ListItemIcon>
+                        </MenuItem>
+                      </RouterLink>
+                    ))}
+                  <MenuItem
+                    onClick={handleLogout}
+                    sx={{
+                      py: 2,
+                      svg: {
                         color: "white",
+                      },
+                    }}
+                  >
+                    <ListItemIcon>
+                      <LogoutIcon />
+                    </ListItemIcon>
+                  </MenuItem>
+                </Box>
+              )}
 
-                        py: 2,
-                        svg: {
-                          color: "white",
-                        },
-                      }}
-                    >
-                      <ListItemIcon>{item.icon}</ListItemIcon>
-                      <Typography variant="inherit">{item.title}</Typography>
-                    </MenuItem>
-                  </RouterLink>
-                ))}
-
-              <MenuItem
-                onClick={handleLogout}
-                sx={{
-                  py: 2,
-                  svg: {
-                    color: "white",
-                  },
-                }}
-              >
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <Typography variant="inherit">Logout</Typography>
-              </MenuItem>
+              {!isCollapsed && (
+                <Box alignItems="center" ml="15px">
+                  {mockMenu
+                    // .filter((v) => v.role === user?.role)
+                    .map((item) => (
+                      <RouterLink key={item.title} href={item.href}>
+                        <MenuItem
+                          sx={{
+                            color: "white",
+                            alignItems: "center",
+                            py: 2,
+                            svg: {
+                              color: "white",
+                            },
+                          }}
+                        >
+                          <ListItemIcon>{item.icon}</ListItemIcon>
+                          <Typography variant="inherit">
+                            {item.title}
+                          </Typography>
+                        </MenuItem>
+                      </RouterLink>
+                    ))}
+                  <MenuItem
+                    onClick={handleLogout}
+                    sx={{
+                      py: 2,
+                      svg: {
+                        color: "white",
+                      },
+                    }}
+                  >
+                    <ListItemIcon>
+                      <LogoutIcon />
+                    </ListItemIcon>
+                    <Typography variant="inherit">Logout</Typography>
+                  </MenuItem>
+                </Box>
+              )}
             </MenuList>
           </div>
         </div>

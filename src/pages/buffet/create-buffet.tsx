@@ -31,7 +31,7 @@ export default function CreateBuffet() {
     create(form)
       .then((res) => {
         console.log(res.data);
-        toast.success("Add Success : " + res.data.packageName);
+        toast.success("เพิ่มเสร็จสิ้น : " + res.data.packageName);
         navigate("/admin/buffet/list");
       })
       .catch((error) => {
@@ -63,7 +63,7 @@ export default function CreateBuffet() {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     id="packageName"
-                    label="ชื่อแพ็กเกจ"
+                    label="ชื่อแพ็คเกจ"
                     variant="outlined"
                     fullWidth
                     required

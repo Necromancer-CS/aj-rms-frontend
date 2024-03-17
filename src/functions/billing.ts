@@ -13,3 +13,10 @@ export const updateBilling = async (
     { ...payload, isPaid: true }
   );
 };
+
+//การแสดงข้อมูลและระบุ ID
+export const readBilling = async (id: string) => {
+  return await axios.get(
+    import.meta.env.VITE_API + "/billing/" + id
+  );
+};

@@ -29,6 +29,10 @@ export default function PrintQrCode() {
     enabled: !!param.id,
   });
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   if (isLoading) return <Skeleton height={80} />;
 
   return (
@@ -46,7 +50,7 @@ export default function PrintQrCode() {
             วันที่ {dayjs(item?.createdAt).format("DD/MM/YYYY")}
           </Typography>
           <Typography>
-            เวลา : {dayjs(item?.createdAt).format("HH:MM")}
+            เวลา : {dayjs(item?.createdAt).format("HH:mm")}
           </Typography>
         </Stack>
 
@@ -54,7 +58,7 @@ export default function PrintQrCode() {
 
         <Stack direction="row" justifyContent="space-between">
           <Typography>หมายเลขโต๊ะ {item?.deskNo}</Typography>
-          <Typography>แพ็กเกจ : {item?.packageName}</Typography>
+          <Typography>แพ็คเกจ : {item?.packageName}</Typography>
         </Stack>
         <Box>
           <div
@@ -109,6 +113,7 @@ export default function PrintQrCode() {
                   opacity: 0.8,
                 },
               }}
+              onClick={handlePrint}
             >
               พิมพ์ QR CODE
             </Button>
