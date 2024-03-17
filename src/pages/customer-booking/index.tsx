@@ -3,11 +3,14 @@ import {
   Button,
   Card,
   CardContent,
+  CardMedia,
   Container,
+  Divider,
   Paper,
   Skeleton,
   Stack,
   Typography,
+  keyframes,
 } from "@mui/material";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
@@ -63,6 +66,18 @@ export default function CustomerBookingPage() {
     return <Typography>หมดเวลาแล้ว</Typography>;
   }
 
+  const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
   return (
     <Container maxWidth="xl">
       <Stack
@@ -77,17 +92,21 @@ export default function CustomerBookingPage() {
         spacing={2}
       >
         <Stack direction="row" justifyContent="center">
-          <Avatar
-            src="../../../public/assets/7.png"
-            alt="Logo"
+          <CardMedia
+            component="img"
             sx={{
-              height: "100%",
-              width: "100%",
-              border: "solid",
+              height: "50%",
+              width: "50%",
+              borderRadius: "50%", // เพิ่มคำสั่งรอบขอบเป็นวงกลม
+              boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
+              border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
+              animation: `${pulse} 2s infinite`, // เรียกใช้ animation ที่สร้างไว้ 2 วินาที และทำให้เป็น loop
             }}
+            image="../../../public/assets/7.png"
+            alt="LOGO"
           />
         </Stack>
-
+        <Divider />
         <Stack direction="row" justifyContent="space-between">
           <Typography>{`หมายเลขโต๊ะ : ${item?.deskNo}`}</Typography>
           <Typography>{`คุณ : ${item?.customerName}`}</Typography>
