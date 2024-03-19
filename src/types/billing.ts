@@ -1,7 +1,9 @@
 export interface BillingPayload {
   customerBookingId: string;
   deskNo: string;
-  countPerson: number;
+  countAdult: number;
+  countChildreng: number;
+  countChild: number;
   packagePrice: number;
   totalPrice: number;
   chanelPayment: string;

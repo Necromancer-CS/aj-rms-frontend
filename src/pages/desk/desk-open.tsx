@@ -30,8 +30,9 @@ import ConfirmDialog from "src/components/dialog/confirm";
 
 const schema = yup
   .object({
-    countPerson: yup.number().positive().integer().required(),
-    customerName: yup.string().required(),
+    countAdult: yup.number().positive().integer().required(),
+    countChildreng: yup.number().positive().integer().required(),
+    countChild: yup.number().positive().integer().required(),
     packageId: yup.string().required(),
     deskNo: yup.string().required(),
   })
@@ -69,8 +70,9 @@ export default function DeskOpenPage() {
     mode: "all",
     resolver: yupResolver(schema),
     defaultValues: {
-      countPerson: 1,
-      customerName: "",
+      countAdult: 1,
+      countChildreng: 1,
+      countChild: 1,
       packageId: "",
       deskNo: "",
     },
@@ -163,7 +165,7 @@ export default function DeskOpenPage() {
                     control={control}
                   />
                   {/* ชื่อลูกค้า */}
-                  <Controller
+                  {/* <Controller
                     control={control}
                     name="customerName"
                     render={({ field }) => (
@@ -175,10 +177,7 @@ export default function DeskOpenPage() {
                         margin="dense"
                       />
                     )}
-                  />
-                </Stack>
-
-                <Stack direction="row" spacing={2}>
+                  /> */}
                   {/* แพ็กเกจบุฟเฟ่ต์ */}
                   <Controller
                     render={({ field }) => (
@@ -202,16 +201,70 @@ export default function DeskOpenPage() {
                     name="packageId"
                     control={control}
                   />
+                </Stack>
+
+                <Stack direction="row" spacing={2}>
+                  {/* แพ็กเกจบุฟเฟ่ต์ */}
+                  {/* <Controller
+                    render={({ field }) => (
+                      <FormControl
+                        fullWidth
+                        error={!!errors.packageId?.message}
+                      >
+                        <InputLabel>แพ็คเกจบุฟเฟ่ต์</InputLabel>
+                        <Select {...field} label="แพ็คเกจบุฟเฟ่ต์">
+                          <MenuItem value="">
+                            <em>กรุณาเลือกแพ็คเกจบุฟเฟ่ต์</em>
+                          </MenuItem>
+                          {buffetList?.map((item) => (
+                            <MenuItem key={item._id} value={item._id}>
+                              {`${item.packageName}  (${item.packagePrice} ฿)`}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    )}
+                    name="packageId"
+                    control={control}
+                  /> */}
                   {/* จำนวนลูกค้า */}
                   <Controller
                     control={control}
-                    name="countPerson"
+                    name="countAdult"
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        error={!!errors?.countPerson?.message}
+                        error={!!errors?.countAdult?.message}
                         fullWidth
-                        label="จำนวนลูกค้า"
+                        label="จำนวนผู้ใหญ่"
+                        margin="dense"
+                        type="number"
+                      />
+                    )}
+                  />
+                  <Controller
+                    control={control}
+                    name="countChildreng"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.countChildreng?.message}
+                        fullWidth
+                        label="จำนวนผู้เด็กโต"
+                        margin="dense"
+                        type="number"
+                      />
+                    )}
+                  />
+                  <Controller
+                    control={control}
+                    name="countChild"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.countChild?.message}
+                        fullWidth
+                        label="จำนวนผู้เด็กเล็ก"
                         margin="dense"
                         type="number"
                       />
