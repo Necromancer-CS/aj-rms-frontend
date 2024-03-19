@@ -106,7 +106,7 @@ const MenuTableList = () => {
                         <TableCell align="center">สถานะ</TableCell>
                         <TableCell align="center">ประเภท</TableCell>
                         <TableCell align="center">แพ็คเกจ</TableCell>
-                        <TableCell align="center">เครื่องมือ</TableCell>
+                        <TableCell align="center">จัดการ</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>

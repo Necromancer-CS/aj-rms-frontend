@@ -134,62 +134,6 @@ export default function DeskOpenPage() {
             <CardContent>
               <Stack spacing={3} p={2}>
                 <Stack direction="row" spacing={2}>
-                  {/* จำนวนลูกค้า */}
-                  <Controller
-                    control={control}
-                    name="countPerson"
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        error={!!errors?.countPerson?.message}
-                        fullWidth
-                        label="จำนวนลูกค้า"
-                        margin="dense"
-                        type="number"
-                      />
-                    )}
-                  />
-                  {/* ชื่อลูกค้า */}
-                  <Controller
-                    control={control}
-                    name="customerName"
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        error={!!errors?.customerName?.message}
-                        fullWidth
-                        label="ชื่อลูกค้า"
-                        margin="dense"
-                      />
-                    )}
-                  />
-                </Stack>
-
-                <Stack direction="row" spacing={2}>
-                  {/* แพ็กเกจบุฟเฟ่ต์ */}
-                  <Controller
-                    render={({ field }) => (
-                      <FormControl
-                        fullWidth
-                        error={!!errors.packageId?.message}
-                      >
-                        <InputLabel>แพ็กเกจบุฟเฟ่ต์</InputLabel>
-                        <Select {...field} label="แพ็กเกจบุฟเฟ่ต์">
-                          <MenuItem value="">
-                            <em>กรุณาเลือกแพ็กเกจบุฟเฟ่ต์</em>
-                          </MenuItem>
-                          {buffetList?.map((item) => (
-                            <MenuItem key={item._id} value={item._id}>
-                              {`${item.packageName}  (${item.packagePrice} ฿)`}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    )}
-                    name="packageId"
-                    control={control}
-                  />
-
                   {/* หมายเลขโต๊ะ */}
                   <Controller
                     render={({ field }) => (
@@ -217,6 +161,61 @@ export default function DeskOpenPage() {
                     )}
                     name="deskNo"
                     control={control}
+                  />
+                  {/* ชื่อลูกค้า */}
+                  <Controller
+                    control={control}
+                    name="customerName"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.customerName?.message}
+                        fullWidth
+                        label="ชื่อลูกค้า"
+                        margin="dense"
+                      />
+                    )}
+                  />
+                </Stack>
+
+                <Stack direction="row" spacing={2}>
+                  {/* แพ็กเกจบุฟเฟ่ต์ */}
+                  <Controller
+                    render={({ field }) => (
+                      <FormControl
+                        fullWidth
+                        error={!!errors.packageId?.message}
+                      >
+                        <InputLabel>แพ็คเกจบุฟเฟ่ต์</InputLabel>
+                        <Select {...field} label="แพ็คเกจบุฟเฟ่ต์">
+                          <MenuItem value="">
+                            <em>กรุณาเลือกแพ็คเกจบุฟเฟ่ต์</em>
+                          </MenuItem>
+                          {buffetList?.map((item) => (
+                            <MenuItem key={item._id} value={item._id}>
+                              {`${item.packageName}  (${item.packagePrice} ฿)`}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    )}
+                    name="packageId"
+                    control={control}
+                  />
+                  {/* จำนวนลูกค้า */}
+                  <Controller
+                    control={control}
+                    name="countPerson"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.countPerson?.message}
+                        fullWidth
+                        label="จำนวนลูกค้า"
+                        margin="dense"
+                        type="number"
+                      />
+                    )}
                   />
                 </Stack>
 

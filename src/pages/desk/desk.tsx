@@ -59,6 +59,53 @@ export default function DeskPage() {
           </Card>
         </Paper>
         <Paper sx={{ p: 2 }}>
+          <CardContent
+            sx={{
+              backgroundColor: "#ffffff",
+              color: "b",
+              textAlign: "left",
+            }}
+          >
+            <Stack
+              direction="row"
+              spacing={2}
+              alignItems="center"
+              justifyContent={"center"}
+            >
+              <Card>
+                <CardContent
+                  sx={{
+                    backgroundColor: "#00B900",
+                    width: "10px",
+                    height: "2px",
+                  }}
+                ></CardContent>
+              </Card>
+              <Typography variant="h5">ว่าง |</Typography>
+              <Card>
+                <CardContent
+                  sx={{
+                    backgroundColor: "#CC0000",
+                    width: "10px",
+                    height: "2px",
+                  }}
+                ></CardContent>
+              </Card>
+              <Typography variant="h5">ไม่ว่าง |</Typography>
+              <Card>
+                <CardContent
+                  sx={{
+                    backgroundColor: "#FFCC00",
+                    width: "10px",
+                    height: "2px",
+                  }}
+                ></CardContent>
+              </Card>
+              <Typography variant="h5">รอชำระเงิน</Typography>
+            </Stack>
+          </CardContent>
+
+          <br />
           <Grid container spacing={2}>
             {isLoading ? (
               <LoadingCard count={6} />

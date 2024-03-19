@@ -18,22 +18,62 @@ export default function TableCard({ data }: TableCardProps) {
       }}
     >
       <Stack p={2} spacing={1}>
-        <Typography
-          variant="h5"
-          sx={{
-            color: "white",
-          }}
+        <Stack
+          p={2}
+          direction="row"
+          spacing={2}
+          justifyContent={"space-between"}
         >
-          {data.deskNo}
-        </Typography>
-        <Typography
+          <Typography
+            variant="h5"
+            sx={{
+              color: "white",
+            }}
+          >
+            จำนวนที่นั่ง
+          </Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              color: "white",
+            }}
+          >
+            {data.chairCount} ท่าน
+          </Typography>
+        </Stack>
+
+        <Stack
+          p={2}
+          direction="row"
+          spacing={2}
+          justifyContent={"space-between"}
+        >
+          <Typography
+            variant="h5"
+            sx={{
+              color: "white",
+            }}
+          >
+            โต๊ะหมายเลข
+          </Typography>
+
+          <Typography
+            variant="h5"
+            sx={{
+              color: "white",
+            }}
+          >
+            {data.deskNo}
+          </Typography>
+          {/* <Typography
           variant="h5"
           sx={{
             color: "white",
           }}
         >
           {deskStatusText(data.deskStatus)}
-        </Typography>
+        </Typography> */}
+        </Stack>
       </Stack>
     </Card>
   );

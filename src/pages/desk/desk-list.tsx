@@ -100,7 +100,7 @@ const DeskTableList = () => {
                         <TableCell align="center">หมายเลขโต๊ะ</TableCell>
                         <TableCell align="center">สถานะโต๊ะ</TableCell>
                         <TableCell align="center">จำนวนที่นั่ง</TableCell>
-                        <TableCell align="center">เครื่องมือ</TableCell>
+                        <TableCell align="center">จัดการ</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>

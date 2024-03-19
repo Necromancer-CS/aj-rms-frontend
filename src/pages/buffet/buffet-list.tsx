@@ -99,7 +99,7 @@ const BuffetTableList = () => {
                         <TableCell align="center">ลำดับ</TableCell>
                         <TableCell align="center">ชื่อแพ็คเกจ</TableCell>
                         <TableCell align="center">ราคา</TableCell>
-                        <TableCell align="center">เครื่องมือ</TableCell>
+                        <TableCell align="center">จัดการ</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>

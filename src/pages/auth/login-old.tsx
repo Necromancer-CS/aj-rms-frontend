@@ -75,7 +75,7 @@ export default function LoginPage() {
 
   const roleRedirects = (role: any) => {
     if (role === "admin") {
-      navigate("/admin/desk");
+      navigate("/admin/dashboard");
     } else if (role === "user") {
       navigate("/user/maintable");
     }
