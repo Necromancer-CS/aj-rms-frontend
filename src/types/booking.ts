@@ -1,7 +1,7 @@
 export interface CustomerBookingPayload {
   countAdult: number;
-  countChildreng: number;
-  countChild: number;
+  countChildreng?: number | undefined;
+  countChild?: number | undefined;
   packageId: string;
   deskNo: string;
 }
@@ -17,6 +17,7 @@ export interface CustomerBookingItem {
   countChild: number;
   packageId: string;
   packageName: string;
+  totalPrice: number
   status: CustomerBookingStatus;
   createdAt: string;
   updatedAt: string;

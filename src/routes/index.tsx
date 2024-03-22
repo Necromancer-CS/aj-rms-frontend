@@ -268,7 +268,7 @@ export const routes: RouteObject[] = [
     element: <CustomerBookingOrderPage />,
   },
   {
-    path: "/login",
+    path: "/",
     element: <LoginPage />,
   },
   {

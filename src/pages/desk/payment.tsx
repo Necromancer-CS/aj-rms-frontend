@@ -33,8 +33,9 @@ import * as yup from "yup";
 const schema = yup
   .object({
     customerBookingId: yup.string().required(),
-    countPerson: yup.number().required(),
-    customerName: yup.string().required(),
+    countAdult: yup.number().required(),
+    countChildreng: yup.number().required(),
+    countChild: yup.number().required(),
     packageId: yup.string().required(),
     deskNo: yup.string().required(),
     totalPrice: yup.number().required(),
@@ -91,8 +92,9 @@ export default function DeskPaymentPage() {
     resolver: yupResolver(schema),
     defaultValues: {
       customerBookingId: "",
-      countPerson: 0,
-      customerName: "",
+      countAdult: 0,
+      countChildreng: 0,
+      countChild: 0,
       packageId: "",
       deskNo: "",
       totalPrice: 0,
@@ -131,12 +133,19 @@ export default function DeskPaymentPage() {
         (item) => item._id === customerBookingItem.packageId
       )?.packagePrice;
 
-      const totalPrice =
-        Number(customerBookingItem.countPerson) * Number(priceBuffet);
+      var packagePriceChildreng = Number(priceBuffet) / 2; //ราคาแพ็กเกรดของเด็ก
+
+      var totalAdult =
+        Number(priceBuffet) * Number(customerBookingItem?.countAdult); //ราคารวมผู้ใหญ่
+      var totalChildreng =
+        packagePriceChildreng * Number(customerBookingItem?.countChildreng); //ราคารวมเด็กที่ต้องจ่ายเงิน
+      var totalChild = customerBookingItem?.countChild * 0; //ราคารวมเด็กที่ไม่ต้องจ่ายเงิน
+      var totalPrice = totalAdult + totalChildreng + totalChild; //ราคารวมที่ลูกค้าต้องชำระ
 
       setValue("customerBookingId", customerBookingItem?._id);
-      setValue("countPerson", customerBookingItem?.countPerson);
-      setValue("customerName", customerBookingItem.customerName);
+      setValue("countAdult", customerBookingItem?.countAdult);
+      setValue("countChildreng", customerBookingItem?.countChildreng);
+      setValue("countChild", customerBookingItem?.countChild);
       setValue("packageId", customerBookingItem.packageId);
       setValue("deskNo", customerBookingItem.deskNo);
       setValue("totalPrice", totalPrice);
@@ -144,17 +153,12 @@ export default function DeskPaymentPage() {
   }, [customerBookingItem]);
 
   const payment = watch("payment");
+  const allTotalPrice = watch("totalPrice");
 
   //  คำนวณเงินทอนจาก เงินที่จ่าย
   useEffect(() => {
     if (customerBookingItem && payment) {
-      const priceBuffet = buffetList?.find(
-        (item) => item._id === customerBookingItem.packageId
-      )?.packagePrice;
-
-      const totalPrice =
-        Number(customerBookingItem.countPerson) * Number(priceBuffet);
-      setValue("change", payment - totalPrice);
+      setValue("change", payment - allTotalPrice);
     }
   }, [payment, customerBookingItem]);
 
@@ -166,13 +170,16 @@ export default function DeskPaymentPage() {
     const payload = {
       customerBookingId: data.customerBookingId,
       deskNo: data.deskNo,
-      countPerson: data.countPerson,
+      countAdult: data.countAdult,
+      countChildreng: data.countChildreng,
+      countChild: data.countChild,
       packagePrice: packagePrice!,
       totalPrice: data.totalPrice,
       chanelPayment: data.paymentId,
+      payment: data.payment,
       change: data.change,
+      isPaid: true,
     };
-
     updateBill(payload);
   };
 
@@ -236,32 +243,46 @@ export default function DeskPaymentPage() {
                 />
 
                 <Stack direction="row" spacing={2}>
-                  {/* ชื่อลูกค้า */}
+                  {/* จำนวนลูกค้า */}
                   <Controller
                     control={control}
-                    name="customerName"
+                    name="countAdult"
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        error={!!errors?.customerName?.message}
+                        error={!!errors?.countAdult?.message}
                         fullWidth
-                        label="ชื่อลูกค้า"
+                        label="จำนวนผู้ใหญ่"
                         margin="dense"
+                        type="number"
                         disabled
                       />
                     )}
                   />
-
-                  {/* จำนวนลูกค้า */}
                   <Controller
                     control={control}
-                    name="countPerson"
+                    name="countChildreng"
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        error={!!errors?.countPerson?.message}
+                        error={!!errors?.countChildreng?.message}
                         fullWidth
-                        label="จำนวนลูกค้า"
+                        label="จำนวนเด็กโต"
+                        margin="dense"
+                        type="number"
+                        disabled
+                      />
+                    )}
+                  />
+                  <Controller
+                    control={control}
+                    name="countChild"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.countChild?.message}
+                        fullWidth
+                        label="จำนวนเด็กเล็ก"
                         margin="dense"
                         type="number"
                         disabled
