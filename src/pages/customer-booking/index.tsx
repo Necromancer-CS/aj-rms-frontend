@@ -62,21 +62,21 @@ export default function CustomerBookingPage() {
     let newDateTime = 0;
     dayjs.locale("th");
 
+    // มี createdAt หรือมั่ยถ้ามีให้เพิ่มแล้วของ item?.createdAt เข้าไปแล้วจะได้ผลคือ newDateTime
     if (item?.createdAt) {
       const createdAt = dayjs(item.createdAt);
-      const extraTime = 1 * 60 * 1000;
+      const extraTime = 1.5 * 60 * 60 * 1000;
       const newDate = createdAt.add(extraTime, "millisecond");
       newDateTime = newDate.unix();
     }
 
-    const countdownTime = newDateTime * 1000 + 1000 * 60 * 60 * 0.1;
-
+    const countdownTime = newDateTime * 1000;
     const currentTime = Date.now();
 
-    if (currentTime > countdownTime) {
+    if (currentTime < countdownTime) {
       const timeToNotify = countdownTime - currentTime;
       setTimeout(() => {
-        toast.info("หมดแล้วท่านอาหารแล้ว");
+        toast.info("หมดแล้วทานอาหารแล้ว");
       }, timeToNotify);
     } else {
       console.log("Countdown time has already passed.");
@@ -128,7 +128,51 @@ export default function CustomerBookingPage() {
   }
 
   if (item?.status === "completed") {
-    return <Typography>หมดเวลาแล้ว</Typography>;
+    return (
+      <Container
+        maxWidth="xl"
+        sx={{
+          backgroundColor: "#000",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundImage: `url('../../../public/assets/134.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
+          backgroundSize: "cover",
+        }}
+      >
+        <Stack
+          sx={{
+            maxWidth: "330px",
+            width: "100%",
+            backgroundColor: "rgba(255, 255, 255, 0.88)", // เปลี่ยน opacity เป็น 0.7 เพื่อทำให้เป็นสีขาวขุ่น
+            padding: "20px",
+            borderRadius: "10px",
+            boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
+          }}
+          spacing={2}
+        >
+          <Stack direction="row" justifyContent="center" height={"100%"}>
+            <CardMedia
+              component="img"
+              sx={{
+                height: "50%",
+                width: "50%",
+                borderRadius: "50%", // เพิ่มคำสั่งรอบขอบเป็นวงกลม
+                boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
+                border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
+              }}
+              image="../../../public/assets/7.png"
+              alt="LOGO"
+            />
+          </Stack>
+          <Divider />
+          <Stack direction="row" justifyContent="center">
+            <Typography variant="h3">หมดเวลาแล้ว</Typography>
+          </Stack>
+        </Stack>
+      </Container>
+    );
   }
 
   return (
@@ -276,8 +320,6 @@ export default function CustomerBookingPage() {
       <ConfirmDialog
         title="ยืนยันการชำระเงิน"
         open={openConfirmDialog}
-        statusDialog="payment"
-        id={param.id}
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={handleSendBill}
         isLoading={isPending}

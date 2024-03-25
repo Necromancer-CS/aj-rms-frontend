@@ -35,7 +35,7 @@ export default function PrintQrCode() {
 
   if (item?.createdAt) {
     const createdAt = dayjs(item.createdAt); // ใช้ dayjs เพื่อจัดการกับเวลา
-    const extraTime = 30 * 60 * 1000;
+    const extraTime = 90 * 60 * 1000;
     const newDate = createdAt.add(extraTime, "millisecond"); // เพิ่มเวลาเพิ่มเติมในรูปแบบของ milliseconds
     newDateTime = newDate.format("HH:mm"); // รูปแบบเวลาในรูปแบบชั่วโมงและนาที และใช้ภาษาไทย
   }
