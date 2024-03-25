@@ -184,7 +184,9 @@ export default function CustomerBookingPage() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundImage: `url('../../../public/assets/134.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
+        backgroundImage: `url('${
+          import.meta.env.VITE_IMAGE_URL
+        }/uploads/134.jpg')`,
         backgroundSize: "cover",
       }}
     >
