@@ -98,8 +98,8 @@ const EmployeeTableList = () => {
                         <TableCell align="center">ลำดับ</TableCell>
                         <TableCell align="center">ชื่อ - นามสกุล</TableCell>
                         <TableCell align="center">ตำแหน่ง</TableCell>
-                        <TableCell align="center">Username</TableCell>
-                        <TableCell align="center">เครื่องมือ</TableCell>
+                        <TableCell align="center">ชื่อผู้ใช้งาน</TableCell>
+                        <TableCell align="center">จัดการ</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>

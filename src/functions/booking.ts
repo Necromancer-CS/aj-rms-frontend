@@ -19,6 +19,10 @@ export const updateOrderBill = async (customerBookingId: string) => {
   );
 };
 
+export const updatePayment = async (id: string, data: any) => {
+  return await axios.put(import.meta.env.VITE_API + "/payment/" + id, data);
+};
+
 // //การสร้าง
 // export const create = async (data) => {
 //   return await axios.post(import.meta.env.VITE_API + "/table", data);
@@ -32,9 +36,4 @@ export const updateOrderBill = async (customerBookingId: string) => {
 // //การลบ
 // export const remove = async (id) => {
 //   return await axios.delete(import.meta.env.VITE_API + "/table/" + id);
-// };
-
-// //การแก้ไข Status
-// export const updateStatus = async (id) => {
-//   return await axios.put(import.meta.env.VITE_API + "/tableStatue/" + id);
 // };

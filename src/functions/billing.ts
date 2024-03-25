@@ -10,7 +10,7 @@ export const updateBilling = async (
 ) => {
   return await axios.put(
     import.meta.env.VITE_API + "/billing/" + customerBookingId,
-    { ...payload, isPaid: true }
+    { ...payload }
   );
 };
 

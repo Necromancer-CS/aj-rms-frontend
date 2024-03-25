@@ -27,13 +27,16 @@ import * as yup from "yup";
 import { CustomerBookingPayload } from "src/types/booking";
 import { createCustomerBooking } from "src/functions/booking";
 import ConfirmDialog from "src/components/dialog/confirm";
+import { toast } from "react-toastify";
 
 const schema = yup
   .object({
-    countPerson: yup.number().positive().integer().required(),
-    customerName: yup.string().required(),
+    countAdult: yup.number().positive().integer().required(),
+    countChildreng: yup.number().integer(),
+    countChild: yup.number().integer(),
     packageId: yup.string().required(),
     deskNo: yup.string().required(),
+    chairCount: yup.number().required(),
   })
   .required();
 
@@ -69,10 +72,12 @@ export default function DeskOpenPage() {
     mode: "all",
     resolver: yupResolver(schema),
     defaultValues: {
-      countPerson: 1,
-      customerName: "",
+      countAdult: 1,
+      countChildreng: 0,
+      countChild: 0,
       packageId: "",
       deskNo: "",
+      chairCount: 0,
     },
   });
 
@@ -96,12 +101,22 @@ export default function DeskOpenPage() {
           return navigate("/admin/desk");
 
         setValue("deskNo", findDesk.deskNo);
+        setValue("chairCount", findDesk.chairCount);
       }
     }
   }, [isLoading, isSuccess, param]);
 
   const onSubmit = (data: FormValue) => {
-    addCustomerBooking(data);
+    const { countAdult, countChildreng, countChild, chairCount } = data;
+    const totalCustomers =
+      countAdult + (countChildreng ?? 0) + (countChild ?? 0);
+    if (totalCustomers > chairCount) {
+      setOpenConfirmDialog(false);
+      toast.info("ที่นั่งไม่เพียงพอ");
+    } else {
+      toast.success("เปิดเสร็จแล้ว");
+      addCustomerBooking(data);
+    }
   };
 
   if (isLoading && !isSuccess) return <Skeleton height={80} />;
@@ -134,62 +149,6 @@ export default function DeskOpenPage() {
             <CardContent>
               <Stack spacing={3} p={2}>
                 <Stack direction="row" spacing={2}>
-                  {/* จำนวนลูกค้า */}
-                  <Controller
-                    control={control}
-                    name="countPerson"
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        error={!!errors?.countPerson?.message}
-                        fullWidth
-                        label="จำนวนลูกค้า"
-                        margin="dense"
-                        type="number"
-                      />
-                    )}
-                  />
-                  {/* ชื่อลูกค้า */}
-                  <Controller
-                    control={control}
-                    name="customerName"
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        error={!!errors?.customerName?.message}
-                        fullWidth
-                        label="ชื่อลูกค้า"
-                        margin="dense"
-                      />
-                    )}
-                  />
-                </Stack>
-
-                <Stack direction="row" spacing={2}>
-                  {/* แพ็กเกจบุฟเฟ่ต์ */}
-                  <Controller
-                    render={({ field }) => (
-                      <FormControl
-                        fullWidth
-                        error={!!errors.packageId?.message}
-                      >
-                        <InputLabel>แพ็กเกจบุฟเฟ่ต์</InputLabel>
-                        <Select {...field} label="แพ็กเกจบุฟเฟ่ต์">
-                          <MenuItem value="">
-                            <em>กรุณาเลือกแพ็กเกจบุฟเฟ่ต์</em>
-                          </MenuItem>
-                          {buffetList?.map((item) => (
-                            <MenuItem key={item._id} value={item._id}>
-                              {`${item.packageName}  (${item.packagePrice} ฿)`}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    )}
-                    name="packageId"
-                    control={control}
-                  />
-
                   {/* หมายเลขโต๊ะ */}
                   <Controller
                     render={({ field }) => (
@@ -218,8 +177,95 @@ export default function DeskOpenPage() {
                     name="deskNo"
                     control={control}
                   />
+                  {/* จำนวนที่นั่ง */}
+                  <Controller
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.chairCount?.message}
+                        fullWidth
+                        label="จำนวนที่นั่ง"
+                        margin="dense"
+                        type="number"
+                        disabled
+                      />
+                    )}
+                    name="chairCount"
+                    control={control}
+                  />
                 </Stack>
 
+                <Stack direction="row" spacing={2}>
+                  {/* แพ็กเกจบุฟเฟ่ต์ */}
+                  <Controller
+                    render={({ field }) => (
+                      <FormControl
+                        fullWidth
+                        error={!!errors.packageId?.message}
+                      >
+                        <InputLabel>แพ็คเกจบุฟเฟ่ต์</InputLabel>
+                        <Select {...field} label="แพ็คเกจบุฟเฟ่ต์">
+                          <MenuItem value="">
+                            <em>กรุณาเลือกแพ็คเกจบุฟเฟ่ต์</em>
+                          </MenuItem>
+                          {buffetList?.map((item) => (
+                            <MenuItem key={item._id} value={item._id}>
+                              {`${item.packageName}  (${item.packagePrice} ฿)`}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    )}
+                    name="packageId"
+                    control={control}
+                  />
+                </Stack>
+
+                <Stack direction="row" spacing={2}>
+                  {/* จำนวนลูกค้า */}
+                  <Controller
+                    control={control}
+                    name="countAdult"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.countAdult?.message}
+                        fullWidth
+                        label="จำนวนผู้ใหญ่"
+                        margin="dense"
+                        type="number"
+                      />
+                    )}
+                  />
+                  <Controller
+                    control={control}
+                    name="countChildreng"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.countChildreng?.message}
+                        fullWidth
+                        label="จำนวนผู้เด็กโต"
+                        margin="dense"
+                        type="number"
+                      />
+                    )}
+                  />
+                  <Controller
+                    control={control}
+                    name="countChild"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.countChild?.message}
+                        fullWidth
+                        label="จำนวนผู้เด็กเล็ก"
+                        margin="dense"
+                        type="number"
+                      />
+                    )}
+                  />
+                </Stack>
                 <Stack
                   direction="row"
                   spacing={2}

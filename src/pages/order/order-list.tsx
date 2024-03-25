@@ -86,7 +86,7 @@ const OrderTableList = () => {
                         <TableCell align="center">ชื่อเมนู</TableCell>
                         <TableCell align="center">จำนวน</TableCell>
                         <TableCell align="center">หมายเลขโต๊ะ</TableCell>
-                        <TableCell align="center">เครื่องมือ</TableCell>
+                        <TableCell align="center">จัดการ</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>

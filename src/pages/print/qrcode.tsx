@@ -9,10 +9,11 @@ import {
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCustomerBookingById } from "src/functions/booking";
+import "dayjs/locale/en"; // นำเข้า locale ตามที่ต้องการใช้งาน
 
 interface Props {
   value: string;
@@ -29,6 +30,16 @@ export default function PrintQrCode() {
     enabled: !!param.id,
   });
 
+  let newDateTime = ""; // สร้างตัวแปร newDateTime เพื่อใช้เก็บค่าในกรณีที่ item มีค่า
+  dayjs.locale("th");
+
+  if (item?.createdAt) {
+    const createdAt = dayjs(item.createdAt); // ใช้ dayjs เพื่อจัดการกับเวลา
+    const extraTime = 90 * 60 * 1000;
+    const newDate = createdAt.add(extraTime, "millisecond"); // เพิ่มเวลาเพิ่มเติมในรูปแบบของ milliseconds
+    newDateTime = newDate.format("HH:mm"); // รูปแบบเวลาในรูปแบบชั่วโมงและนาที และใช้ภาษาไทย
+  }
+
   const handlePrint = () => {
     window.print();
   };
@@ -43,17 +54,20 @@ export default function PrintQrCode() {
             textAlign: "center",
           }}
         >
-          ร้าน AJ{" "}
+          ร้าน A&J BUFFET GRILL
         </Typography>
         <Stack direction="row" justifyContent="space-between">
           <Typography>
             วันที่ {dayjs(item?.createdAt).format("DD/MM/YYYY")}
           </Typography>
           <Typography>
-            เวลา : {dayjs(item?.createdAt).format("HH:mm")}
+            เวลาเริ่ม : {dayjs(item?.createdAt).format("HH:mm")}
           </Typography>
         </Stack>
-
+        <Stack direction="row" justifyContent="space-between">
+          <Typography></Typography>
+          <Typography>สิ้นสุด : {newDateTime}</Typography>
+        </Stack>
         <Divider />
 
         <Stack direction="row" justifyContent="space-between">

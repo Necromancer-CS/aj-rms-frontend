@@ -5,7 +5,7 @@ export const deskColor = (status: DeskStatus) => {
     case "ready":
       return "#00b900";
     case "notReady":
-      return "#ff8c00";
+      return "#CC0000";
     case "notAvailable":
       return "#CC0000";
     case "processing":

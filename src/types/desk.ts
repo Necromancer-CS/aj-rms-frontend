@@ -15,3 +15,8 @@ export interface DeskStatusItem {
   title: string;
   value: DeskStatus;
 }
+
+export interface DeskCheckItem {
+  availableSeats: number;
+  _id: string;
+}

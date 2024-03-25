@@ -101,7 +101,7 @@ const PaymentTableList = () => {
                           ช่องทางการชําระเงิน
                         </TableCell>
                         <TableCell align="center">ราคา</TableCell>
-                        <TableCell align="center">เครื่องมือ</TableCell>
+                        <TableCell align="center">จัดการ</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -198,6 +198,7 @@ const PaymentTableList = () => {
       <ConfirmDialog
         title="คุณต้องการยืนยันการลบใช่ไหม"
         open={openConfirmDialog}
+        statusDialog="all"
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={() => mutateAsync()}
         isLoading={isPending}
