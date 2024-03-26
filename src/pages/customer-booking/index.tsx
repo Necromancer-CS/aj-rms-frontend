@@ -29,7 +29,10 @@ export default function CustomerBookingPage() {
   const param = useParams();
   const navigate = useNavigate();
   const [openConfirmDialog, setOpenConfirmDialog] = useState<boolean>(false);
-  const [totalPrcie, setTotalPrcie] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [serviceCharge, setServiceCharge] = useState(0);
+  const [vat, setVat] = useState(0);
+  const [totalPayment, setTotalPayment] = useState(0);
 
   const {
     data: item,
@@ -100,8 +103,20 @@ export default function CustomerBookingPage() {
         var adultPrcie = billingItem.countAdult * billingItem.packagePrice;
         var childrengPrice = billingItem.countChildreng * priceChildreng;
         var childPrcie = billingItem.countChild * 0;
-        const totalPrcie = adultPrcie + childrengPrice + childPrcie;
-        setTotalPrcie(totalPrcie);
+        const totalPrice = adultPrcie + childrengPrice + childPrcie;
+        const serviceCharge = (totalPrice * 11) / 100;
+        const vat = (totalPrice * 7) / 100;
+        const totalPriceAll = totalPrice + serviceCharge + vat;
+
+        const roundedTotalPriceAll = Math.round(totalPrice * 100) / 100;
+        const roundedServiceCharge = Math.round(serviceCharge * 100) / 100;
+        const roundedVat = Math.round(vat * 100) / 100;
+        const roundedTotalPaymentAll = Math.round(totalPriceAll * 100) / 100;
+
+        setTotalPrice(roundedTotalPriceAll);
+        setServiceCharge(roundedServiceCharge);
+        setVat(roundedVat);
+        setTotalPayment(roundedTotalPaymentAll);
       } else {
         console.error("No billing data found");
       }
@@ -130,14 +145,14 @@ export default function CustomerBookingPage() {
     }
   };
 
-  let newDateTime = ""; // สร้างตัวแปร newDateTime เพื่อใช้เก็บค่าในกรณีที่ item มีค่า
+  let newDateTime = "";
   dayjs.locale("th");
 
   if (item?.createdAt) {
-    const createdAt = dayjs(item.createdAt); // ใช้ dayjs เพื่อจัดการกับเวลา
+    const createdAt = dayjs(item.createdAt);
     const extraTime = 90 * 60 * 1000;
-    const newDate = createdAt.add(extraTime, "millisecond"); // เพิ่มเวลาเพิ่มเติมในรูปแบบของ milliseconds
-    newDateTime = newDate.format("HH:mm"); // รูปแบบเวลาในรูปแบบชั่วโมงและนาที และใช้ภาษาไทย
+    const newDate = createdAt.add(extraTime, "millisecond");
+    newDateTime = newDate.format("HH:mm");
   }
 
   if (isLoading && !isSuccess) {
@@ -307,7 +322,34 @@ export default function CustomerBookingPage() {
           {item?.status === "processing" && (
             <Stack direction="row" spacing={1}>
               <Typography>ยอดที่ต้องชำระ :</Typography>
-              <Typography>{totalPrcie}</Typography>
+              <Typography>{totalPrice}</Typography>
+              <Typography>บาท</Typography>
+            </Stack>
+          )}
+        </Stack>
+        <Stack direction="row" spacing={1}>
+          {item?.status === "processing" && (
+            <Stack direction="row" spacing={1}>
+              <Typography>ค่าบริการ :</Typography>
+              <Typography>{serviceCharge}</Typography>
+              <Typography>บาท</Typography>
+            </Stack>
+          )}
+        </Stack>
+        <Stack direction="row" spacing={1}>
+          {item?.status === "processing" && (
+            <Stack direction="row" spacing={1}>
+              <Typography>ภาษี :</Typography>
+              <Typography>{vat}</Typography>
+              <Typography>บาท</Typography>
+            </Stack>
+          )}
+        </Stack>
+        <Stack direction="row" spacing={1}>
+          {item?.status === "processing" && (
+            <Stack direction="row" spacing={1}>
+              <Typography>ยอดที่ต้องชำระ :</Typography>
+              <Typography>{totalPayment}</Typography>
               <Typography>บาท</Typography>
             </Stack>
           )}
