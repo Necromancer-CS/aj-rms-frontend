@@ -20,7 +20,7 @@ export default function MenuCard({ data }: Props) {
         <Stack direction="row" spacing={2} flex={1}>
           <img
             // src={MOCK_IMG_URL}
-            src={`${import.meta.env.VITE_IMAGE_URL}/uploads/` + data.file}
+            src={data.file}
             alt="product-img"
             style={{
               width: "64px",
