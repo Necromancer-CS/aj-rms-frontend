@@ -59,13 +59,17 @@ export default function CustomerBookingPage() {
 
   useEffect(() => {
     showTotalPrcie();
+    warnDateTime();
+  }, []);
+
+  const warnDateTime = async () => {
     let newDateTime = 0;
     dayjs.locale("th");
 
     // มี createdAt หรือมั่ยถ้ามีให้เพิ่มแล้วของ item?.createdAt เข้าไปแล้วจะได้ผลคือ newDateTime
     if (item?.createdAt) {
       const createdAt = dayjs(item.createdAt);
-      const extraTime = 1.5 * 60 * 60 * 1000;
+      const extraTime = 90 * 60 * 1000;
       const newDate = createdAt.add(extraTime, "millisecond");
       newDateTime = newDate.unix();
     }
@@ -76,12 +80,12 @@ export default function CustomerBookingPage() {
     if (currentTime < countdownTime) {
       const timeToNotify = countdownTime - currentTime;
       setTimeout(() => {
-        toast.info("หมดแล้วทานอาหารแล้ว");
+        toast.warning("หมดเวลาทานอาหารของท่านแล้ว");
       }, timeToNotify);
     } else {
       console.log("Countdown time has already passed.");
     }
-  }, [item?.createdAt]); // ตรวจสอบเฉพาะเมื่อ item?.createdAt เปลี่ยนแปลง
+  };
 
   const showTotalPrcie = async () => {
     try {
@@ -137,7 +141,9 @@ export default function CustomerBookingPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundImage: `url('../../../public/assets/134.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
+          backgroundImage: `url('${
+            import.meta.env.VITE_IMAGE_URL
+          }/Image/134.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
           backgroundSize: "cover",
         }}
       >
@@ -156,13 +162,13 @@ export default function CustomerBookingPage() {
             <CardMedia
               component="img"
               sx={{
-                height: "50%",
-                width: "50%",
-                borderRadius: "50%", // เพิ่มคำสั่งรอบขอบเป็นวงกลม
+                height: "50%", // กำหนดความสูงของรูปภาพ
+                width: "50%", // กำหนดความกว้างของรูปภาพ
+                borderRadius: "50%", // เพิ่มความโค้งมนของขอบเพื่อให้เป็นวงกลม
                 boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
                 border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
               }}
-              image="../../../public/assets/7.png"
+              image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/7.jpg')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
               alt="LOGO"
             />
           </Stack>
@@ -186,7 +192,7 @@ export default function CustomerBookingPage() {
         justifyContent: "center",
         backgroundImage: `url('${
           import.meta.env.VITE_IMAGE_URL
-        }/uploads/134.jpg')`,
+        }/Image/134.jpg')`,
         backgroundSize: "cover",
       }}
     >
@@ -205,13 +211,13 @@ export default function CustomerBookingPage() {
           <CardMedia
             component="img"
             sx={{
-              height: "50%",
-              width: "50%",
-              borderRadius: "50%", // เพิ่มคำสั่งรอบขอบเป็นวงกลม
+              height: "50%", // กำหนดความสูงของรูปภาพ
+              width: "50%", // กำหนดความกว้างของรูปภาพ
+              borderRadius: "50%", // เพิ่มความโค้งมนของขอบเพื่อให้เป็นวงกลม
               boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
               border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
             }}
-            image="../../../public/assets/7.png"
+            image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/7.jpg')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
             alt="LOGO"
           />
         </Stack>
@@ -240,6 +246,18 @@ export default function CustomerBookingPage() {
                   billingRead[0].countChild}
             </Typography>
             <Typography>ท่าน</Typography>
+            {/* <Typography>
+              {billingRead && billingRead[0] && billingRead[0].countAdult}
+            </Typography>
+            <Typography>ท่าน</Typography>
+            <Typography>/</Typography>
+            <Typography>เด็กโต - เด็กเล็ก</Typography>
+            <Typography>
+              {billingRead &&
+                billingRead[0] &&
+                billingRead[0].countChildreng + billingRead[0].countChild}
+            </Typography>
+            <Typography>ท่าน</Typography> */}
           </Stack>
         </Stack>
         <Stack direction="row" spacing={1}>

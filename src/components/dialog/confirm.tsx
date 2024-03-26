@@ -68,23 +68,6 @@ export default function ConfirmDialog({
               width: "100%",
             }}
           >
-            <Button
-              disabled={isLoading}
-              autoFocus
-              onClick={handleClose}
-              variant="contained"
-              fullWidth
-              sx={{
-                height: "48px",
-                backgroundColor: "#1b1b1b",
-                ":hover": {
-                  backgroundColor: "#1b1b1b",
-                  opacity: 0.8,
-                },
-              }}
-            >
-              ปิด
-            </Button>
             <LoadingButton
               loading={isLoading}
               onClick={handleConfirm}
@@ -102,6 +85,23 @@ export default function ConfirmDialog({
             >
               ตกลง
             </LoadingButton>
+            <Button
+              disabled={isLoading}
+              autoFocus
+              onClick={handleClose}
+              variant="contained"
+              fullWidth
+              sx={{
+                height: "48px",
+                backgroundColor: "#1b1b1b",
+                ":hover": {
+                  backgroundColor: "#1b1b1b",
+                  opacity: 0.8,
+                },
+              }}
+            >
+              ปิด
+            </Button>
           </Stack>
         </DialogActions>
       </Dialog>
