@@ -1,8 +1,11 @@
 import {
   Button,
+  Card,
+  CardContent,
   CardMedia,
   Container,
   Divider,
+  Paper,
   Skeleton,
   Stack,
   Typography,
@@ -127,6 +130,16 @@ export default function CustomerBookingPage() {
     }
   };
 
+  let newDateTime = ""; // สร้างตัวแปร newDateTime เพื่อใช้เก็บค่าในกรณีที่ item มีค่า
+  dayjs.locale("th");
+
+  if (item?.createdAt) {
+    const createdAt = dayjs(item.createdAt); // ใช้ dayjs เพื่อจัดการกับเวลา
+    const extraTime = 90 * 60 * 1000;
+    const newDate = createdAt.add(extraTime, "millisecond"); // เพิ่มเวลาเพิ่มเติมในรูปแบบของ milliseconds
+    newDateTime = newDate.format("HH:mm"); // รูปแบบเวลาในรูปแบบชั่วโมงและนาที และใช้ภาษาไทย
+  }
+
   if (isLoading && !isSuccess) {
     return <Skeleton height={80} />;
   }
@@ -235,31 +248,61 @@ export default function CustomerBookingPage() {
             </Typography>
           </Stack>
         </Stack>
-        <Stack direction="row" justifyContent="space-between">
+        <Stack direction="row" justifyContent="center">
           <Stack direction="row" spacing={1}>
-            <Typography>จำนวนผู้ใช้บริการทั้งหมด :</Typography>
+            <Typography>ผู้ใหญ่</Typography>
             <Typography>
-              {billingRead &&
-                billingRead[0] &&
-                billingRead[0].countAdult +
-                  billingRead[0].countChildreng +
-                  billingRead[0].countChild}
-            </Typography>
-            <Typography>ท่าน</Typography>
-            {/* <Typography>
               {billingRead && billingRead[0] && billingRead[0].countAdult}
             </Typography>
             <Typography>ท่าน</Typography>
             <Typography>/</Typography>
-            <Typography>เด็กโต - เด็กเล็ก</Typography>
+            <Typography>เด็กโต</Typography>
             <Typography>
-              {billingRead &&
-                billingRead[0] &&
-                billingRead[0].countChildreng + billingRead[0].countChild}
+              {billingRead && billingRead[0] && billingRead[0].countChildreng}
             </Typography>
-            <Typography>ท่าน</Typography> */}
+            <Typography>ท่าน</Typography>
+            <Typography>/</Typography>
+            <Typography>เด็กเล็ก</Typography>
+            <Typography>
+              {billingRead && billingRead[0] && billingRead[0].countChild}
+            </Typography>
+            <Typography>ท่าน</Typography>
           </Stack>
         </Stack>
+        <Card
+          sx={{
+            border: "solid",
+            borderRadius: 10,
+            borderStyle: "outset",
+            borderColor: "blue",
+          }}
+        >
+          <CardContent>
+            <Stack direction="row" justifyContent="space-between">
+              <Stack direction="row" spacing={1} alignItems="center"></Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography>เวลาเริ่มต้น</Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography>เวลาสิ้นสุด</Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center"></Stack>
+            </Stack>
+
+            <Stack direction="row" justifyContent="space-between">
+              <Stack direction="row" spacing={1} alignItems="center"></Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography>
+                  {dayjs(item?.createdAt).format("HH:mm")}
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography>{newDateTime}</Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center"></Stack>
+            </Stack>
+          </CardContent>
+        </Card>
         <Stack direction="row" spacing={1}>
           {item?.status === "processing" && (
             <Stack direction="row" spacing={1}>
