@@ -23,14 +23,15 @@ export const updatePayment = async (id: string, data: any) => {
   return await axios.put(import.meta.env.VITE_API + "/payment/" + id, data);
 };
 
+//การแก้ไขข้อมูล
+export const updateCheckPayment = async (id: string, data: any) => {
+  return await axios.put(import.meta.env.VITE_API + "/check-payment/:id" + id, data);
+};
+
+
 // //การสร้าง
 // export const create = async (data) => {
 //   return await axios.post(import.meta.env.VITE_API + "/table", data);
-// };
-
-// //การแก้ไขข้อมูล
-// export const update = async (id, data) => {
-//   return await axios.put(import.meta.env.VITE_API + "/table/" + id, data);
 // };
 
 // //การลบ
