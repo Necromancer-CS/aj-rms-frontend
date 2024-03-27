@@ -141,6 +141,11 @@ export default function DeskPaymentPage() {
         packagePriceChildreng * Number(customerBookingItem?.countChildreng); //ราคารวมเด็กที่ต้องจ่ายเงิน
       var totalChild = customerBookingItem?.countChild * 0; //ราคารวมเด็กที่ไม่ต้องจ่ายเงิน
       var totalPrice = totalAdult + totalChildreng + totalChild; //ราคารวมที่ลูกค้าต้องชำระ
+      var serviceCharge = (totalPrice * 11) / 100;
+      var vat = (totalPrice * 7) / 100;
+      var totalPriceAll = totalPrice + serviceCharge + vat;
+
+      const roundedTotalPaymentAll = Math.round(totalPriceAll * 100) / 100;
 
       setValue("customerBookingId", customerBookingItem?._id);
       setValue("countAdult", customerBookingItem?.countAdult);
@@ -148,17 +153,24 @@ export default function DeskPaymentPage() {
       setValue("countChild", customerBookingItem?.countChild);
       setValue("packageId", customerBookingItem.packageId);
       setValue("deskNo", customerBookingItem.deskNo);
-      setValue("totalPrice", totalPrice);
+      setValue("totalPrice", roundedTotalPaymentAll);
     }
   }, [customerBookingItem]);
 
-  const payment = watch("payment");
-  const allTotalPrice = watch("totalPrice");
+  var payment = watch("payment");
+  var allTotalPrice = watch("totalPrice");
+
+  var roundedPayment = Math.round(payment * 100) / 100;
+  var roundedAllTotalPrice = Math.round(allTotalPrice * 100) / 100;
+
+  const changePayment = roundedPayment - roundedAllTotalPrice;
+
+  const changePaymentTotal = changePayment.toFixed(2);
 
   //  คำนวณเงินทอนจาก เงินที่จ่าย
   useEffect(() => {
-    if (customerBookingItem && payment) {
-      setValue("change", payment - allTotalPrice);
+    if (customerBookingItem && changePaymentTotal) {
+      setValue("change", changePaymentTotal);
     }
   }, [payment, customerBookingItem]);
 
