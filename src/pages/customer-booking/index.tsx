@@ -175,7 +175,7 @@ export default function CustomerBookingPage() {
           justifyContent: "center",
           backgroundImage: `url('${
             import.meta.env.VITE_IMAGE_URL
-          }/Image/134.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
+          }/Image/7.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
           backgroundSize: "cover",
         }}
       >
@@ -192,7 +192,7 @@ export default function CustomerBookingPage() {
         >
           <Stack direction="row" justifyContent="center" height={"100%"}>
             <img
-              src={import.meta.env.VITE_IMAGE_URL + "/Image/7.png"}
+              src={import.meta.env.VITE_IMAGE_URL + "/Image/7.jpg"}
               alt="LOGO"
               style={{
                 height: "50%",

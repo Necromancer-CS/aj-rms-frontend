@@ -443,7 +443,7 @@ export default function DeskPaymentPage() {
                     ชำระเงิน
                   </Button>
                 </Stack>
-                {ssss != "" && (
+                {checkImage != "" && (
                   <Stack
                     direction="row"
                     spacing={2}

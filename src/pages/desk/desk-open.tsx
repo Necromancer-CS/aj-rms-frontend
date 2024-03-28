@@ -274,22 +274,6 @@ export default function DeskOpenPage() {
                   <Button
                     variant="contained"
                     fullWidth
-                    sx={{
-                      height: "56px",
-                      backgroundColor: "#1b1b1b",
-                      ":hover": {
-                        backgroundColor: "#1b1b1b",
-                        opacity: 0.8,
-                      },
-                    }}
-                    onClick={() => navigate("/admin/desk")}
-                  >
-                    ย้อนกลับ
-                  </Button>
-
-                  <Button
-                    variant="contained"
-                    fullWidth
                     size="large"
                     sx={{
                       height: "56px",
@@ -303,6 +287,21 @@ export default function DeskOpenPage() {
                     onClick={() => setOpenConfirmDialog(true)}
                   >
                     เปิดโต๊ะ
+                  </Button>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    sx={{
+                      height: "56px",
+                      backgroundColor: "#1b1b1b",
+                      ":hover": {
+                        backgroundColor: "#1b1b1b",
+                        opacity: 0.8,
+                      },
+                    }}
+                    onClick={() => navigate("/admin/desk")}
+                  >
+                    ย้อนกลับ
                   </Button>
                 </Stack>
               </Stack>
