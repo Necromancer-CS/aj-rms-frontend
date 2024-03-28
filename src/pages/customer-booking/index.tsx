@@ -18,7 +18,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ConfirmDialog from "src/components/dialog/confirm";
 import { readBilling } from "src/functions/billing";
-import { getCustomerBookingById, updateOrderBill } from "src/functions/booking";
+import { getCustomerBookingById, updateOrderBill, getQrCodeById } from "src/functions/booking";
 import { getOrderByCustomerBookingId } from "src/functions/order";
 import { customerBookingStatusText } from "src/helper/customer-booking";
 import ReactDOM from "react-dom";
@@ -321,7 +321,7 @@ export default function CustomerBookingPage() {
         {item?.status === "processing" && (
           <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
-              <Typography>ยอดที่ต้องชำระ :</Typography>
+              <Typography>ราคารวม :</Typography>
               <Typography>{totalPrice}</Typography>
               <Typography>บาท</Typography>
             </Stack>
@@ -424,6 +424,7 @@ export default function CustomerBookingPage() {
       {/* Confirm Dialog */}
       <ConfirmDialog
         title="ยืนยันการชำระเงิน"
+        openDialog="CheckPayment"
         open={openConfirmDialog}
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={handleSendBill}

@@ -17,6 +17,8 @@ export interface CustomerBookingItem {
   countChild: number;
   packageId: string;
   packageName: string;
+  chanelPayment: string
+  file: string;
   totalPrice: number
   status: CustomerBookingStatus;
   createdAt: string;

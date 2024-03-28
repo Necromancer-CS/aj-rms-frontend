@@ -22,13 +22,14 @@ import { getBuffetList } from "src/functions/buffet";
 import { BuffetItem } from "src/types/buffet";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { getCustomerBookingById } from "src/functions/booking";
+import { getQrCodeById } from "src/functions/booking";
 import ConfirmDialog from "src/components/dialog/confirm";
 import { PaymentItem } from "src/types/payment";
 import { getPaymentList } from "src/functions/payment";
 import { updateBilling } from "src/functions/billing";
 import { BillingPayload } from "src/types/billing";
 import * as yup from "yup";
+import { CustomerBookingItem } from "src/types/booking";
 
 const schema = yup
   .object({
@@ -38,8 +39,8 @@ const schema = yup
     countChild: yup.number().required(),
     packageId: yup.string().required(),
     deskNo: yup.string().required(),
+    chanelPayment: yup.string().required(),
     totalPrice: yup.number().required(),
-    paymentId: yup.string().required(),
     payment: yup.number().required(),
     change: yup.number().required(),
   })
@@ -61,9 +62,9 @@ export default function DeskPaymentPage() {
   });
 
   // ดึงข้อมูล customerBooking by Id
-  const { data: customerBookingItem } = useQuery({
-    queryKey: ["customerBooking", param.id],
-    queryFn: () => getCustomerBookingById(param.id!).then((res) => res.data),
+  const { data: customerBookingItem } = useQuery<CustomerBookingItem>({
+    queryKey: ["getQrCodeById", param.id],
+    queryFn: () => getQrCodeById(param.id!).then((res) => res.data),
     enabled: !!param.id,
   });
 
@@ -97,8 +98,8 @@ export default function DeskPaymentPage() {
       countChild: 0,
       packageId: "",
       deskNo: "",
+      chanelPayment: "",
       totalPrice: 0,
-      paymentId: "",
       change: 0,
     },
   });
@@ -153,6 +154,7 @@ export default function DeskPaymentPage() {
       setValue("countChild", customerBookingItem?.countChild);
       setValue("packageId", customerBookingItem.packageId);
       setValue("deskNo", customerBookingItem.deskNo);
+      setValue("chanelPayment", customerBookingItem.chanelPayment);
       setValue("totalPrice", roundedTotalPaymentAll);
     }
   }, [customerBookingItem]);
@@ -167,10 +169,13 @@ export default function DeskPaymentPage() {
 
   const changePaymentTotal = changePayment.toFixed(2);
 
+  const [checkImage, setCheckImage] = useState("");
+
   //  คำนวณเงินทอนจาก เงินที่จ่าย
   useEffect(() => {
     if (customerBookingItem && changePaymentTotal) {
       setValue("change", changePaymentTotal);
+      setCheckImage(customerBookingItem.file);
     }
   }, [payment, customerBookingItem]);
 
@@ -187,7 +192,7 @@ export default function DeskPaymentPage() {
       countChild: data.countChild,
       packagePrice: packagePrice!,
       totalPrice: data.totalPrice,
-      chanelPayment: data.paymentId,
+      chanelPayment: data.chanelPayment,
       payment: data.payment,
       change: data.change,
       isPaid: true,
@@ -347,7 +352,7 @@ export default function DeskPaymentPage() {
                     render={({ field }) => (
                       <FormControl
                         fullWidth
-                        error={!!errors.paymentId?.message}
+                        error={!!errors.chanelPayment?.message}
                       >
                         <InputLabel>วิธีการชำระเงิน</InputLabel>
                         <Select {...field} label="วิธีการชำระเงิน">
@@ -366,7 +371,7 @@ export default function DeskPaymentPage() {
                         </Select>
                       </FormControl>
                     )}
-                    name="paymentId"
+                    name="chanelPayment"
                     control={control}
                   />
 
@@ -438,6 +443,23 @@ export default function DeskPaymentPage() {
                     ชำระเงิน
                   </Button>
                 </Stack>
+                {ssss != "" && (
+                  <Stack
+                    direction="row"
+                    spacing={2}
+                    flex={1}
+                    sx={{ justifyContent: "center", alignItems: "center" }}
+                  >
+                    <img
+                      src={customerBookingItem?.file}
+                      alt="product-img"
+                      style={{
+                        width: "80%",
+                        height: "600px",
+                      }}
+                    />
+                  </Stack>
+                )}
               </Stack>
             </CardContent>
           </Card>

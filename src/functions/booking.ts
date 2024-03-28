@@ -25,7 +25,14 @@ export const updatePayment = async (id: string, data: any) => {
 
 //การแก้ไขข้อมูล
 export const updateCheckPayment = async (id: string, data: any) => {
-  return await axios.put(import.meta.env.VITE_API + "/check-payment/:id" + id, data);
+  return await axios.put(import.meta.env.VITE_API + "/check-payment/" + id, data);
+};
+
+//การแสดงข้อมูลและระบุ ID
+export const getQrCodeById = async (id: string) => {
+  return await axios.get<CustomerBookingItem>(
+    import.meta.env.VITE_API + "/qr-code/" + id
+  );
 };
 
 
