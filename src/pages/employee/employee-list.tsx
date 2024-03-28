@@ -38,7 +38,7 @@ const EmployeeTableList = () => {
     mutationFn: () => remove(employeeId),
     onSuccess(data) {
       setOpenConfirmDialog(false);
-      toast.success("Delete Success : " + data.data.username);
+      toast.success("ลบเสร็จสิ้น : " + data.data.username);
       refetch();
     },
   });
