@@ -18,7 +18,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ConfirmDialog from "src/components/dialog/confirm";
 import { readBilling } from "src/functions/billing";
-import { getCustomerBookingById, updateOrderBill } from "src/functions/booking";
+import { getCustomerBookingById, updateOrderBill, getQrCodeById } from "src/functions/booking";
 import { getOrderByCustomerBookingId } from "src/functions/order";
 import { customerBookingStatusText } from "src/helper/customer-booking";
 import ReactDOM from "react-dom";
@@ -196,7 +196,7 @@ export default function CustomerBookingPage() {
                 boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
                 border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
               }}
-              image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/7.jpg')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
+              image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/7.png')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
               alt="LOGO"
             />
           </Stack>
@@ -245,7 +245,7 @@ export default function CustomerBookingPage() {
               boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
               border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
             }}
-            image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/7.jpg')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
+            image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/7.png')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
             alt="LOGO"
           />
         </Stack>
@@ -318,44 +318,44 @@ export default function CustomerBookingPage() {
             </Stack>
           </CardContent>
         </Card>
-        <Stack direction="row" spacing={1}>
-          {item?.status === "processing" && (
+        {item?.status === "processing" && (
+          <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
-              <Typography>ยอดที่ต้องชำระ :</Typography>
+              <Typography>ราคารวม :</Typography>
               <Typography>{totalPrice}</Typography>
               <Typography>บาท</Typography>
             </Stack>
-          )}
-        </Stack>
-        <Stack direction="row" spacing={1}>
-          {item?.status === "processing" && (
+          </Stack>
+        )}
+        {item?.status === "processing" && (
+          <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
               <Typography>ค่าบริการ :</Typography>
               <Typography>{serviceCharge}</Typography>
               <Typography>บาท</Typography>
             </Stack>
-          )}
-        </Stack>
-        <Stack direction="row" spacing={1}>
-          {item?.status === "processing" && (
+          </Stack>
+        )}
+        {item?.status === "processing" && (
+          <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
               <Typography>ภาษี :</Typography>
               <Typography>{vat}</Typography>
               <Typography>บาท</Typography>
             </Stack>
-          )}
-        </Stack>
-        <Stack direction="row" spacing={1}>
-          {item?.status === "processing" && (
+          </Stack>
+        )}
+        {item?.status === "processing" && (
+          <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
               <Typography>ยอดที่ต้องชำระ :</Typography>
               <Typography>{totalPayment}</Typography>
               <Typography>บาท</Typography>
             </Stack>
-          )}
-        </Stack>
-        <Stack direction="row" spacing={1}>
-          {item?.status === "processing" && (
+          </Stack>
+        )}
+        {item?.status === "processing" && (
+          <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
               <Typography>แจ้งสถานะ : </Typography>
               <Typography
@@ -366,8 +366,8 @@ export default function CustomerBookingPage() {
                 {customerBookingStatusText(item?.status ?? "preparing")}
               </Typography>
             </Stack>
-          )}
-        </Stack>
+          </Stack>
+        )}
         <Button
           variant="contained"
           fullWidth
@@ -424,6 +424,7 @@ export default function CustomerBookingPage() {
       {/* Confirm Dialog */}
       <ConfirmDialog
         title="ยืนยันการชำระเงิน"
+        openDialog="CheckPayment"
         open={openConfirmDialog}
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={handleSendBill}
