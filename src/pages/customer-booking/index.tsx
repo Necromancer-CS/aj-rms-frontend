@@ -18,7 +18,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ConfirmDialog from "src/components/dialog/confirm";
 import { readBilling } from "src/functions/billing";
-import { getCustomerBookingById, updateOrderBill, getQrCodeById } from "src/functions/booking";
+import {
+  getCustomerBookingById,
+  updateOrderBill,
+  getQrCodeById,
+} from "src/functions/booking";
 import { getOrderByCustomerBookingId } from "src/functions/order";
 import { customerBookingStatusText } from "src/helper/customer-booking";
 import ReactDOM from "react-dom";
@@ -194,9 +198,11 @@ export default function CustomerBookingPage() {
                 width: "50%", // กำหนดความกว้างของรูปภาพ
                 borderRadius: "50%", // เพิ่มความโค้งมนของขอบเพื่อให้เป็นวงกลม
                 boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
-                border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
+                border: "2px solid rgba(0, 0, 0, 0.1)",
+                backgroundImage: `url('${
+                  import.meta.env.VITE_IMAGE_URL
+                }/Image/7.png')`,
               }}
-              image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/7.png')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
               alt="LOGO"
             />
           </Stack>
