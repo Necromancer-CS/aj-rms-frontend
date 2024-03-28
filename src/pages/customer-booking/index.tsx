@@ -191,21 +191,19 @@ export default function CustomerBookingPage() {
           spacing={2}
         >
           <Stack direction="row" justifyContent="center" height={"100%"}>
-            <CardMedia
-              component="img"
-              sx={{
-                height: "50%", // กำหนดความสูงของรูปภาพ
-                width: "50%", // กำหนดความกว้างของรูปภาพ
-                borderRadius: "50%", // เพิ่มความโค้งมนของขอบเพื่อให้เป็นวงกลม
-                boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
-                border: "2px solid rgba(0, 0, 0, 0.1)",
-                backgroundImage: `url('${
-                  import.meta.env.VITE_IMAGE_URL
-                }/Image/7.png')`,
-              }}
+            <img
+              src={import.meta.env.VITE_IMAGE_URL + "/Image/7.png"}
               alt="LOGO"
+              style={{
+                height: "50%",
+                width: "50%",
+                borderRadius: "50%",
+                boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+                border: "2px solid rgba(0, 0, 0, 0.1)",
+              }}
             />
           </Stack>
+
           <Divider />
           <Stack direction="row" justifyContent="center">
             <Typography variant="h3">หมดเวลาแล้ว</Typography>
