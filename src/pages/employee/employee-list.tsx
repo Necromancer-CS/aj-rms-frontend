@@ -192,6 +192,7 @@ const EmployeeTableList = () => {
       {/* Confirm Dialog */}
       <ConfirmDialog
         title="คุณต้องการยืนยันการลบใช่ไหม"
+        openDialog=""
         open={openConfirmDialog}
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={() => mutateAsync()}

@@ -1,4 +1,10 @@
 import axios from "axios";
+
+//การสร้าง Register
+export const login = async (dataLogin: any) => {
+    return await axios.post(import.meta.env.VITE_API + "/login", dataLogin);
+};
+
 //การสร้าง Register
 export const register = async (dataRegister: any) => {
     return await axios.post(import.meta.env.VITE_API + "/admin", dataRegister);

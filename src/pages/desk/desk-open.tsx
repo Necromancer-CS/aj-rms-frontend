@@ -313,6 +313,7 @@ export default function DeskOpenPage() {
       {/* Confirm Dialog */}
       <ConfirmDialog
         title="คุณต้องการยืนยันการเปิดโต๊ะใช่ไหม"
+        openDialog=""
         open={openConfirmDialog}
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={handleSubmit(onSubmit)}

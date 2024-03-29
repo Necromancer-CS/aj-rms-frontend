@@ -469,6 +469,7 @@ export default function DeskPaymentPage() {
       {/* Confirm Dialog */}
       <ConfirmDialog
         title="คุณต้องการยืนยันการชำระเงินใช่ไหม"
+        openDialog=""
         open={openConfirmDialog}
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={handleSubmit(onSubmit)}

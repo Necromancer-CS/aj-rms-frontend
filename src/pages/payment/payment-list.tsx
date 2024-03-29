@@ -197,8 +197,8 @@ const PaymentTableList = () => {
       {/* Confirm Dialog */}
       <ConfirmDialog
         title="คุณต้องการยืนยันการลบใช่ไหม"
+        openDialog=""
         open={openConfirmDialog}
-        statusDialog="all"
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={() => mutateAsync()}
         isLoading={isPending}
