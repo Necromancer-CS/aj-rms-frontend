@@ -93,6 +93,8 @@ export default function AdminSideMenu() {
   const [toggled, setToggled] = useState(false);
   const [broken, setBroken] = useState(false);
 
+  console.log(user?.role);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -174,7 +176,7 @@ export default function AdminSideMenu() {
               {isCollapsed && (
                 <Box alignItems="center" ml="15px">
                   {mockMenu
-                    // .filter((v) => v.role === user?.role)
+                    .filter((v) => v.role === user?.role)
                     .map((item) => (
                       <RouterLink key={item.title} href={item.href}>
                         <MenuItem
@@ -210,7 +212,7 @@ export default function AdminSideMenu() {
               {!isCollapsed && (
                 <Box alignItems="center" ml="15px">
                   {mockMenu
-                    // .filter((v) => v.role === user?.role)
+                    .filter((v) => v.role === user?.role)
                     .map((item) => (
                       <RouterLink key={item.title} href={item.href}>
                         <MenuItem
