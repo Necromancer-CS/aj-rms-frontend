@@ -128,6 +128,23 @@ export default function CreateDesk() {
                 </Grid>
                 <Grid container item xs={12} spacing={2}>
                   <Grid item xs={12} sm={6}>
+                    <Button
+                      sx={{
+                        height: "56px",
+                        backgroundColor: "#00b900",
+                        ":hover": {
+                          backgroundColor: "#00b900",
+                          opacity: 0.8,
+                        },
+                      }}
+                      type="submit"
+                      variant="contained"
+                      fullWidth
+                    >
+                      บันทึก
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
                     <Link to="/admin/desk/list">
                       <Button
                         variant="contained"
@@ -144,23 +161,6 @@ export default function CreateDesk() {
                         ย้อนกลับ
                       </Button>
                     </Link>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <Button
-                      sx={{
-                        height: "56px",
-                        backgroundColor: "#00b900",
-                        ":hover": {
-                          backgroundColor: "#00b900",
-                          opacity: 0.8,
-                        },
-                      }}
-                      type="submit"
-                      variant="contained"
-                      fullWidth
-                    >
-                      บันทึก
-                    </Button>
                   </Grid>
                 </Grid>
               </Grid>

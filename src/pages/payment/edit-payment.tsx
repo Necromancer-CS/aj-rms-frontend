@@ -123,6 +123,23 @@ const EditPayment = () => {
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} sm={6}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      fullWidth
+                      sx={{
+                        height: "56px",
+                        backgroundColor: "#00B900",
+                        ":hover": {
+                          backgroundColor: "#1b1b1b",
+                          opacity: 0.8,
+                        },
+                      }}
+                    >
+                      บันทึกข้อมูลที่แก้ไข
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
                     <Link to="/admin/payment/list">
                       <Button
                         variant="contained"
@@ -139,23 +156,6 @@ const EditPayment = () => {
                         ย้อนกลับ
                       </Button>
                     </Link>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      fullWidth
-                      sx={{
-                        height: "56px",
-                        backgroundColor: "#00B900",
-                        ":hover": {
-                          backgroundColor: "#1b1b1b",
-                          opacity: 0.8,
-                        },
-                      }}
-                    >
-                      บันทึกข้อมูลที่แก้ไข
-                    </Button>
                   </Grid>
                 </Grid>
               </form>

@@ -163,6 +163,7 @@ const OrderTableList = () => {
       {/* Confirm Dialog */}
       <ConfirmDialog
         title="คุณต้องการยืนยันการเสริฟใช่ไหม"
+        openDialog=""
         open={openConfirmDialog}
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={() => mutateAsync()}

@@ -45,28 +45,26 @@ export default function LoginPage() {
     event.preventDefault();
     const dataLogin = new FormData(event.currentTarget);
     const formLogin = {
-      email: dataLogin.get("email"),
+      username: dataLogin.get("username"),
       password: dataLogin.get("password"),
     };
     login(formLogin)
       .then((res) => {
-        signIn(res.data.user);
+        console.log(res);
+        signIn(res.data.setData);
         toast.success(
-          "User : " + res.data.payload.user.name + " Login Success"
+          "User : " + res.data.payload.setData.fullName + " เข้าสู่ระบบ"
         );
         dispatch(
           loginRedux({
-            name: res.data.payload.user.name,
-            email: res.data.payload.user.email,
-            firstname: res.data.payload.user.firstname,
-            lastname: res.data.payload.user.lastname,
-            role: res.data.payload.user.role,
+            fullName: res.data.payload.setData.fullName,
+            role: res.data.payload.setData.role,
+            username: res.data.payload.setData.username,
             token: res.data.token,
           })
         );
-
         localStorage.setItem("token", res.data.token);
-        roleRedirects(res.data.payload.user.role);
+        roleRedirects(res.data.payload.setData.role);
       })
       .catch((error) => {
         toast.error(error.response.data);
@@ -126,9 +124,9 @@ export default function LoginPage() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
+              id="username"
+              label="Username Address"
+              name="username"
               autoFocus
             />
             <TextField

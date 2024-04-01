@@ -144,6 +144,7 @@ export default function CustomerBookingCartPage() {
       {/* Confirm Dialog */}
       <ConfirmDialog
         title="คุณต้องการยืนยันการสั่งอาหาร"
+        openDialog=""
         open={openConfirmDialog}
         handleClose={() => setOpenConfirmDialog(false)}
         handleConfirm={() => handleSubmit()}

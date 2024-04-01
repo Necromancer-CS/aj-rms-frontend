@@ -18,7 +18,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ConfirmDialog from "src/components/dialog/confirm";
 import { readBilling } from "src/functions/billing";
-import { getCustomerBookingById, updateOrderBill, getQrCodeById } from "src/functions/booking";
+import {
+  getCustomerBookingById,
+  updateOrderBill,
+  getQrCodeById,
+} from "src/functions/booking";
 import { getOrderByCustomerBookingId } from "src/functions/order";
 import { customerBookingStatusText } from "src/helper/customer-booking";
 import ReactDOM from "react-dom";
@@ -171,7 +175,7 @@ export default function CustomerBookingPage() {
           justifyContent: "center",
           backgroundImage: `url('${
             import.meta.env.VITE_IMAGE_URL
-          }/Image/134.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
+          }/Image/7.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
           backgroundSize: "cover",
         }}
       >
@@ -187,19 +191,19 @@ export default function CustomerBookingPage() {
           spacing={2}
         >
           <Stack direction="row" justifyContent="center" height={"100%"}>
-            <CardMedia
-              component="img"
-              sx={{
-                height: "50%", // กำหนดความสูงของรูปภาพ
-                width: "50%", // กำหนดความกว้างของรูปภาพ
-                borderRadius: "50%", // เพิ่มความโค้งมนของขอบเพื่อให้เป็นวงกลม
-                boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
-                border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
-              }}
-              image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/7.png')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
+            <img
+              src={import.meta.env.VITE_IMAGE_URL + "/Image/7.jpg"}
               alt="LOGO"
+              style={{
+                height: "50%",
+                width: "50%",
+                borderRadius: "50%",
+                boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+                border: "2px solid rgba(0, 0, 0, 0.1)",
+              }}
             />
           </Stack>
+
           <Divider />
           <Stack direction="row" justifyContent="center">
             <Typography variant="h3">หมดเวลาแล้ว</Typography>
