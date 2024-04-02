@@ -138,7 +138,11 @@ export default function ConfirmDialog({
                     <em>กรุณาเลือกวิธีการชำระเงิน</em>
                   </MenuItem>
                   {paymentListCheck?.map((item) => (
-                    <MenuItem key={item._id} value={item.paymentName}>
+                    <MenuItem
+                      key={item._id}
+                      value={item.paymentName}
+                      disabled={item.paymentStatus === "notActive"}
+                    >
                       {item.paymentName}
                     </MenuItem>
                   ))}
