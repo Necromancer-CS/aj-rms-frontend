@@ -30,6 +30,8 @@ import { updateBilling } from "src/functions/billing";
 import { BillingPayload } from "src/types/billing";
 import * as yup from "yup";
 import { CustomerBookingItem } from "src/types/booking";
+import dayjs from "dayjs";
+import Item from "antd/es/list/Item";
 
 const schema = yup
   .object({
@@ -202,6 +204,16 @@ export default function DeskPaymentPage() {
 
   if (isLoading && !isSuccess) return <Skeleton height={80} />;
 
+  let newDateTime = ""; // สร้างตัวแปร newDateTime เพื่อใช้เก็บค่าในกรณีที่ item มีค่า
+  dayjs.locale("th");
+
+  if (customerBookingItem?.createdAt) {
+    const createdAt = dayjs(customerBookingItem.createdAt); // ใช้ dayjs เพื่อจัดการกับเวลา
+    const extraTime = 90 * 60 * 1000;
+    const newDate = createdAt.add(extraTime, "millisecond"); // เพิ่มเวลาเพิ่มเติมในรูปแบบของ milliseconds
+    newDateTime = newDate.format("HH:mm"); // รูปแบบเวลาในรูปแบบชั่วโมงและนาที และใช้ภาษาไทย
+  }
+
   return (
     <>
       <Stack spacing={3} p={2}>
@@ -258,6 +270,29 @@ export default function DeskPaymentPage() {
                     />
                   )}
                 />
+
+                <Stack direction="row" spacing={2}>
+                  {/* จำนวนลูกค้า */}
+                  <TextField
+                    error={!!errors?.countAdult?.message}
+                    fullWidth
+                    value={dayjs(customerBookingItem?.createdAt).format(
+                      "HH:mm"
+                    )}
+                    label="จำนวนผู้ใหญ่"
+                    margin="dense"
+                    disabled
+                  />
+
+                  <TextField
+                    error={!!errors?.countAdult?.message}
+                    fullWidth
+                    value={newDateTime}
+                    label="จำนวนผู้ใหญ่"
+                    margin="dense"
+                    disabled
+                  />
+                </Stack>
 
                 <Stack direction="row" spacing={2}>
                   {/* จำนวนลูกค้า */}
@@ -384,6 +419,11 @@ export default function DeskPaymentPage() {
                         fullWidth
                         label="เงินที่ชำระ"
                         type="number"
+                        value={
+                          watch("chanelPayment") === "QR CODE"
+                            ? watch("totalPrice")
+                            : watch("totalPrice")
+                        }
                         error={!!errors.payment?.message}
                       />
                     )}
