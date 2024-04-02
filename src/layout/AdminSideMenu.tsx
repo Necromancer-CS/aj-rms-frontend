@@ -170,6 +170,9 @@ export default function AdminSideMenu() {
                   <Typography sx={{ pt: 1, textAlign: "center" }}>
                     A&J BUFFET GRILL
                   </Typography>
+                  <Typography sx={{ pt: 1, textAlign: "center" }}>
+                    {user?.role}
+                  </Typography>
                 </Box>
               )}
 
