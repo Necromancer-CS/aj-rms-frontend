@@ -102,6 +102,7 @@ export default function DeskPaymentPage() {
       deskNo: "",
       chanelPayment: "",
       totalPrice: 0,
+      payment: 0,
       change: 0,
     },
   });
@@ -129,6 +130,8 @@ export default function DeskPaymentPage() {
     }
   }, [isLoading, isSuccess, param]);
 
+  const [upPayment, setUpPayment] = useState(0);
+
   //  นำข้อมูลที่ได้จาก Api ใส่ ใน Form
   useEffect(() => {
     if (customerBookingItem) {
@@ -149,6 +152,7 @@ export default function DeskPaymentPage() {
       var totalPriceAll = totalPrice + serviceCharge + vat;
 
       const roundedTotalPaymentAll = Math.round(totalPriceAll * 100) / 100;
+      setUpPayment(roundedTotalPaymentAll);
 
       setValue("customerBookingId", customerBookingItem?._id);
       setValue("countAdult", customerBookingItem?.countAdult);
@@ -176,8 +180,12 @@ export default function DeskPaymentPage() {
   //  คำนวณเงินทอนจาก เงินที่จ่าย
   useEffect(() => {
     if (customerBookingItem && changePaymentTotal) {
-      setValue("change", changePaymentTotal);
-      setCheckImage(customerBookingItem.file);
+      if (customerBookingItem.file != "") {
+        setValue("payment", upPayment);
+        setValue("change", changePayment);
+        setCheckImage(customerBookingItem.file);
+      }
+      setValue("change", changePayment);
     }
   }, [payment, customerBookingItem]);
 
@@ -272,14 +280,25 @@ export default function DeskPaymentPage() {
                 />
 
                 <Stack direction="row" spacing={2}>
-                  {/* จำนวนลูกค้า */}
+                  {/* วันและเวลา */}
+                  <TextField
+                    error={!!errors?.countAdult?.message}
+                    fullWidth
+                    value={dayjs(customerBookingItem?.createdAt).format(
+                      "DD/MM/YYYY"
+                    )}
+                    label="วันที่"
+                    margin="dense"
+                    disabled
+                  />
+
                   <TextField
                     error={!!errors?.countAdult?.message}
                     fullWidth
                     value={dayjs(customerBookingItem?.createdAt).format(
                       "HH:mm"
                     )}
-                    label="จำนวนผู้ใหญ่"
+                    label="เวลาเริ่ม"
                     margin="dense"
                     disabled
                   />
@@ -288,7 +307,7 @@ export default function DeskPaymentPage() {
                     error={!!errors?.countAdult?.message}
                     fullWidth
                     value={newDateTime}
-                    label="จำนวนผู้ใหญ่"
+                    label="เวลาสิ้นสุด"
                     margin="dense"
                     disabled
                   />
@@ -390,7 +409,7 @@ export default function DeskPaymentPage() {
                         error={!!errors.chanelPayment?.message}
                       >
                         <InputLabel>วิธีการชำระเงิน</InputLabel>
-                        <Select {...field} label="วิธีการชำระเงิน">
+                        <Select {...field} label="วิธีการชำระเงิน" disabled>
                           <MenuItem value="">
                             <em>กรุณาเลือกวิธีการชำระเงิน</em>
                           </MenuItem>
@@ -419,11 +438,6 @@ export default function DeskPaymentPage() {
                         fullWidth
                         label="เงินที่ชำระ"
                         type="number"
-                        value={
-                          watch("chanelPayment") === "QR CODE"
-                            ? watch("totalPrice")
-                            : watch("totalPrice")
-                        }
                         error={!!errors.payment?.message}
                       />
                     )}
@@ -452,22 +466,6 @@ export default function DeskPaymentPage() {
                   <Button
                     variant="contained"
                     fullWidth
-                    sx={{
-                      height: "56px",
-                      backgroundColor: "#1b1b1b",
-                      ":hover": {
-                        backgroundColor: "#1b1b1b",
-                        opacity: 0.8,
-                      },
-                    }}
-                    onClick={() => navigate("/admin/desk")}
-                  >
-                    ย้อนกลับ
-                  </Button>
-
-                  <Button
-                    variant="contained"
-                    fullWidth
                     size="large"
                     sx={{
                       height: "56px",
@@ -480,7 +478,22 @@ export default function DeskPaymentPage() {
                     disabled={!isDirty || !isValid}
                     onClick={() => setOpenConfirmDialog(true)}
                   >
-                    ชำระเงิน
+                    ยืนยันการชำระเงิน
+                  </Button>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    sx={{
+                      height: "56px",
+                      backgroundColor: "#1b1b1b",
+                      ":hover": {
+                        backgroundColor: "#1b1b1b",
+                        opacity: 0.8,
+                      },
+                    }}
+                    onClick={() => navigate("/admin/desk")}
+                  >
+                    ย้อนกลับ
                   </Button>
                 </Stack>
                 {checkImage != "" && (
@@ -495,7 +508,7 @@ export default function DeskPaymentPage() {
                       alt="product-img"
                       style={{
                         width: "80%",
-                        height: "600px",
+                        height: "100%",
                       }}
                     />
                   </Stack>

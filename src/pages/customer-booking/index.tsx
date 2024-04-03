@@ -40,6 +40,8 @@ export default function CustomerBookingPage() {
   const [vat, setVat] = useState(0);
   const [totalPayment, setTotalPayment] = useState(0);
 
+  const [statusPayment, setStatusPayment] = useState<boolean>(false);
+
   const {
     data: item,
     isLoading,
@@ -133,6 +135,7 @@ export default function CustomerBookingPage() {
 
   const handleSendBill = async () => {
     try {
+      setStatusPayment(false);
       const orderListResponse = await getOrderByCustomerBookingId(param.id!);
       const orderList = orderListResponse.data;
 
@@ -324,7 +327,57 @@ export default function CustomerBookingPage() {
             </Stack>
           </CardContent>
         </Card>
-        {item?.status === "processing" && (
+        {statusPayment != false && (
+          <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1}>
+              <Typography>ราคารวม :</Typography>
+              <Typography>{totalPrice}</Typography>
+              <Typography>บาท</Typography>
+            </Stack>
+          </Stack>
+        )}
+        {statusPayment != false && (
+          <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1}>
+              <Typography>ค่าบริการ :</Typography>
+              <Typography>{serviceCharge}</Typography>
+              <Typography>บาท</Typography>
+            </Stack>
+          </Stack>
+        )}
+        {statusPayment != false && (
+          <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1}>
+              <Typography>ภาษี :</Typography>
+              <Typography>{vat}</Typography>
+              <Typography>บาท</Typography>
+            </Stack>
+          </Stack>
+        )}
+        {statusPayment != false && (
+          <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1}>
+              <Typography>ยอดที่ต้องชำระ :</Typography>
+              <Typography>{totalPayment}</Typography>
+              <Typography>บาท</Typography>
+            </Stack>
+          </Stack>
+        )}
+        {statusPayment != false && (
+          <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1}>
+              <Typography>แจ้งสถานะ : </Typography>
+              <Typography
+                sx={{
+                  color: "#FF8C00",
+                }}
+              >
+                {customerBookingStatusText(item?.status ?? "preparing")}
+              </Typography>
+            </Stack>
+          </Stack>
+        )}
+        {item?.status === "processing" && statusPayment != false && (
           <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
               <Typography>ราคารวม :</Typography>
@@ -407,6 +460,46 @@ export default function CustomerBookingPage() {
           >
             รายการที่สั่ง
           </Button>
+          {statusPayment != false && (
+            <Button
+              variant="outlined"
+              fullWidth
+              sx={{
+                color: "#1b1b1b",
+                height: "56px",
+                border: "1px solid #1b1b1b",
+                ":hover": {
+                  border: "1px solid #1b1b1b",
+                  opacity: 0.8,
+                },
+              }}
+              disabled={item?.status === "processing"}
+              onClick={() => setStatusPayment(false)}
+            >
+              ดูยอดชำระ
+            </Button>
+          )}
+          {statusPayment === false && (
+            <Button
+              variant="outlined"
+              fullWidth
+              sx={{
+                color: "#1b1b1b",
+                height: "56px",
+                border: "1px solid #1b1b1b",
+                ":hover": {
+                  border: "1px solid #1b1b1b",
+                  opacity: 0.8,
+                },
+              }}
+              disabled={item?.status === "processing"}
+              onClick={() => setStatusPayment(true)}
+            >
+              ดูยอดชำระ
+            </Button>
+          )}
+        </Stack>
+        <Stack direction="row" spacing={2}>
           <Button
             variant="outlined"
             fullWidth
