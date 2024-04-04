@@ -93,10 +93,6 @@ export default function AdminSideMenu() {
   const [toggled, setToggled] = useState(false);
   const [broken, setBroken] = useState(false);
 
-  console.log(user?.role);
-
-  const navigate = useNavigate();
-
   const handleLogout = () => {
     signOut();
   };

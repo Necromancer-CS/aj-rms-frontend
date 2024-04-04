@@ -50,7 +50,6 @@ export default function LoginPage() {
     };
     login(formLogin)
       .then((res) => {
-        console.log(res);
         signIn(res.data.setData);
         toast.success(
           "User : " + res.data.payload.setData.fullName + " เข้าสู่ระบบ"
@@ -74,8 +73,10 @@ export default function LoginPage() {
   const roleRedirects = (role: any) => {
     if (role === "admin") {
       navigate("/admin/dashboard");
-    } else if (role === "user") {
-      navigate("/user/maintable");
+    } else if (role === "employee") {
+      navigate("/admin/desk");
+    } else if (role === "chef") {
+      navigate("/admin/order");
     }
   };
 
