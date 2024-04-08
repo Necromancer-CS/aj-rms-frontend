@@ -1,14 +1,17 @@
 
 export interface DeshboardItem {
-    totalPrice: number
-    totalOpenDesk: string
-    topPackage: number
-    topMenu: string
-    salesMonthly: string
+    selectionCount: any
+    packageName: any
+    map(arg0: (item: any) => void): unknown
+    totalPriceForDay: number
+    totalPriceForWeek: number
+    totalPriceForMonth: number
+    totalPriceForYear: number
+    totalPriceForMonthSegments: number
+    packageSelectionInMonth: number
 
-    total: number
-    count: number
-    menu: string
-    topMenuDetails: any
-    totalOrderedMenus: any
+    percentageChange: any
+    totalPriceThisWeek: number
+    totalPriceThisMonth: number
+    totalPriceThisYear: number
 }

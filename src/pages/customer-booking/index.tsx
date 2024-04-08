@@ -180,7 +180,7 @@ export default function CustomerBookingPage() {
           justifyContent: "center",
           backgroundImage: `url('${
             import.meta.env.VITE_IMAGE_URL
-          }/Image/7.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
+          }/Image/134.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
           backgroundSize: "cover",
         }}
       >
@@ -197,7 +197,7 @@ export default function CustomerBookingPage() {
         >
           <Stack direction="row" justifyContent="center" height={"100%"}>
             <img
-              src={import.meta.env.VITE_IMAGE_URL + "/Image/7.jpg"}
+              src={import.meta.env.VITE_IMAGE_URL + "/Image/13.jpg"}
               alt="LOGO"
               style={{
                 height: "50%",
@@ -211,7 +211,7 @@ export default function CustomerBookingPage() {
 
           <Divider />
           <Stack direction="row" justifyContent="center">
-            <Typography variant="h3">หมดเวลาแล้ว</Typography>
+            <Typography variant="h5">ท่านชําระเงินเรียบร้อยแล้ว</Typography>
           </Stack>
         </Stack>
       </Container>
@@ -254,7 +254,7 @@ export default function CustomerBookingPage() {
               boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
               border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
             }}
-            image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/7.png')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
+            image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/13.png')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
             alt="LOGO"
           />
         </Stack>
