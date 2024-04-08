@@ -22,6 +22,7 @@ import ManageAccountsTwoToneIcon from "@mui/icons-material/ManageAccountsTwoTone
 import { RoleAccessType } from "src/types/user";
 import { useAuth } from "src/hooks/use-auth";
 import { RouterLink } from "src/components/router-link";
+import { any } from "zod";
 
 interface MenuList {
   role: RoleAccessType;
@@ -166,9 +167,16 @@ export default function AdminSideMenu() {
                   <Typography sx={{ pt: 1, textAlign: "center" }}>
                     A&J BUFFET GRILL
                   </Typography>
-                  <Typography sx={{ pt: 1, textAlign: "center" }}>
-                    {user?.role}
-                  </Typography>
+                  {user?.role === "admin" && (
+                    <Typography sx={{ pt: 1, textAlign: "center" }}>
+                      {user?.role}
+                    </Typography>
+                  )}
+                  {user?.role != "admin" && (
+                    <Typography sx={{ pt: 1, textAlign: "center" }}>
+                      {user?.fullName} <br /> ({user?.role})
+                    </Typography>
+                  )}
                 </Box>
               )}
 

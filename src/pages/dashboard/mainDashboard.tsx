@@ -7,55 +7,46 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Grid, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import ReportCard from "src/pages/dashboard/reportCard";
-import SalesMonthly from "src/pages/dashboard/salesMonthly";
 import LocalAtmTwoToneIcon from "@mui/icons-material/LocalAtmTwoTone";
-import TableBarTwoToneIcon from "@mui/icons-material/TableBarTwoTone";
-import FastfoodTwoToneIcon from "@mui/icons-material/FastfoodTwoTone";
-import RiceBowlTwoToneIcon from "@mui/icons-material/RiceBowlTwoTone";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 
 import { useQuery } from "@tanstack/react-query";
 import {
-  salesMonthly,
-  topMenu,
-  topPackage,
-  totalOpenDesk,
-  totalPrice,
+  totalPriceForDay,
+  totalPriceForWeek,
+  totalPriceForMonth,
+  totalPriceForYear,
 } from "src/functions/dashboard";
 import { DeshboardItem } from "src/types/deshboard";
-import HighlightCard from "./highlightCard";
-import TopFiveCard from "./topFiveCard";
+import BarChartCard from "./barChartCard";
+import BarChartPackageCard from "./BarChartPackageCard";
 
 const MainDashboard = () => {
   const theme = useTheme();
-
-  // ดึงข้อมูล totalPrice
-  const { data: totalPriceData } = useQuery<DeshboardItem>({
-    queryKey: ["totalPrice"],
-    queryFn: () => totalPrice().then((res) => res.data),
+  // ดึงข้อมูล totalPriceForDayData
+  const { data: totalPriceForDayData } = useQuery<DeshboardItem>({
+    queryKey: ["totalPriceForDay"],
+    queryFn: () => totalPriceForDay().then((res) => res.data),
   });
 
-  // ดึงข้อมูล totalOpenDesk
-  const { data: totalOpenDeskData } = useQuery<DeshboardItem>({
-    queryKey: ["totalOpenDesk"],
-    queryFn: () => totalOpenDesk().then((res) => res.data),
+  // ดึงข้อมูล totalPriceForWeekData
+  const { data: totalPriceForWeekData } = useQuery<DeshboardItem>({
+    queryKey: ["totalPriceForWeek"],
+    queryFn: () => totalPriceForWeek().then((res) => res.data),
   });
 
-  // ดึงข้อมูล topPackage
-  const { data: topPackageData } = useQuery<DeshboardItem>({
-    queryKey: ["topPackage"],
-    queryFn: () => topPackage().then((res) => res.data),
+  // ดึงข้อมูล totalPriceForMonthData
+  const { data: totalPriceForMonthData } = useQuery<DeshboardItem>({
+    queryKey: ["totalPriceForMonth"],
+    queryFn: () => totalPriceForMonth().then((res) => res.data),
   });
 
-  // ดึงข้อมูล topMenu
-  const { data: topMenuData } = useQuery<DeshboardItem>({
-    queryKey: ["topMenu"],
-    queryFn: () => topMenu().then((res) => res.data),
-  });
-
-  // ดึงข้อมูล salesMonthly
-  const { data: salesMonthlyData } = useQuery<DeshboardItem>({
-    queryKey: ["salesMonthly"],
-    queryFn: () => salesMonthly().then((res) => res.data),
+  // ดึงข้อมูล totalPriceForYear
+  const { data: totalPriceForYearData } = useQuery<DeshboardItem>({
+    queryKey: ["totalPriceForYear"],
+    queryFn: () => totalPriceForYear().then((res) => res.data),
   });
 
   return (
@@ -88,42 +79,125 @@ const MainDashboard = () => {
               <Grid container spacing={3}>
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
-                    primary={totalPriceData?.total}
+                    primary={totalPriceForDayData?.totalPriceForDay}
                     secondary="รายได้รวมทั้งหมด"
-                    color={theme.palette.warning.main}
+                    color={"rgb(211, 47, 47)"}
                     iconPrimary={LocalAtmTwoToneIcon}
+                    footerData={
+                      totalPriceForDayData?.percentageChange > 0
+                        ? `กำไร ${Math.abs(
+                            totalPriceForDayData?.percentageChange
+                          )}%`
+                        : totalPriceForDayData?.percentageChange < 0
+                        ? `ขาดทุน ${Math.abs(
+                            totalPriceForDayData?.percentageChange
+                          )}%`
+                        : `เท่าเดิม ${Math.abs(
+                            totalPriceForDayData?.percentageChange
+                          )}%`
+                    }
+                    iconFooter={
+                      totalPriceForDayData?.percentageChange > 0
+                        ? TrendingUpIcon
+                        : totalPriceForDayData?.percentageChange < 0
+                        ? TrendingDownIcon
+                        : TrendingFlatIcon
+                    }
                   />
                 </Grid>
+
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
-                    primary={totalOpenDeskData?.totalOpenDesk}
-                    secondary="จำนวนการเปิดโต๊ะทั้งหมด"
-                    color={theme.palette.error.main}
-                    iconPrimary={TableBarTwoToneIcon}
+                    primary={totalPriceForWeekData?.totalPriceThisWeek}
+                    secondary="รายได้รวมทั้งหมด"
+                    color={"rgb(237, 108, 2)"}
+                    iconPrimary={LocalAtmTwoToneIcon}
+                    footerData={
+                      totalPriceForWeekData?.percentageChange > 0
+                        ? `กำไร ${Math.abs(
+                            totalPriceForWeekData?.percentageChange
+                          )}%`
+                        : totalPriceForWeekData?.percentageChange < 0
+                        ? `ขาดทุน ${Math.abs(
+                            totalPriceForWeekData?.percentageChange
+                          )}%`
+                        : `เท่าเดิม ${Math.abs(
+                            totalPriceForWeekData?.percentageChange
+                          )}%`
+                    }
+                    iconFooter={
+                      totalPriceForDayData?.percentageChange > 0
+                        ? TrendingUpIcon
+                        : totalPriceForDayData?.percentageChange < 0
+                        ? TrendingDownIcon
+                        : TrendingFlatIcon
+                    }
                   />
                 </Grid>
+
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
-                    primary={topMenuData?.totalOrderedMenus}
-                    secondary="จำนวนเมนูที่ถูกสั่งทั้งหมด"
-                    color={theme.palette.success.main}
-                    iconPrimary={FastfoodTwoToneIcon}
+                    primary={totalPriceForMonthData?.totalPriceThisMonth}
+                    secondary="รายได้รวมทั้งหมด"
+                    color={"rgb(46, 125, 50)"}
+                    iconPrimary={LocalAtmTwoToneIcon}
+                    footerData={
+                      totalPriceForMonthData?.percentageChange > 0
+                        ? `กำไร ${Math.abs(
+                            totalPriceForMonthData?.percentageChange
+                          )}%`
+                        : totalPriceForMonthData?.percentageChange < 0
+                        ? `ขาดทุน ${Math.abs(
+                            totalPriceForMonthData?.percentageChange
+                          )}%`
+                        : `เท่าเดิม ${Math.abs(
+                            totalPriceForMonthData?.percentageChange
+                          )}%`
+                    }
+                    iconFooter={
+                      totalPriceForDayData?.percentageChange > 0
+                        ? TrendingUpIcon
+                        : totalPriceForDayData?.percentageChange < 0
+                        ? TrendingDownIcon
+                        : TrendingFlatIcon
+                    }
                   />
                 </Grid>
+
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
-                    primary={topPackageData?.topPackage}
-                    secondary="เมนูที่มีการเลือกมากที่สุด"
-                    count={topPackageData?.count}
-                    color={theme.palette.primary.main}
-                    iconPrimary={RiceBowlTwoToneIcon}
+                    primary={totalPriceForYearData?.totalPriceThisYear}
+                    secondary="รายได้รวมทั้งหมด"
+                    color={"rgb(25, 118, 210)"}
+                    iconPrimary={LocalAtmTwoToneIcon}
+                    footerData={
+                      totalPriceForYearData?.percentageChange > 0
+                        ? `กำไร ${Math.abs(
+                            totalPriceForYearData?.percentageChange
+                          )}%`
+                        : totalPriceForYearData?.percentageChange < 0
+                        ? `ขาดทุน ${Math.abs(
+                            totalPriceForYearData?.percentageChange
+                          )}%`
+                        : `เท่าเดิม ${Math.abs(
+                            totalPriceForYearData?.percentageChange
+                          )}%`
+                    }
+                    iconFooter={
+                      totalPriceForDayData?.percentageChange > 0
+                        ? TrendingUpIcon
+                        : totalPriceForDayData?.percentageChange < 0
+                        ? TrendingDownIcon
+                        : TrendingFlatIcon
+                    }
                   />
                 </Grid>
-                <Grid item lg={12} sm={12} xs={9}>
-                  <SalesMonthly />
+
+                <Grid item lg={6} sm={6} xs={9}>
+                  <BarChartCard />
                 </Grid>
-                <Grid item lg={12} sm={12} xs={12}>
-                  <TopFiveCard />
+                <Grid item lg={6} sm={6} xs={9}>
+                  <BarChartPackageCard />
                 </Grid>
               </Grid>
             </Grid>

@@ -1,26 +1,31 @@
 import axios from "axios";
 
-//การแสดงข้อมูล totalPrice
-export const totalPrice = async () => {
-    return await axios.get(import.meta.env.VITE_API + "/dashboard-totalPrice");
+//การแสดงข้อมูล totalPriceForDay
+export const totalPriceForDay = async () => {
+    return await axios.get(import.meta.env.VITE_API + "/dashboard-totalPriceForDay");
 };
 
-//การแสดงข้อมูล totalOpenDesk
-export const totalOpenDesk = async () => {
-    return await axios.get(import.meta.env.VITE_API + "/dashboard-totalOpenDesk");
+//การแสดงข้อมูล totalPriceForWeek
+export const totalPriceForWeek = async () => {
+    return await axios.get(import.meta.env.VITE_API + "/dashboard-totalPriceForWeek");
 };
 
-//การแสดงข้อมูล topPackage
-export const topPackage = async () => {
-    return await axios.get(import.meta.env.VITE_API + "/dashboard-topPackage");
+//การแสดงข้อมูล totalPriceForMonth
+export const totalPriceForMonth = async () => {
+    return await axios.get(import.meta.env.VITE_API + "/dashboard-totalPriceForMonth");
 };
 
-//การแสดงข้อมูล topMenu
-export const topMenu = async () => {
-    return await axios.get(import.meta.env.VITE_API + "/dashboard-topMenu");
+//การแสดงข้อมูล totalPriceForYear
+export const totalPriceForYear = async () => {
+    return await axios.get(import.meta.env.VITE_API + "/dashboard-totalPriceForYear");
 };
 
-//การแสดงข้อมูล salesMonthly
-export const salesMonthly = async () => {
-    return await axios.get(import.meta.env.VITE_API + "/dashboard-salesMonthly");
+//การแสดงข้อมูล totalPriceForMonthSegments
+export const totalPriceForMonthSegments = async () => {
+    return await axios.get(import.meta.env.VITE_API + "/dashboard-totalPriceForMonthSegments");
+};
+
+//การแสดงข้อมูล packageSelectionInMonth
+export const packageSelectionInMonth = async () => {
+    return await axios.get(import.meta.env.VITE_API + "/dashboard-packageSelectionInMonth");
 };
