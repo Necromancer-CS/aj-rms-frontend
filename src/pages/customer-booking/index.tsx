@@ -245,17 +245,16 @@ export default function CustomerBookingPage() {
         spacing={2}
       >
         <Stack direction="row" justifyContent="center" height={"100%"}>
-          <CardMedia
-            component="img"
-            sx={{
-              height: "50%", // กำหนดความสูงของรูปภาพ
-              width: "50%", // กำหนดความกว้างของรูปภาพ
-              borderRadius: "50%", // เพิ่มความโค้งมนของขอบเพื่อให้เป็นวงกลม
-              boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
-              border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
-            }}
-            image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/13.png')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
+          <img
+            src={import.meta.env.VITE_IMAGE_URL + "/Image/13.jpg"}
             alt="LOGO"
+            style={{
+              height: "50%",
+              width: "50%",
+              borderRadius: "50%",
+              boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+              border: "2px solid rgba(0, 0, 0, 0.1)",
+            }}
           />
         </Stack>
         <br /> <br />
