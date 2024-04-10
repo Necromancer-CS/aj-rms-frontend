@@ -101,7 +101,17 @@ export default function DeskPage() {
                   }}
                 ></CardContent>
               </Card>
-              <Typography variant="h5">รอชำระเงิน</Typography>
+              <Typography variant="h5">รอชำระเงิน |</Typography>
+              <Card>
+                <CardContent
+                  sx={{
+                    backgroundColor: "#757575",
+                    width: "10px",
+                    height: "2px",
+                  }}
+                ></CardContent>
+              </Card>
+              <Typography variant="h5">ปิดปรับปรุง</Typography>
             </Stack>
           </CardContent>
 

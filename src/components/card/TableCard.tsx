@@ -65,14 +65,14 @@ export default function TableCard({ data }: TableCardProps) {
           >
             {data.deskNo}
           </Typography>
-          {/* <Typography
-          variant="h5"
-          sx={{
-            color: "white",
-          }}
-        >
-          {deskStatusText(data.deskStatus)}
-        </Typography> */}
+          <Typography
+            variant="h5"
+            sx={{
+              color: "white",
+            }}
+          >
+            {deskStatusText(data.deskStatus)}
+          </Typography>
         </Stack>
       </Stack>
     </Card>

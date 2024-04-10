@@ -11,7 +11,7 @@ import { create } from "src/functions/buffet";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 export default function CreateBuffet() {
   //javascript
@@ -121,6 +121,15 @@ export default function CreateBuffet() {
                 </Grid>
               </Grid>
             </form>
+          </CardContent>
+        </Card>
+      </Paper>
+      <Paper elevation={6}>
+        <Card>
+          <CardContent style={{ textAlign: "center" }}>
+            <Typography variant="h6">
+              COPYRIGHT © A&J BUFFET GRILL 2024.
+            </Typography>
           </CardContent>
         </Card>
       </Paper>

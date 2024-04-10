@@ -180,7 +180,7 @@ const DeskTableList = () => {
             <Card>
               <CardContent style={{ textAlign: "center" }}>
                 <Typography variant="h6">
-                  COPYRIGHT © 2024.All RESTAURANT AJ.
+                  COPYRIGHT © A&J BUFFET GRILL 2024.
                 </Typography>
               </CardContent>
             </Card>
