@@ -153,6 +153,15 @@ export default function CreatePayment() {
           </CardContent>
         </Card>
       </Paper>
+      <Paper elevation={6}>
+        <Card>
+          <CardContent style={{ textAlign: "center" }}>
+            <Typography variant="h6">
+              COPYRIGHT © A&J BUFFET GRILL 2024.
+            </Typography>
+          </CardContent>
+        </Card>
+      </Paper>
     </Stack>
   );
 }

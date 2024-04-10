@@ -26,9 +26,9 @@ function Copyright(props: any) {
       align="center"
       {...props}
     >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      {"COPYRIGHT © "}
+      <Link color="inherit" href="https://aj-rms-frontend.vercel.app/">
+        A&J BUFFET GRILL
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -89,7 +89,9 @@ export default function LoginPage() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: "url(./assets/7.png)",
+          backgroundImage: `url('${
+            import.meta.env.VITE_IMAGE_URL
+          }/Image/134.jpg')`,
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"

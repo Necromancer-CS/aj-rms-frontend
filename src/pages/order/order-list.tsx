@@ -63,7 +63,7 @@ const OrderTableList = () => {
                   alignItems="center"
                   justifyContent={"center"}
                 >
-                  <Typography variant="h4">จัดการข้อมูล</Typography>
+                  <Typography variant="h4">รายการออเดอร์</Typography>
                 </Stack>
               </CardContent>
             </Card>
@@ -136,9 +136,11 @@ const OrderTableList = () => {
                                   >
                                     ยืนยัน
                                   </Button>
+                                </ButtonGroup>
+                                <ButtonGroup>
                                   <Button
                                     sx={{
-                                      backgroundColor: "#00b900",
+                                      backgroundColor: "#CC0000",
                                       ":hover": {
                                         backgroundColor: "#1b1b1b",
                                         opacity: 0.8,
@@ -171,7 +173,7 @@ const OrderTableList = () => {
             <Card>
               <CardContent style={{ textAlign: "center" }}>
                 <Typography variant="h6">
-                  COPYRIGHT © 2024.All RESTAURANT AJ.
+                  COPYRIGHT © A&J BUFFET GRILL 2024.
                 </Typography>
               </CardContent>
             </Card>
