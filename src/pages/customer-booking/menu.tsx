@@ -71,7 +71,7 @@ export default function CustomerBookingMenuPage() {
         </Paper>
       </Stack>
 
-      <Container maxWidth="sm" sx={{ paddingBottom: 2 }}>
+      <Container maxWidth="sm" sx={{ paddingBottom: 3 }}>
         <Paper elevation={12}>
           <Card>
             <CardContent>

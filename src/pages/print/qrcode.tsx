@@ -131,7 +131,7 @@ export default function PrintQrCode() {
             >
               พิมพ์ QR CODE
             </Button>
-            <Button
+            {/* <Button
               variant="contained"
               fullWidth
               size="large"
@@ -146,7 +146,7 @@ export default function PrintQrCode() {
               onClick={() => navigate(`/customer-booking/${item?.qrLink}`)}
             >
               ไปหน้าสั่งอาหาร
-            </Button>
+            </Button> */}
           </Stack>
         </Stack>
       </Stack>
