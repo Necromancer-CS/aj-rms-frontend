@@ -6,6 +6,8 @@ export const orderStatusText = (status: OrderStatus) => {
       return "กำลังจัดเตรียม";
     case "served":
       return "จัดส่งแล้ว";
+    case "refuse":
+      return "หมด";
     default:
       return "";
   }

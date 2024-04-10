@@ -65,7 +65,7 @@ export default function PrintQrCode() {
           </Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
-          <Typography></Typography>
+          <Typography>ชื่อพนักงานเปิดโต๊ะ : {item?.userOpenTable}</Typography>
           <Typography>สิ้นสุด : {newDateTime}</Typography>
         </Stack>
         <Divider />

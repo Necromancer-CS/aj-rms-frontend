@@ -10,10 +10,8 @@ export interface UserTheme {
 export type RoleAccessType = "employee" | "chef" | "admin";
 
 export interface User {
-  name: string;
-  email: string;
-  firstname: string;
-  lastname: string;
-  role: RoleAccessType;
+  fullName: string;
+  role: string;
+  username: string;
   _id: string;
 }

@@ -32,6 +32,7 @@ import * as yup from "yup";
 import { CustomerBookingItem } from "src/types/booking";
 import dayjs from "dayjs";
 import Item from "antd/es/list/Item";
+import { useAuth } from "src/hooks/use-auth";
 
 const schema = yup
   .object({
@@ -40,6 +41,7 @@ const schema = yup
     countChildreng: yup.number().required(),
     countChild: yup.number().required(),
     packageId: yup.string().required(),
+    userBilling: yup.string().required(),
     deskNo: yup.string().required(),
     chanelPayment: yup.string().required(),
     totalPrice: yup.number().required(),
@@ -51,6 +53,7 @@ const schema = yup
 export default function DeskPaymentPage() {
   const navigate = useNavigate();
   const param = useParams();
+  const { user } = useAuth();
 
   const [openConfirmDialog, setOpenConfirmDialog] = useState<boolean>(false);
   // Get Data
@@ -94,6 +97,7 @@ export default function DeskPaymentPage() {
     mode: "all",
     resolver: yupResolver(schema),
     defaultValues: {
+      userBilling: user?.fullName,
       customerBookingId: "",
       countAdult: 0,
       countChildreng: 0,
@@ -162,6 +166,7 @@ export default function DeskPaymentPage() {
       setValue("deskNo", customerBookingItem.deskNo);
       setValue("chanelPayment", customerBookingItem.chanelPayment);
       setValue("totalPrice", roundedTotalPaymentAll);
+      setValue("userBilling", user?.fullName);
     }
   }, [customerBookingItem]);
 
@@ -195,6 +200,7 @@ export default function DeskPaymentPage() {
     )?.packagePrice;
 
     const payload = {
+      userBilling: data.userBilling,
       customerBookingId: data.customerBookingId,
       deskNo: data.deskNo,
       countAdult: data.countAdult,
@@ -264,20 +270,35 @@ export default function DeskPaymentPage() {
                     )}
                   />
                 </Stack>
+                <Stack direction="row" spacing={2}>
+                  {/* หมายเลขโต๊ะ */}
+                  <Controller
+                    control={control}
+                    name="deskNo"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="หมายเลขโต๊ะ"
+                        disabled
+                      />
+                    )}
+                  />
 
-                {/* หมายเลขโต๊ะ */}
-                <Controller
-                  control={control}
-                  name="deskNo"
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="หมายเลขโต๊ะ"
-                      disabled
-                    />
-                  )}
-                />
+                  {/* หมายเลขโต๊ะ */}
+                  <Controller
+                    control={control}
+                    name="userBilling"
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="พนังงานคิดเงิน"
+                        disabled
+                      />
+                    )}
+                  />
+                </Stack>
 
                 <Stack direction="row" spacing={2}>
                   {/* วันและเวลา */}

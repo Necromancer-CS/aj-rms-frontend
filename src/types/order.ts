@@ -1,4 +1,4 @@
-export type OrderStatus = "notServed" | "served";
+export type OrderStatus = "notServed" | "served" | "refuse";
 export interface OrderItem {
   _id: string;
   menuId: string;

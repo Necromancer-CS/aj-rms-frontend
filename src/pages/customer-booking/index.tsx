@@ -91,7 +91,7 @@ export default function CustomerBookingPage() {
     const countdownTime = newDateTime * 1000;
     const currentTime = Date.now();
 
-    if (currentTime < countdownTime) {
+    if (currentTime > countdownTime) {
       const timeToNotify = countdownTime - currentTime;
       setTimeout(() => {
         toast.warning("หมดเวลาทานอาหารของท่านแล้ว");
@@ -245,17 +245,16 @@ export default function CustomerBookingPage() {
         spacing={2}
       >
         <Stack direction="row" justifyContent="center" height={"100%"}>
-          <CardMedia
-            component="img"
-            sx={{
-              height: "50%", // กำหนดความสูงของรูปภาพ
-              width: "50%", // กำหนดความกว้างของรูปภาพ
-              borderRadius: "50%", // เพิ่มความโค้งมนของขอบเพื่อให้เป็นวงกลม
-              boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
-              border: "2px solid rgba(0, 0, 0, 0.1)", // เพิ่มเส้นขอบ
-            }}
-            image={`url('${import.meta.env.VITE_IMAGE_URL}/Image/13.png')`} // ใช้เทมเพลตลิเตอร์สำหรับ URL ของรูปภาพ
+          <img
+            src={import.meta.env.VITE_IMAGE_URL + "/Image/13.jpg"}
             alt="LOGO"
+            style={{
+              height: "50%",
+              width: "50%",
+              borderRadius: "50%",
+              boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+              border: "2px solid rgba(0, 0, 0, 0.1)",
+            }}
           />
         </Stack>
         <br /> <br />
@@ -377,10 +376,10 @@ export default function CustomerBookingPage() {
             </Stack>
           </Stack>
         )}
-        {item?.status === "processing" && statusPayment != false && (
+        {item?.status === "processing" && (
           <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
-              <Typography>ราคารวม :</Typography>
+              <Typography>ค่าบริการ :</Typography>
               <Typography>{totalPrice}</Typography>
               <Typography>บาท</Typography>
             </Stack>
@@ -413,7 +412,7 @@ export default function CustomerBookingPage() {
             </Stack>
           </Stack>
         )}
-        {item?.status === "processing" && (
+        {item?.status === "processing" && item?.chanelPayment === "เงินสด" && (
           <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
               <Typography>แจ้งสถานะ : </Typography>
@@ -423,6 +422,20 @@ export default function CustomerBookingPage() {
                 }}
               >
                 {customerBookingStatusText(item?.status ?? "preparing")}
+              </Typography>
+            </Stack>
+          </Stack>
+        )}
+        {item?.status === "processing" && item?.chanelPayment != "เงินสด" && (
+          <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1}>
+              <Typography>แจ้งสถานะ : </Typography>
+              <Typography
+                sx={{
+                  color: "#FF8C00",
+                }}
+              >
+                กรุณาติดต่อพนักงานที่เคาน์เตอร์
               </Typography>
             </Stack>
           </Stack>

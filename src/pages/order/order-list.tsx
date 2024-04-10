@@ -136,6 +136,24 @@ const OrderTableList = () => {
                                   >
                                     ยืนยัน
                                   </Button>
+                                  <Button
+                                    sx={{
+                                      backgroundColor: "#00b900",
+                                      ":hover": {
+                                        backgroundColor: "#1b1b1b",
+                                        opacity: 0.8,
+                                      },
+                                      color: "#ffffff",
+                                    }}
+                                    variant="contained"
+                                    onClick={() => {
+                                      setOpenConfirmDialog(true);
+                                      setOrderId(row._id);
+                                      setDataStatus({ status: "refuse" });
+                                    }}
+                                  >
+                                    ปฏิเสธ
+                                  </Button>
                                 </ButtonGroup>
                               </Stack>
                             </TableCell>

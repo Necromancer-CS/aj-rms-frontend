@@ -153,6 +153,7 @@ export default function ConfirmDialog({
                   fullWidth
                   type="file"
                   name="file"
+                  required
                   onChange={(event) => handleChange(event)}
                 />
               )}

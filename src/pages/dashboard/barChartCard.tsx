@@ -7,19 +7,15 @@ import { Card, CardContent, colors, Paper, Typography } from "@mui/material";
 import dayjs from "dayjs";
 
 const BarChartCard: React.FC = () => {
-  // ดึงข้อมูล totalPriceForMonthSegments
   const { data: totalPriceForMonthSegmentsData } = useQuery<DeshboardItem>({
     queryKey: ["totalPriceForMonthSegments"],
     queryFn: () => totalPriceForMonthSegments().then((res) => res.data),
   });
 
-  // ตรวจสอบว่าข้อมูลถูกโหลดและไม่มีข้อผิดพลาดก่อนที่จะใช้
   if (!totalPriceForMonthSegmentsData) {
     return <div>Loading...</div>;
   }
 
-  // แปลงข้อมูล totalPriceForMonthSegments เป็นรูปแบบที่เหมาะสมสำหรับ BarChart
-  // แปลงข้อมูล totalPriceForMonthSegments เป็นรูปแบบที่เหมาะสมสำหรับ BarChart
   const chartData = totalPriceForMonthSegmentsData?.map((item) => ({
     group: `${dayjs(item.weekStartDate).format("DD/MM/YYYY")} - ${dayjs(
       item.weekEndDate
@@ -41,7 +37,7 @@ const BarChartCard: React.FC = () => {
               textAlign: "center",
             }} // การจัดการตำแหน่งของข้อความ
           >
-            กราฟแสดงยอดขายและสตาร์
+            รายงานแสดงยอดขายรายสัปดาห์
           </Typography>
           <BarChart
             xAxis={[

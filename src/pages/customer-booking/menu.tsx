@@ -2,8 +2,11 @@ import {
   Avatar,
   Box,
   Button,
+  Card,
+  CardContent,
   Container,
   Grid,
+  Paper,
   Stack,
   Typography,
 } from "@mui/material";
@@ -47,48 +50,65 @@ export default function CustomerBookingMenuPage() {
           zIndex: 1,
         }}
       >
-        <Typography
-          sx={{
-            textAlign: "center",
-          }}
-          variant="h5"
-        >
-          เมนูอาหาร
-        </Typography>
+        <Paper elevation={8}>
+          <Card>
+            <CardContent
+              sx={{
+                backgroundColor: "#1b1b1b",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  textAlign: "center",
+                }}
+                variant="h5"
+              >
+                เมนูอาหาร
+              </Typography>
+            </CardContent>
+          </Card>
+        </Paper>
       </Stack>
 
-      <Container maxWidth="sm">
-        <Stack
-          sx={{
-            maxWidth: "320px",
-            width: "100%",
-            height: "100%",
-            mx: "auto",
-            mb: 2,
-            position: "relative",
-          }}
-          spacing={2}
-        >
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-              {isLoading ? (
-                <LoadingCard count={6} />
-              ) : (
-                menuList?.map((item) => (
-                  <Grid item xs={12} key={item._id}>
-                    <Stack
-                      sx={{
-                        height: "100%",
-                      }}
-                    >
-                      <MenuCard data={item} />
-                    </Stack>
+      <Container maxWidth="sm" sx={{ paddingBottom: 2 }}>
+        <Paper elevation={12}>
+          <Card>
+            <CardContent>
+              <Stack
+                sx={{
+                  maxWidth: "320px",
+                  width: "100%",
+                  height: "100%",
+                  mx: "auto",
+                  mb: 2,
+                  position: "relative",
+                }}
+                spacing={2}
+              >
+                <Box sx={{ flexGrow: 1 }}>
+                  <Grid container spacing={2}>
+                    {isLoading ? (
+                      <LoadingCard count={6} />
+                    ) : (
+                      menuList?.map((item) => (
+                        <Grid item xs={12} key={item._id}>
+                          <Stack
+                            sx={{
+                              height: "100%",
+                            }}
+                          >
+                            <MenuCard data={item} />
+                          </Stack>
+                        </Grid>
+                      ))
+                    )}
                   </Grid>
-                ))
-              )}
-            </Grid>
-          </Box>
-        </Stack>
+                </Box>
+              </Stack>
+            </CardContent>
+          </Card>
+        </Paper>
       </Container>
 
       <Stack
@@ -99,7 +119,7 @@ export default function CustomerBookingMenuPage() {
           backgroundColor: "white",
           position: "sticky",
           bottom: 0,
-          p: 2,
+          padding: 2,
         }}
       >
         <Container maxWidth="sm">

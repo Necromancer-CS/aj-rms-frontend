@@ -68,7 +68,7 @@ const MainDashboard = () => {
                   alignItems="center"
                   justifyContent={"center"}
                 >
-                  <Typography variant="h4">จัดการข้อมูล</Typography>
+                  <Typography variant="h4">รายงานสรุปรายรับ</Typography>
                 </Stack>
               </CardContent>
             </Card>
@@ -80,7 +80,7 @@ const MainDashboard = () => {
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
                     primary={totalPriceForDayData?.totalPriceForDay}
-                    secondary="รายได้รวมทั้งหมด"
+                    secondary="ยอดขายรายวัน"
                     color={"rgb(211, 47, 47)"}
                     iconPrimary={LocalAtmTwoToneIcon}
                     footerData={
@@ -109,7 +109,7 @@ const MainDashboard = () => {
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
                     primary={totalPriceForWeekData?.totalPriceThisWeek}
-                    secondary="รายได้รวมทั้งหมด"
+                    secondary="ยอดขายสัปดาห์"
                     color={"rgb(237, 108, 2)"}
                     iconPrimary={LocalAtmTwoToneIcon}
                     footerData={
@@ -126,9 +126,9 @@ const MainDashboard = () => {
                           )}%`
                     }
                     iconFooter={
-                      totalPriceForDayData?.percentageChange > 0
+                      totalPriceForWeekData?.percentageChange > 0
                         ? TrendingUpIcon
-                        : totalPriceForDayData?.percentageChange < 0
+                        : totalPriceForWeekData?.percentageChange < 0
                         ? TrendingDownIcon
                         : TrendingFlatIcon
                     }
@@ -138,7 +138,7 @@ const MainDashboard = () => {
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
                     primary={totalPriceForMonthData?.totalPriceThisMonth}
-                    secondary="รายได้รวมทั้งหมด"
+                    secondary="ยอดขายรายเดือน"
                     color={"rgb(46, 125, 50)"}
                     iconPrimary={LocalAtmTwoToneIcon}
                     footerData={
@@ -155,9 +155,9 @@ const MainDashboard = () => {
                           )}%`
                     }
                     iconFooter={
-                      totalPriceForDayData?.percentageChange > 0
+                      totalPriceForMonthData?.percentageChange > 0
                         ? TrendingUpIcon
-                        : totalPriceForDayData?.percentageChange < 0
+                        : totalPriceForMonthData?.percentageChange < 0
                         ? TrendingDownIcon
                         : TrendingFlatIcon
                     }
@@ -167,7 +167,7 @@ const MainDashboard = () => {
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
                     primary={totalPriceForYearData?.totalPriceThisYear}
-                    secondary="รายได้รวมทั้งหมด"
+                    secondary="ยอดขายรายปี"
                     color={"rgb(25, 118, 210)"}
                     iconPrimary={LocalAtmTwoToneIcon}
                     footerData={
@@ -184,9 +184,9 @@ const MainDashboard = () => {
                           )}%`
                     }
                     iconFooter={
-                      totalPriceForDayData?.percentageChange > 0
+                      totalPriceForYearData?.percentageChange > 0
                         ? TrendingUpIcon
-                        : totalPriceForDayData?.percentageChange < 0
+                        : totalPriceForYearData?.percentageChange < 0
                         ? TrendingDownIcon
                         : TrendingFlatIcon
                     }
