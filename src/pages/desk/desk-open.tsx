@@ -28,9 +28,12 @@ import { CustomerBookingPayload } from "src/types/booking";
 import { createCustomerBooking } from "src/functions/booking";
 import ConfirmDialog from "src/components/dialog/confirm";
 import { toast } from "react-toastify";
+import { useAuth } from "src/hooks/use-auth";
 
 const schema = yup
   .object({
+    userOpenTable: yup.string().required(),
+    userBilling: yup.string(),
     countAdult: yup.number().positive().integer().required(),
     countChildreng: yup.number().integer(),
     countChild: yup.number().integer(),
@@ -43,6 +46,7 @@ const schema = yup
 export default function DeskOpenPage() {
   const navigate = useNavigate();
   const param = useParams();
+  const { user } = useAuth();
 
   const [openConfirmDialog, setOpenConfirmDialog] = useState<boolean>(false);
   // Get Data
@@ -72,6 +76,7 @@ export default function DeskOpenPage() {
     mode: "all",
     resolver: yupResolver(schema),
     defaultValues: {
+      userOpenTable: user?.fullName,
       countAdult: 1,
       countChildreng: 0,
       countChild: 0,
@@ -102,6 +107,7 @@ export default function DeskOpenPage() {
 
         setValue("deskNo", findDesk.deskNo);
         setValue("chairCount", findDesk.chairCount);
+        setValue("userOpenTable", user?.fullName);
       }
     }
   }, [isLoading, isSuccess, param]);
@@ -193,10 +199,24 @@ export default function DeskOpenPage() {
                     name="chairCount"
                     control={control}
                   />
+                  <Controller
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        error={!!errors?.userOpenTable?.message}
+                        fullWidth
+                        label="พนังงานเปิดโต๊ะ"
+                        margin="dense"
+                        type="string"
+                        disabled
+                      />
+                    )}
+                    name="userOpenTable"
+                    control={control}
+                  />
                 </Stack>
 
                 <Stack direction="row" spacing={2}>
-                  {/* แพ็กเกจบุฟเฟ่ต์ */}
                   <Controller
                     render={({ field }) => (
                       <FormControl
@@ -219,9 +239,6 @@ export default function DeskOpenPage() {
                     name="packageId"
                     control={control}
                   />
-                </Stack>
-
-                <Stack direction="row" spacing={2}>
                   {/* จำนวนลูกค้า */}
                   <Controller
                     control={control}
@@ -269,7 +286,10 @@ export default function DeskOpenPage() {
                 <Stack
                   direction="row"
                   spacing={2}
-                  sx={{ width: "70%", mx: "auto!important" }}
+                  sx={{
+                    width: "35%",
+                    mx: "auto!important",
+                  }}
                 >
                   <Button
                     variant="contained"

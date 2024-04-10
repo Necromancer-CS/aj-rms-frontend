@@ -65,7 +65,7 @@ export default function PrintQrCode() {
           </Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
-          <Typography></Typography>
+          <Typography>ชื่อพนักงานเปิดโต๊ะ : {item?.userOpenTable}</Typography>
           <Typography>สิ้นสุด : {newDateTime}</Typography>
         </Stack>
         <Divider />
@@ -131,7 +131,7 @@ export default function PrintQrCode() {
             >
               พิมพ์ QR CODE
             </Button>
-            {/* <Button
+            <Button
               variant="contained"
               fullWidth
               size="large"
@@ -146,7 +146,7 @@ export default function PrintQrCode() {
               onClick={() => navigate(`/customer-booking/${item?.qrLink}`)}
             >
               ไปหน้าสั่งอาหาร
-            </Button> */}
+            </Button>
           </Stack>
         </Stack>
       </Stack>

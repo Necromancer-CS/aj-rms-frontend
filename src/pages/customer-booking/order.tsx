@@ -1,4 +1,14 @@
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useNavigate } from "react-router-dom";
@@ -38,14 +48,25 @@ export default function CustomerBookingOrderPage() {
           zIndex: 1,
         }}
       >
-        <Typography
-          sx={{
-            textAlign: "center",
-          }}
-          variant="h5"
-        >
-          รายละเอียดคำสั่งซื้อ
-        </Typography>
+        <Paper elevation={8}>
+          <Card>
+            <CardContent
+              sx={{
+                backgroundColor: "#1b1b1b",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  textAlign: "center",
+                }}
+                variant="h5"
+              >
+                รายละเอียดคำสั่งซื้อ
+              </Typography>
+            </CardContent>
+          </Card>
+        </Paper>
       </Stack>
 
       <Container maxWidth="sm">

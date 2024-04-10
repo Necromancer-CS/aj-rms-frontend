@@ -91,7 +91,7 @@ export default function CustomerBookingPage() {
     const countdownTime = newDateTime * 1000;
     const currentTime = Date.now();
 
-    if (currentTime < countdownTime) {
+    if (currentTime > countdownTime) {
       const timeToNotify = countdownTime - currentTime;
       setTimeout(() => {
         toast.warning("หมดเวลาทานอาหารของท่านแล้ว");
@@ -376,10 +376,10 @@ export default function CustomerBookingPage() {
             </Stack>
           </Stack>
         )}
-        {item?.status === "processing" && statusPayment != false && (
+        {item?.status === "processing" && (
           <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
-              <Typography>ราคารวม :</Typography>
+              <Typography>ค่าบริการ :</Typography>
               <Typography>{totalPrice}</Typography>
               <Typography>บาท</Typography>
             </Stack>
@@ -412,7 +412,7 @@ export default function CustomerBookingPage() {
             </Stack>
           </Stack>
         )}
-        {item?.status === "processing" && (
+        {item?.status === "processing" && item?.chanelPayment === "เงินสด" && (
           <Stack direction="row" spacing={1}>
             <Stack direction="row" spacing={1}>
               <Typography>แจ้งสถานะ : </Typography>
@@ -422,6 +422,20 @@ export default function CustomerBookingPage() {
                 }}
               >
                 {customerBookingStatusText(item?.status ?? "preparing")}
+              </Typography>
+            </Stack>
+          </Stack>
+        )}
+        {item?.status === "processing" && item?.chanelPayment != "เงินสด" && (
+          <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1}>
+              <Typography>แจ้งสถานะ : </Typography>
+              <Typography
+                sx={{
+                  color: "#FF8C00",
+                }}
+              >
+                กรุณาติดต่อพนักงานที่เคาน์เตอร์
               </Typography>
             </Stack>
           </Stack>

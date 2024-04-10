@@ -251,7 +251,7 @@ export default function AdminSideMenu() {
                     <ListItemIcon>
                       <LogoutIcon />
                     </ListItemIcon>
-                    <Typography variant="inherit">Logout</Typography>
+                    <Typography variant="inherit">ออกจากระบบ</Typography>
                   </MenuItem>
                 </Box>
               )}
