@@ -1,4 +1,14 @@
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams, useNavigate } from "react-router-dom";
 import LoadingCard from "src/components/card/LoadingCard";
@@ -51,45 +61,74 @@ export default function CustomerBookingCartPage() {
 
   return (
     <>
-      <Container maxWidth="sm">
-        <Stack
-          sx={{
-            maxWidth: "320px",
-            width: "100%",
-            height: "100%",
-            mx: "auto",
-            pt: 5,
-            mb: 2,
-            position: "relative",
-          }}
-          spacing={2}
-        >
-          <Stack>
-            <Typography sx={{ textAlign: "center" }} variant="h5">
-              ตะกร้า
-            </Typography>
-          </Stack>
+      <Stack
+        sx={{
+          position: "sticky",
+          top: 0,
+          backgroundColor: "white",
+          zIndex: 1,
+          padding: 2,
+        }}
+      >
+        <Paper elevation={8}>
+          <Card>
+            <CardContent
+              sx={{
+                backgroundColor: "#1b1b1b",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  textAlign: "center",
+                }}
+                variant="h5"
+              >
+                ตะกร้า
+              </Typography>
+            </CardContent>
+          </Card>
+        </Paper>
+      </Stack>
 
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-              {isLoading ? (
-                <LoadingCard count={6} />
-              ) : (
-                carts?.map((item: TMenuItem) => (
-                  <Grid item xs={12} key={item._id}>
-                    <Stack
-                      sx={{
-                        height: "100%",
-                      }}
-                    >
-                      <MenuCard data={item} />
-                    </Stack>
+      <Container maxWidth="sm" sx={{ paddingBottom: 3 }}>
+        <Paper elevation={12}>
+          <Card>
+            <CardContent>
+              <Stack
+                sx={{
+                  maxWidth: "320px",
+                  width: "100%",
+                  height: "100%",
+                  mx: "auto",
+                  mb: 2,
+                  position: "relative",
+                }}
+                spacing={2}
+              >
+                <Box sx={{ flexGrow: 1 }}>
+                  <Grid container spacing={2}>
+                    {isLoading ? (
+                      <LoadingCard count={6} />
+                    ) : (
+                      carts?.map((item: TMenuItem) => (
+                        <Grid item xs={12} key={item._id}>
+                          <Stack
+                            sx={{
+                              height: "100%",
+                            }}
+                          >
+                            <MenuCard data={item} />
+                          </Stack>
+                        </Grid>
+                      ))
+                    )}
                   </Grid>
-                ))
-              )}
-            </Grid>
-          </Box>
-        </Stack>
+                </Box>
+              </Stack>
+            </CardContent>
+          </Card>
+        </Paper>
       </Container>
 
       <Stack
