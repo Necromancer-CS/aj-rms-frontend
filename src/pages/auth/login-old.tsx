@@ -91,7 +91,7 @@ export default function LoginPage() {
         sx={{
           backgroundImage: `url('${
             import.meta.env.VITE_IMAGE_URL
-          }/Image/134.jpg')`,
+          }/Image/13.jpg')`,
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"
