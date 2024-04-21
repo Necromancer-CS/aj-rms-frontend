@@ -81,7 +81,7 @@ export default function CustomerBookingPage() {
     dayjs.locale("th");
 
     // มี createdAt หรือมั่ยถ้ามีให้เพิ่มแล้วของ item?.createdAt เข้าไปแล้วจะได้ผลคือ newDateTime
-    if (item?.createdAt) {
+    if (item.createdAt) {
       const createdAt = dayjs(item.createdAt);
       const extraTime = 90 * 60 * 1000;
       const newDate = createdAt.add(extraTime, "millisecond");
@@ -229,7 +229,7 @@ export default function CustomerBookingPage() {
         justifyContent: "center",
         backgroundImage: `url('${
           import.meta.env.VITE_IMAGE_URL
-        }/Image/134.jpg')`,
+        }/Image/14.jpg')`,
         backgroundSize: "cover",
       }}
     >
