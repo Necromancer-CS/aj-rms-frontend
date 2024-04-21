@@ -3,7 +3,9 @@ export interface UserTheme {
   avatar?: string;
   email?: string;
   name?: string;
-
+  fullName?: string;
+  role?: string;
+  username?: string;
   [key: string]: any;
 }
 

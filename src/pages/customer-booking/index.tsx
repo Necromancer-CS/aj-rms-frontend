@@ -174,13 +174,13 @@ export default function CustomerBookingPage() {
         maxWidth="xl"
         sx={{
           backgroundColor: "#000",
-          minHeight: "100vh",
+          minHeight: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           backgroundImage: `url('${
             import.meta.env.VITE_IMAGE_URL
-          }/Image/134.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
+          }/Image/14.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
           backgroundSize: "cover",
         }}
       >
@@ -368,7 +368,7 @@ export default function CustomerBookingPage() {
               <Typography>แจ้งสถานะ : </Typography>
               <Typography
                 sx={{
-                  color: "#FF8C00",
+                  color: "#00B900",
                 }}
               >
                 {customerBookingStatusText(item?.status ?? "preparing")}
@@ -418,7 +418,7 @@ export default function CustomerBookingPage() {
               <Typography>แจ้งสถานะ : </Typography>
               <Typography
                 sx={{
-                  color: "#FF8C00",
+                  color: "#CC0000",
                 }}
               >
                 {customerBookingStatusText(item?.status ?? "preparing")}
@@ -432,7 +432,7 @@ export default function CustomerBookingPage() {
               <Typography>แจ้งสถานะ : </Typography>
               <Typography
                 sx={{
-                  color: "#FF8C00",
+                  color: "#CC0000",
                 }}
               >
                 กรุณาติดต่อพนักงานที่เคาน์เตอร์
