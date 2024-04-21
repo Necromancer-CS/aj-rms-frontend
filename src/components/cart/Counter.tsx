@@ -25,7 +25,7 @@ const Counter: React.FC<CounterProps> = ({
       direction="row"
       justifyContent="space-between"
       alignItems="center"
-      sx={{ backgroundColor: "#009f7f", borderRadius: "8px" }}
+      sx={{ backgroundColor: "#b0120a", borderRadius: "8px" }}
     >
       <IconButton onClick={onDecrement} sx={{ color: "white", p: 0.5 }}>
         <RemoveIcon sx={{ height: 16, width: 16 }} />

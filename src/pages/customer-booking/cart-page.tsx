@@ -63,132 +63,132 @@ export default function CustomerBookingCartPage() {
     <>
       <Stack
         sx={{
-          position: "sticky",
-          top: 0,
-          backgroundColor: "white",
-          zIndex: 1,
-          padding: 2,
+          backgroundColor: "rgba(20, 20, 20)", // เปลี่ยนค่า alpha เพื่อความโปร่งใส
+          minHeight: "100vh",
+          borderTopLeftRadius: "50px",
+          borderTopRightRadius: "50px",
         }}
       >
-        <Paper elevation={8}>
-          <Card>
-            <CardContent
-              sx={{
-                backgroundColor: "#1b1b1b",
-                color: "white",
-              }}
-            >
-              <Typography
-                sx={{
-                  textAlign: "center",
-                }}
-                variant="h5"
-              >
-                ตะกร้า
-              </Typography>
-            </CardContent>
-          </Card>
-        </Paper>
-      </Stack>
+        <Stack
+          sx={{
+            top: 0,
+            zIndex: 1,
+            padding: 2,
+          }}
+        >
+          <Typography
+            sx={{
+              textAlign: "center",
+              color: "#ffffff",
+            }}
+            variant="h4"
+          >
+            ตะกร้า
+          </Typography>
+        </Stack>
 
-      <Container maxWidth="sm" sx={{ paddingBottom: 3 }}>
-        <Paper elevation={12}>
-          <Card>
-            <CardContent>
-              <Stack
-                sx={{
-                  maxWidth: "320px",
-                  width: "100%",
-                  height: "100%",
-                  mx: "auto",
-                  mb: 2,
-                  position: "relative",
-                }}
-                spacing={2}
-              >
-                <Box sx={{ flexGrow: 1 }}>
-                  <Grid container spacing={2}>
-                    {isLoading ? (
-                      <LoadingCard count={6} />
-                    ) : (
-                      carts?.map((item: TMenuItem) => (
-                        <Grid item xs={12} key={item._id}>
-                          <Stack
-                            sx={{
-                              height: "100%",
-                            }}
-                          >
-                            <MenuCard data={item} />
-                          </Stack>
-                        </Grid>
-                      ))
-                    )}
-                  </Grid>
-                </Box>
-              </Stack>
-            </CardContent>
-          </Card>
-        </Paper>
-      </Container>
-
-      <Stack
-        direction="row"
-        justifyContent="center"
-        spacing={2}
-        sx={{
-          backgroundColor: "white",
-          position: "sticky",
-          bottom: 0,
-          p: 2,
-        }}
-      >
-        <Container maxWidth="sm">
-          <Stack spacing={2}>
-            <Button
-              variant="contained"
-              fullWidth
-              size="large"
-              sx={{
-                height: "56px",
-                backgroundColor: "#00b900",
-                ":hover": {
-                  backgroundColor: "#00b900",
-                  opacity: 0.8,
-                },
-              }}
-              disabled={carts.length === 0}
-              onClick={() => setOpenConfirmDialog(true)}
-            >
-              ยืนยันรายการสั่งอาหาร
-            </Button>
-            <Button
-              variant="contained"
-              fullWidth
-              sx={{
-                height: "56px",
-                backgroundColor: "#1b1b1b",
-                ":hover": {
-                  backgroundColor: "#1b1b1b",
-                  opacity: 0.8,
-                },
-              }}
-              onClick={() => navigate(`/customer-booking/${item?.qrLink}/menu`)}
-            >
-              ย้อนกลับ
-            </Button>
+        <Container maxWidth="sm" sx={{ paddingBottom: 3 }}>
+          <Stack
+            sx={{
+              maxWidth: "400px",
+              width: "100%",
+              height: "100%",
+              mx: "auto",
+              mb: 2,
+              position: "relative",
+            }}
+            spacing={2}
+          >
+            <Box sx={{ flexGrow: 1 }}>
+              <Grid container spacing={2}>
+                {isLoading ? (
+                  <LoadingCard count={6} />
+                ) : (
+                  carts?.map((item: TMenuItem) => (
+                    <Grid item xs={12} key={item._id}>
+                      <Stack
+                        sx={{
+                          height: "100%",
+                        }}
+                      >
+                        <MenuCard data={item} />
+                      </Stack>
+                    </Grid>
+                  ))
+                )}
+              </Grid>
+            </Box>
           </Stack>
         </Container>
-      </Stack>
 
-      {/* Confirm Dialog */}
-      <ConfirmDialog
-        title="คุณต้องการยืนยันการสั่งอาหาร"
-        openDialog=""
-        open={openConfirmDialog}
-        handleClose={() => setOpenConfirmDialog(false)}
-        handleConfirm={() => handleSubmit()}
-        isLoading={isPending}
-      />
+        <Stack
+          direction="row"
+          justifyContent="center"
+          spacing={2}
+          sx={{
+            position: "sticky",
+            bottom: 0,
+            p: 2,
+          }}
+        >
+          <Container maxWidth="sm">
+            <Stack spacing={2}>
+              <Button
+                variant="contained"
+                fullWidth
+                size="large"
+                sx={{
+                  boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+                  border: "1px solid rgba(21, 21, 21)",
+                  height: "56px",
+                  backgroundColor: "#b0120a",
+                  ":hover": {
+                    backgroundColor: "#1b1b1b",
+                    opacity: 0.8,
+                  },
+                  fontSize: "18px",
+                }}
+                disabled={carts.length === 0}
+                onClick={() => setOpenConfirmDialog(true)}
+              >
+                ยืนยันรายการสั่งอาหาร
+              </Button>
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                  boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+                  border: "3px solid #b0120a",
+                  height: "56px",
+                  backgroundColor: "#1b1b1b",
+                  color: "#fffffff",
+                  ":hover": {
+                    backgroundColor: "#1b1b1b",
+                    opacity: 0.8,
+                    color: "#ffffff",
+                  },
+                  fontSize: "18px",
+                }}
+                onClick={() =>
+                  navigate(`/customer-booking/${item?.qrLink}/menu`)
+                }
+              >
+                ย้อนกลับ
+              </Button>
+            </Stack>
+          </Container>
+        </Stack>
+
+        {/* Confirm Dialog */}
+        <ConfirmDialog
+          title="คุณต้องการยืนยันการสั่งอาหาร"
+          openDialog=""
+          open={openConfirmDialog}
+          handleClose={() => setOpenConfirmDialog(false)}
+          handleConfirm={() => handleSubmit()}
+          isLoading={isPending}
+        />
+      </Stack>
     </>
   );
 }
