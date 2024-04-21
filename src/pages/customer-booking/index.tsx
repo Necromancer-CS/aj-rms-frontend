@@ -174,7 +174,7 @@ export default function CustomerBookingPage() {
         maxWidth="xl"
         sx={{
           backgroundColor: "#000",
-          minHeight: "100%",
+          minHeight: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -297,7 +297,7 @@ export default function CustomerBookingPage() {
             border: "solid",
             borderRadius: 10,
             borderStyle: "outset",
-            borderColor: "blue",
+            borderColor: "#696969",
           }}
         >
           <CardContent>
