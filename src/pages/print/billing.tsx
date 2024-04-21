@@ -142,7 +142,7 @@ export default function PrintBuilling() {
             หมายเลขโต๊ะ : {customerByBill?.deskNo}
           </Typography>
           <Typography sx={{ fontSize: 20 }}>
-            แพ็กเกค : {customerByBill?.packageName}
+            แพ็กเกจ : {customerByBill?.packageName}
           </Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
