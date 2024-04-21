@@ -115,8 +115,9 @@ export default function DeskPaymentPage() {
   const { mutateAsync: updateBill, isPending } = useMutation({
     mutationFn: (payload: BillingPayload) => updateBilling(param.id!, payload),
     onSuccess(data) {
+      console.log(data.data.customerBookingId);
       setOpenConfirmDialog(false);
-      navigate(`/admin/desk`);
+      navigate(`/print/builling/` + data.data.customerBookingId);
     },
   });
 
@@ -497,7 +498,9 @@ export default function DeskPaymentPage() {
                       },
                     }}
                     disabled={!isDirty || !isValid}
-                    onClick={() => setOpenConfirmDialog(true)}
+                    onClick={() => {
+                      setOpenConfirmDialog(true);
+                    }}
                   >
                     ยืนยันการชำระเงิน
                   </Button>

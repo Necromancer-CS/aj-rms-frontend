@@ -29,6 +29,7 @@ import CustomerBookingCartPage from "src/pages/customer-booking/cart-page";
 import CustomerBookingOrderPage from "src/pages/customer-booking/order";
 import DeskPaymentPage from "src/pages/desk/payment";
 import MainDashboard from "src/pages/dashboard/mainDashboard";
+import PrintBuilling from "src/pages/print/billing";
 
 export const routes: RouteObject[] = [
   {
@@ -274,5 +275,9 @@ export const routes: RouteObject[] = [
   {
     path: "/print/qr-code/:id",
     element: <PrintQrCode />,
+  },
+  {
+    path: "/print/builling/:id",
+    element: <PrintBuilling />,
   },
 ];
