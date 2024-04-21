@@ -228,8 +228,8 @@ export default function CustomerBookingPage() {
         justifyContent: "center",
         backgroundColor: "#212121",
         backgroundSize: "cover",
-        borderTopLeftRadius: "50px",
-        borderTopRightRadius: "50px",
+        borderTopLeftRadius: "25px",
+        borderTopRightRadius: "25px",
       }}
     >
       <Stack
@@ -260,16 +260,17 @@ export default function CustomerBookingPage() {
             }}
           />
         </Stack>
-        <br /> <br />
         <Divider />
         <Stack direction="row" justifyContent="space-between">
-          <Typography>{`หมายเลขโต๊ะ : ${item?.deskNo}`}</Typography>
+          <Typography variant="h6">{`หมายเลขโต๊ะ : ${item?.deskNo}`}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
-          <Typography>แพ็คเกจ : {item?.packageName}</Typography>
+          <Typography variant="subtitle1">
+            แพ็คเกจ : {item?.packageName}
+          </Typography>
           <Stack direction="row" spacing={1}>
-            <Typography>ราคาแพ็คเกจ :</Typography>
-            <Typography>
+            <Typography variant="subtitle1">ราคาแพ็คเกจ :</Typography>
+            <Typography variant="subtitle1">
               {billingRead && billingRead[0] && billingRead[0].packagePrice}
             </Typography>
           </Stack>
@@ -310,10 +311,10 @@ export default function CustomerBookingPage() {
             <Stack direction="row" justifyContent="space-between">
               <Stack direction="row" spacing={1} alignItems="center"></Stack>
               <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>เวลาเริ่มต้น</Typography>
+                <Typography variant="h5">เวลาเริ่มต้น</Typography>
               </Stack>
               <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>เวลาสิ้นสุด</Typography>
+                <Typography variant="h5">เวลาสิ้นสุด</Typography>
               </Stack>
               <Stack direction="row" spacing={1} alignItems="center"></Stack>
             </Stack>
@@ -321,12 +322,12 @@ export default function CustomerBookingPage() {
             <Stack direction="row" justifyContent="space-between">
               <Stack direction="row" spacing={1} alignItems="center"></Stack>
               <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>
+                <Typography variant="h5">
                   {dayjs(item?.createdAt).format("HH:mm")}
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>{newDateTime}</Typography>
+                <Typography variant="h5">{newDateTime}</Typography>
               </Stack>
               <Stack direction="row" spacing={1} alignItems="center"></Stack>
             </Stack>
