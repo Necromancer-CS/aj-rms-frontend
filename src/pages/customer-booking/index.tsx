@@ -262,7 +262,7 @@ export default function CustomerBookingPage() {
         </Stack>
         <Divider />
         <Stack direction="row" justifyContent="space-between">
-          <Typography variant="h6">{`หมายเลขโต๊ะ : ${item?.deskNo}`}</Typography>
+          <Typography>{`หมายเลขโต๊ะ : ${item?.deskNo}`}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="subtitle1">
@@ -300,7 +300,6 @@ export default function CustomerBookingPage() {
           sx={{
             border: "solid",
             borderRadius: 10,
-            borderStyle: "outset",
             borderColor: "#ffffff",
             backgroundColor: "#ffffff",
             fontSize: "20px",
