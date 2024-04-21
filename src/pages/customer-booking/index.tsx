@@ -236,7 +236,7 @@ export default function CustomerBookingPage() {
         sx={{
           maxWidth: "330px",
           width: "100%",
-          backgroundColor: "rgba(21, 21, 21, 0.88)", // เปลี่ยน opacity เป็น 0.7 เพื่อทำให้เป็นสีขาวขุ่น
+          backgroundColor: "rgba(19, 19, 19)", // เปลี่ยน opacity เป็น 0.7 เพื่อทำให้เป็นสีขาวขุ่น
           padding: "20px",
           borderRadius: "10px",
           boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
@@ -473,13 +473,14 @@ export default function CustomerBookingPage() {
               boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
               border: "1px solid rgba(21, 21, 21)",
               height: "56px",
-              backgroundColor: "#212121",
+              backgroundColor: "#303030",
               ":hover": {
                 backgroundColor: "#b0120a",
                 opacity: 0.8,
                 color: "#212121",
               },
               color: "#ffffff",
+              fontSize: "18px",
             }}
             onClick={() => navigate(`/customer-booking/${item?.qrLink}/order`)}
           >
@@ -493,13 +494,14 @@ export default function CustomerBookingPage() {
                 boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
                 border: "1px solid rgba(21, 21, 21)",
                 height: "56px",
-                backgroundColor: "#212121",
+                backgroundColor: "#303030",
                 ":hover": {
                   backgroundColor: "#b0120a",
                   opacity: 0.8,
                   color: "#ffffff",
                 },
                 color: "#ffffff",
+                fontSize: "18px",
               }}
               disabled={item?.status === "processing"}
               onClick={() => setStatusPayment(false)}
@@ -515,13 +517,14 @@ export default function CustomerBookingPage() {
                 boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
                 border: "1px solid rgba(21, 21, 21)",
                 height: "56px",
-                backgroundColor: "#212121",
+                backgroundColor: "#303030",
                 ":hover": {
                   backgroundColor: "#b0120a",
                   opacity: 0.8,
                   color: "#ffffff",
                 },
                 color: "#ffffff",
+                fontSize: "18px",
               }}
               disabled={item?.status === "processing"}
               onClick={() => setStatusPayment(true)}
@@ -538,13 +541,14 @@ export default function CustomerBookingPage() {
               boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
               border: "1px solid rgba(21, 21, 21)",
               height: "56px",
-              backgroundColor: "#212121",
+              backgroundColor: "#303030",
               ":hover": {
                 backgroundColor: "#b0120a",
                 opacity: 0.8,
                 color: "#ffffff",
               },
               color: "#ffffff",
+              fontSize: "18px",
             }}
             disabled={item?.status === "processing"}
             onClick={() => setOpenConfirmDialog(true)}

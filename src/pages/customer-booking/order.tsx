@@ -49,7 +49,6 @@ export default function CustomerBookingOrderPage() {
       <Stack sx={{ position: "relative" }}>
         <Stack
           sx={{
-            position: "sticky",
             top: 0,
             p: 2,
             margin: 2,
