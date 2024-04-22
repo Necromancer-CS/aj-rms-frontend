@@ -304,33 +304,32 @@ export default function CustomerBookingPage() {
             backgroundColor: "#ffffff",
             fontSize: "20px",
             color: "#212121",
+            padding: 1,
           }}
         >
-          <CardContent>
-            <Stack direction="row" justifyContent="space-between">
-              <Stack direction="row" spacing={1} alignItems="center"></Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h5">เวลาเริ่มต้น</Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h5">เวลาสิ้นสุด</Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center"></Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Stack direction="row" spacing={1} alignItems="center"></Stack>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography variant="h5">เวลาเริ่มต้น</Typography>
             </Stack>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography variant="h5">เวลาสิ้นสุด</Typography>
+            </Stack>
+            <Stack direction="row" spacing={1} alignItems="center"></Stack>
+          </Stack>
 
-            <Stack direction="row" justifyContent="space-between">
-              <Stack direction="row" spacing={1} alignItems="center"></Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h5">
-                  {dayjs(item?.createdAt).format("HH:mm")}
-                </Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h5">{newDateTime}</Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center"></Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Stack direction="row" spacing={1} alignItems="center"></Stack>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography variant="h5">
+                {dayjs(item?.createdAt).format("HH:mm")}
+              </Typography>
             </Stack>
-          </CardContent>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography variant="h5">{newDateTime}</Typography>
+            </Stack>
+            <Stack direction="row" spacing={1} alignItems="center"></Stack>
+          </Stack>
         </Card>
         {statusPayment != false && (
           <Stack direction="row" spacing={1}>
@@ -473,14 +472,15 @@ export default function CustomerBookingPage() {
               boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
               border: "1px solid rgba(21, 21, 21)",
               height: "56px",
+              color: "#ffffff",
+              fontSize: "18px",
               backgroundColor: "#303030",
               ":hover": {
                 backgroundColor: "#b0120a",
                 opacity: 0.8,
-                color: "#212121",
+                border: "1px solid rgba(21, 21, 21)",
+                color: "#ffffff",
               },
-              color: "#ffffff",
-              fontSize: "18px",
             }}
             onClick={() => navigate(`/customer-booking/${item?.qrLink}/order`)}
           >
@@ -499,6 +499,7 @@ export default function CustomerBookingPage() {
                   backgroundColor: "#b0120a",
                   opacity: 0.8,
                   color: "#ffffff",
+                  border: "1px solid rgba(21, 21, 21)",
                 },
                 color: "#ffffff",
                 fontSize: "18px",
@@ -522,6 +523,7 @@ export default function CustomerBookingPage() {
                   backgroundColor: "#b0120a",
                   opacity: 0.8,
                   color: "#ffffff",
+                  border: "1px solid rgba(21, 21, 21)",
                 },
                 color: "#ffffff",
                 fontSize: "18px",
@@ -546,6 +548,7 @@ export default function CustomerBookingPage() {
                 backgroundColor: "#b0120a",
                 opacity: 0.8,
                 color: "#ffffff",
+                border: "1px solid rgba(21, 21, 21)",
               },
               color: "#ffffff",
               fontSize: "18px",
