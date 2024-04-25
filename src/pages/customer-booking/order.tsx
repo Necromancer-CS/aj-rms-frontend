@@ -38,119 +38,121 @@ export default function CustomerBookingOrderPage() {
   });
 
   return (
-    <Stack sx={{ position: "relative" }}>
-      <Stack
-        sx={{
-          position: "sticky",
-          top: 0,
-          backgroundColor: "white",
-          p: 2,
-          zIndex: 1,
-        }}
-      >
-        <Paper elevation={8}>
-          <Card>
-            <CardContent
-              sx={{
-                backgroundColor: "#1b1b1b",
-                color: "white",
-              }}
-            >
-              <Typography
-                sx={{
-                  textAlign: "center",
-                }}
-                variant="h5"
-              >
-                รายละเอียดคำสั่งซื้อ
-              </Typography>
-            </CardContent>
-          </Card>
-        </Paper>
-      </Stack>
-
-      <Container maxWidth="sm">
+    <Stack
+      sx={{
+        backgroundColor: "rgba(20, 20, 20)", // เปลี่ยนค่า alpha เพื่อความโปร่งใส
+        minHeight: "100vh",
+        borderTopLeftRadius: "50px",
+        borderTopRightRadius: "50px",
+      }}
+    >
+      <Stack sx={{ position: "relative" }}>
         <Stack
           sx={{
-            maxWidth: "320px",
-            width: "100%",
-            height: "100%",
-            mx: "auto",
-            mb: 2,
-            position: "relative",
+            top: 0,
+            p: 2,
+            margin: 2,
+            zIndex: 1,
           }}
-          spacing={2}
         >
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-              {isLoading ? (
-                <LoadingCard count={6} />
-              ) : (
-                orderList?.map((item) => (
-                  <Grid item xs={12} key={item._id}>
-                    <Stack
-                      sx={{
-                        height: "100%",
-                      }}
-                    >
-                      <OrderCard data={item} />
-                    </Stack>
-                  </Grid>
-                ))
-              )}
-            </Grid>
-          </Box>
+          <Typography
+            sx={{
+              textAlign: "center",
+              color: "#ffffff",
+            }}
+            variant="h4"
+          >
+            รายละเอียดคำสั่งซื้อ
+          </Typography>
         </Stack>
-      </Container>
 
-      <Stack
-        direction="row"
-        justifyContent="center"
-        spacing={2}
-        sx={{
-          backgroundColor: "white",
-          position: "sticky",
-          bottom: 0,
-          p: 2,
-        }}
-      >
         <Container maxWidth="sm">
-          {!carts.length ? (
-            <Button
-              variant="contained"
-              fullWidth
-              sx={{
-                height: "56px",
-                backgroundColor: "#1b1b1b",
-                ":hover": {
-                  backgroundColor: "#1b1b1b",
-                  opacity: 0.8,
-                },
-              }}
-              onClick={() => navigate(`/customer-booking/${item?.qrLink}`)}
-            >
-              ย้อนกลับ
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              fullWidth
-              size="large"
-              sx={{
-                height: "56px",
-                backgroundColor: "#00b900",
-                ":hover": {
-                  backgroundColor: "#00b900",
-                  opacity: 0.8,
-                },
-              }}
-              startIcon={<ShoppingCartIcon />}
-              onClick={() => navigate(`/customer-booking/${item?.qrLink}/cart`)}
-            >
-              ดูตระกร้ารายการสั่งซื้อ
-            </Button>
-          )}
+          <Stack
+            sx={{
+              maxWidth: "320px",
+              width: "100%",
+              height: "100%",
+              mx: "auto",
+              mb: 2,
+              position: "relative",
+            }}
+            spacing={2}
+          >
+            <Box sx={{ flexGrow: 1 }}>
+              <Grid container spacing={2}>
+                {isLoading ? (
+                  <LoadingCard count={6} />
+                ) : (
+                  orderList?.map((item) => (
+                    <Grid item xs={12} key={item._id}>
+                      <Stack
+                        sx={{
+                          height: "100%",
+                        }}
+                      >
+                        <OrderCard data={item} />
+                      </Stack>
+                    </Grid>
+                  ))
+                )}
+              </Grid>
+            </Box>
+          </Stack>
         </Container>
+
+        <Stack
+          direction="row"
+          justifyContent="center"
+          spacing={2}
+          sx={{
+            position: "sticky",
+            bottom: 0,
+            p: 2,
+          }}
+        >
+          <Container maxWidth="sm">
+            {!carts.length ? (
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                  boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+                  border: "1px solid rgba(21, 21, 21)",
+                  height: "56px",
+                  backgroundColor: "#b0120a",
+                  ":hover": {
+                    backgroundColor: "#1b1b1b",
+                    opacity: 0.8,
+                  },
+                  fontSize: "18px",
+                }}
+                onClick={() => navigate(`/customer-booking/${item?.qrLink}`)}
+              >
+                ย้อนกลับ
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                fullWidth
+                size="large"
+                sx={{
+                  height: "56px",
+                  backgroundColor: "#00b900",
+                  ":hover": {
+                    backgroundColor: "#00b900",
+                    opacity: 0.8,
+                  },
+                }}
+                startIcon={<ShoppingCartIcon />}
+                onClick={() =>
+                  navigate(`/customer-booking/${item?.qrLink}/cart`)
+                }
+              >
+                ดูตระกร้ารายการสั่งซื้อ
+              </Button>
+            )}
+          </Container>
+        </Stack>
       </Stack>
     </Stack>
   );

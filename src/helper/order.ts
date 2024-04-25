@@ -18,7 +18,8 @@ export const orderStatusColor = (status: OrderStatus) => {
     case "notServed":
       return "#FFCC00";
     case "served":
-    default:
-      return "#1b1b1b";
+      return "#00B900";
+    case "refuse":
+      return "#b0120a";
   }
 };

@@ -15,7 +15,21 @@ const MOCK_IMG_URL =
 
 export default function MenuCard({ data }: Props) {
   return (
-    <Card sx={{ height: "100%", p: 2 }}>
+    <Card
+      sx={{
+        border: "1px solid #191919",
+        borderRadius: 3,
+        borderColor: "#202020",
+
+        height: "100%",
+        p: 2,
+        backgroundColor: "#212121", // สีเทาเข้ม
+        // backgroundColor: "#202020", // สีเทาเข้ม
+        // backgroundColor: "#191919", // สีเทาเข้ม
+
+        color: "#ffffff",
+      }}
+    >
       <Stack direction="row" spacing={2} justifyContent="space-between">
         <Stack direction="row" spacing={2} flex={1}>
           <img
@@ -23,11 +37,11 @@ export default function MenuCard({ data }: Props) {
             src={data.file}
             alt="product-img"
             style={{
-              width: "64px",
-              height: "64px",
+              width: "80px",
+              height: "70px",
             }}
           />
-          <Typography sx={{ fontSize: 14 }}>{data.menuName}</Typography>
+          <Typography sx={{ fontSize: 20 }}>{data.menuName}</Typography>
         </Stack>
         <Stack justifyContent="flex-end">
           <AddToCart item={data} />

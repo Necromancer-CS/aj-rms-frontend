@@ -188,7 +188,7 @@ export default function CustomerBookingPage() {
           sx={{
             maxWidth: "330px",
             width: "100%",
-            backgroundColor: "rgba(255, 255, 255, 0.88)", // เปลี่ยน opacity เป็น 0.7 เพื่อทำให้เป็นสีขาวขุ่น
+            backgroundColor: "rgba(21, 21, 21, 0.88)", // เปลี่ยน opacity เป็น 0.7 เพื่อทำให้เป็นสีขาวขุ่น
             padding: "20px",
             borderRadius: "10px",
             boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
@@ -222,25 +222,26 @@ export default function CustomerBookingPage() {
     <Container
       maxWidth="xl"
       sx={{
-        backgroundColor: "#000",
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundImage: `url('${
-          import.meta.env.VITE_IMAGE_URL
-        }/Image/14.jpg')`,
+        backgroundColor: "#212121",
         backgroundSize: "cover",
+        borderTopLeftRadius: "25px",
+        borderTopRightRadius: "25px",
       }}
     >
       <Stack
         sx={{
           maxWidth: "330px",
           width: "100%",
-          backgroundColor: "rgba(255, 255, 255, 0.88)", // เปลี่ยน opacity เป็น 0.7 เพื่อทำให้เป็นสีขาวขุ่น
+          backgroundColor: "rgba(19, 19, 19)", // เปลี่ยน opacity เป็น 0.7 เพื่อทำให้เป็นสีขาวขุ่น
           padding: "20px",
           borderRadius: "10px",
           boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)", // เพิ่มเงาด้านหลัง
+          color: "#ffffff",
+          fontSize: "20px",
         }}
         spacing={2}
       >
@@ -254,19 +255,22 @@ export default function CustomerBookingPage() {
               borderRadius: "50%",
               boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
               border: "2px solid rgba(0, 0, 0, 0.1)",
+              borderStyle: "outset",
+              borderColor: "#ffffff",
             }}
           />
         </Stack>
-        <br /> <br />
         <Divider />
         <Stack direction="row" justifyContent="space-between">
           <Typography>{`หมายเลขโต๊ะ : ${item?.deskNo}`}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
-          <Typography>แพ็คเกจ : {item?.packageName}</Typography>
+          <Typography variant="subtitle1">
+            แพ็คเกจ : {item?.packageName}
+          </Typography>
           <Stack direction="row" spacing={1}>
-            <Typography>ราคาแพ็คเกจ :</Typography>
-            <Typography>
+            <Typography variant="subtitle1">ราคาแพ็คเกจ :</Typography>
+            <Typography variant="subtitle1">
               {billingRead && billingRead[0] && billingRead[0].packagePrice}
             </Typography>
           </Stack>
@@ -296,35 +300,36 @@ export default function CustomerBookingPage() {
           sx={{
             border: "solid",
             borderRadius: 10,
-            borderStyle: "outset",
-            borderColor: "#696969",
+            borderColor: "#ffffff",
+            backgroundColor: "#ffffff",
+            fontSize: "20px",
+            color: "#212121",
+            padding: 1,
           }}
         >
-          <CardContent>
-            <Stack direction="row" justifyContent="space-between">
-              <Stack direction="row" spacing={1} alignItems="center"></Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>เวลาเริ่มต้น</Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>เวลาสิ้นสุด</Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center"></Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Stack direction="row" spacing={1} alignItems="center"></Stack>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography variant="h5">เวลาเริ่มต้น</Typography>
             </Stack>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography variant="h5">เวลาสิ้นสุด</Typography>
+            </Stack>
+            <Stack direction="row" spacing={1} alignItems="center"></Stack>
+          </Stack>
 
-            <Stack direction="row" justifyContent="space-between">
-              <Stack direction="row" spacing={1} alignItems="center"></Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>
-                  {dayjs(item?.createdAt).format("HH:mm")}
-                </Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Typography>{newDateTime}</Typography>
-              </Stack>
-              <Stack direction="row" spacing={1} alignItems="center"></Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Stack direction="row" spacing={1} alignItems="center"></Stack>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography variant="h5">
+                {dayjs(item?.createdAt).format("HH:mm")}
+              </Typography>
             </Stack>
-          </CardContent>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography variant="h5">{newDateTime}</Typography>
+            </Stack>
+            <Stack direction="row" spacing={1} alignItems="center"></Stack>
+          </Stack>
         </Card>
         {statusPayment != false && (
           <Stack direction="row" spacing={1}>
@@ -444,12 +449,15 @@ export default function CustomerBookingPage() {
           variant="contained"
           fullWidth
           sx={{
+            boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+            border: "1px solid rgba(21, 21, 21)",
             height: "56px",
-            backgroundColor: "#1b1b1b",
+            backgroundColor: "#b0120a",
             ":hover": {
               backgroundColor: "#1b1b1b",
               opacity: 0.8,
             },
+            fontSize: "18px",
           }}
           disabled={item?.status === "processing"}
           onClick={() => navigate(`/customer-booking/${item?.qrLink}/menu`)}
@@ -461,12 +469,17 @@ export default function CustomerBookingPage() {
             variant="outlined"
             fullWidth
             sx={{
-              color: "#1b1b1b",
+              boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+              border: "1px solid rgba(21, 21, 21)",
               height: "56px",
-              border: "1px solid #1b1b1b",
+              color: "#ffffff",
+              fontSize: "18px",
+              backgroundColor: "#303030",
               ":hover": {
-                border: "1px solid #1b1b1b",
+                backgroundColor: "#b0120a",
                 opacity: 0.8,
+                border: "1px solid rgba(21, 21, 21)",
+                color: "#ffffff",
               },
             }}
             onClick={() => navigate(`/customer-booking/${item?.qrLink}/order`)}
@@ -478,13 +491,18 @@ export default function CustomerBookingPage() {
               variant="outlined"
               fullWidth
               sx={{
-                color: "#1b1b1b",
+                boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+                border: "1px solid rgba(21, 21, 21)",
                 height: "56px",
-                border: "1px solid #1b1b1b",
+                backgroundColor: "#303030",
                 ":hover": {
-                  border: "1px solid #1b1b1b",
+                  backgroundColor: "#b0120a",
                   opacity: 0.8,
+                  color: "#ffffff",
+                  border: "1px solid rgba(21, 21, 21)",
                 },
+                color: "#ffffff",
+                fontSize: "18px",
               }}
               disabled={item?.status === "processing"}
               onClick={() => setStatusPayment(false)}
@@ -497,13 +515,18 @@ export default function CustomerBookingPage() {
               variant="outlined"
               fullWidth
               sx={{
-                color: "#1b1b1b",
+                boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+                border: "1px solid rgba(21, 21, 21)",
                 height: "56px",
-                border: "1px solid #1b1b1b",
+                backgroundColor: "#303030",
                 ":hover": {
-                  border: "1px solid #1b1b1b",
+                  backgroundColor: "#b0120a",
                   opacity: 0.8,
+                  color: "#ffffff",
+                  border: "1px solid rgba(21, 21, 21)",
                 },
+                color: "#ffffff",
+                fontSize: "18px",
               }}
               disabled={item?.status === "processing"}
               onClick={() => setStatusPayment(true)}
@@ -517,13 +540,18 @@ export default function CustomerBookingPage() {
             variant="outlined"
             fullWidth
             sx={{
-              color: "#1b1b1b",
+              boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+              border: "1px solid rgba(21, 21, 21)",
               height: "56px",
-              border: "1px solid #1b1b1b",
+              backgroundColor: "#303030",
               ":hover": {
-                border: "1px solid #1b1b1b",
+                backgroundColor: "#b0120a",
                 opacity: 0.8,
+                color: "#ffffff",
+                border: "1px solid rgba(21, 21, 21)",
               },
+              color: "#ffffff",
+              fontSize: "18px",
             }}
             disabled={item?.status === "processing"}
             onClick={() => setOpenConfirmDialog(true)}
