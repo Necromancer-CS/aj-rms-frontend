@@ -61,13 +61,12 @@ const EditEmployee = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    // update(params.id, data)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     toast.success("Edit Success : " + res.data.tableNo);
-    //     navigate("/admin/desk/list");
-    //   })
-    //   .catch((error) => console.log(error));
+    update(params.id, data)
+      .then((res) => {
+        toast.success("Edit Success : " + res.data.fullName);
+        navigate("/admin/employee/list");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -131,30 +130,6 @@ const EditEmployee = () => {
                         ))}
                       </Select>
                     </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="username"
-                      label="ชื่อผู้ใช้งาน"
-                      variant="outlined"
-                      fullWidth
-                      required
-                      value={data.username}
-                      name="username"
-                      onChange={(event) => handleChange(event)}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="password"
-                      label="รหัสผ่าน"
-                      variant="outlined"
-                      fullWidth
-                      required
-                      value={data.password}
-                      name="password"
-                      onChange={(event) => handleChange(event)}
-                    />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <Button

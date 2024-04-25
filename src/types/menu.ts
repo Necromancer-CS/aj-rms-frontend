@@ -1,5 +1,5 @@
 export type MenuStatus = "ready" | "notReady";
-export type MenuType = "meat" | "seaFood" | "dessert" | "drink" | "fruit";
+export type MenuType = "meat" | "seaFood" | "dessert" | "drink" | "fruit" | "snacks";
 
 export interface TMenuItem {
   _id: string;
