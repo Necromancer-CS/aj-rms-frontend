@@ -54,6 +54,10 @@ const menuTypeItem: MenuTypeItem[] = [
     title: "ของหวาน",
     value: "dessert",
   },
+  {
+    title: "ของทางเล่น",
+    value: "snacks",
+  },
 ];
 
 export default function CreateMenu() {

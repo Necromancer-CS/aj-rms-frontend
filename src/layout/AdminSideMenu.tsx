@@ -169,12 +169,17 @@ export default function AdminSideMenu() {
                   </Typography>
                   {user?.role === "admin" && (
                     <Typography sx={{ pt: 1, textAlign: "center" }}>
-                      {user?.role}
+                      <span style={{ textTransform: "uppercase" }}>
+                        ( {user?.role} )
+                      </span>
                     </Typography>
                   )}
                   {user?.role != "admin" && (
                     <Typography sx={{ pt: 1, textAlign: "center" }}>
-                      {user?.fullName} <br /> ({user?.role})
+                      {user?.fullName} <br />{" "}
+                      <span style={{ textTransform: "uppercase" }}>
+                        ( {user?.role} )
+                      </span>
                     </Typography>
                   )}
                 </Box>
