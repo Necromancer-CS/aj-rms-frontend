@@ -136,7 +136,7 @@ const EditPayment = () => {
                         },
                       }}
                     >
-                      บันทึกข้อมูลที่แก้ไข
+                      บันทึก
                     </Button>
                   </Grid>
                   <Grid item xs={12} sm={6}>

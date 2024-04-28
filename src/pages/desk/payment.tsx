@@ -191,7 +191,7 @@ export default function DeskPaymentPage() {
         setValue("change", changePayment);
         setCheckImage(customerBookingItem.file);
       }
-      setValue("change", changePayment);
+      setValue("change", changePayment.toFixed(2));
     }
   }, [payment, customerBookingItem]);
 
