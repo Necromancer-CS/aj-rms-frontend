@@ -41,6 +41,7 @@ export default function CustomerBookingPage() {
   const [totalPayment, setTotalPayment] = useState(0);
 
   const [statusPayment, setStatusPayment] = useState<boolean>(false);
+  const [statusTime, setStatusTime] = useState<boolean>(false);
 
   const {
     data: item,
@@ -62,7 +63,7 @@ export default function CustomerBookingPage() {
 
   //กดชำระเงิน
   const { mutateAsync: sendBill, isPending } = useMutation({
-    mutationFn: () => updateOrderBill(param.id!),
+    mutationFn: () => updateOrderBill(param?.id!),
     onSuccess() {
       refetch();
       setOpenConfirmDialog(false);
@@ -73,35 +74,11 @@ export default function CustomerBookingPage() {
 
   useEffect(() => {
     showTotalPrcie();
-    warnDateTime();
-  }, []);
-
-  const warnDateTime = async () => {
-    let newDateTime = 0;
-    dayjs.locale("th");
-
-    // มี createdAt หรือมั่ยถ้ามีให้เพิ่มแล้วของ item?.createdAt เข้าไปแล้วจะได้ผลคือ newDateTime
-    if (item.createdAt) {
-      const createdAt = dayjs(item.createdAt);
-      const extraTime = 90 * 60 * 1000;
-      const newDate = createdAt.add(extraTime, "millisecond");
-      newDateTime = newDate.unix();
-    }
-
-    const countdownTime = newDateTime * 1000;
-    const currentTime = Date.now();
-
-    if (currentTime > countdownTime) {
-      const timeToNotify = countdownTime - currentTime;
-      setTimeout(() => {
-        toast.warning("หมดเวลาทานอาหารของท่านแล้ว");
-      }, timeToNotify);
-    } else {
-      console.log("Countdown time has already passed.");
-    }
-  };
+    timeNotify();
+  }, [param.id]);
 
   const showTotalPrcie = async () => {
+    refetch();
     try {
       const billingResponse = await readBilling(param.id!);
       if (billingResponse.data.length > 0) {
@@ -164,6 +141,32 @@ export default function CustomerBookingPage() {
     newDateTime = newDate.format("HH:mm");
   }
 
+  const timeNotify = async () => {
+    dayjs.locale("th");
+    let allNewDateTime = 0;
+
+    if (item?.createdAt) {
+      const createdAt = dayjs(item.createdAt);
+      const extraTime = 90 * 60 * 1000;
+      const newDate = createdAt.add(extraTime, "millisecond");
+
+      allNewDateTime = newDate.unix();
+      const countdownTime = allNewDateTime * 1000;
+      const currentTime = Date.now();
+      if (currentTime > countdownTime) {
+        const timeToNotify = countdownTime - currentTime;
+        setTimeout(() => {
+          setStatusTime(true);
+          if (statusTime === true) {
+            toast.warning("หมดเวลาทานอาหารของท่านแล้ว");
+          }
+        }, timeToNotify);
+      } else {
+        console.log("Countdown time has already passed.");
+      }
+    }
+  };
+
   if (isLoading && !isSuccess) {
     return <Skeleton height={80} />;
   }
@@ -173,14 +176,11 @@ export default function CustomerBookingPage() {
       <Container
         maxWidth="xl"
         sx={{
-          backgroundColor: "#000",
+          backgroundColor: "#212121",
           minHeight: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundImage: `url('${
-            import.meta.env.VITE_IMAGE_URL
-          }/Image/14.jpg')`, // ลิ้งค์รูปภาพลวดลายที่ต้องการใช้
           backgroundSize: "cover",
         }}
       >
@@ -211,7 +211,9 @@ export default function CustomerBookingPage() {
 
           <Divider />
           <Stack direction="row" justifyContent="center">
-            <Typography variant="h5">ท่านชําระเงินเรียบร้อยแล้ว</Typography>
+            <Typography variant="h5" sx={{ color: "#ffffff" }}>
+              ท่านชําระเงินเรียบร้อยแล้ว
+            </Typography>
           </Stack>
         </Stack>
       </Container>
@@ -446,7 +448,7 @@ export default function CustomerBookingPage() {
           </Stack>
         )}
         <Button
-          variant="contained"
+          variant="outlined"
           fullWidth
           sx={{
             boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
@@ -454,12 +456,15 @@ export default function CustomerBookingPage() {
             height: "56px",
             backgroundColor: "#b0120a",
             ":hover": {
-              backgroundColor: "#1b1b1b",
+              backgroundColor: "#303030",
               opacity: 0.8,
+              color: "#ffffff",
+              border: "1px solid rgba(21, 21, 21)",
             },
+            color: "#ffffff",
             fontSize: "18px",
           }}
-          disabled={item?.status === "processing"}
+          disabled={item?.status === "processing" || statusTime < 0}
           onClick={() => navigate(`/customer-booking/${item?.qrLink}/menu`)}
         >
           สั่งอาหาร

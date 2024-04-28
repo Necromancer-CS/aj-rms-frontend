@@ -93,6 +93,7 @@ export default function AdminSideMenu() {
   const [isCollapsed, setisCollapsed] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [broken, setBroken] = useState(false);
+  const [activeMenu, setActiveMenu] = useState("");
 
   const handleLogout = () => {
     signOut();
@@ -193,13 +194,16 @@ export default function AdminSideMenu() {
                       <RouterLink key={item.title} href={item.href}>
                         <MenuItem
                           sx={{
-                            color: "white",
+                            color:
+                              activeMenu === item.title ? "#ff0000" : "white", // กำหนดสีของเมนูเป็นแดงถ้ามีการคลิก
                             alignItems: "center",
                             py: 2,
                             svg: {
-                              color: "white",
+                              color:
+                                activeMenu === item.title ? "#ff0000" : "white", // กำหนดสีของไอคอนเป็นแดงถ้ามีการคลิก
                             },
                           }}
+                          onClick={() => setActiveMenu(item.title)} // เมื่อคลิกที่เมนู กำหนดเมนูที่ถูกคลิกให้เป็น active
                         >
                           <ListItemIcon>{item.icon}</ListItemIcon>
                         </MenuItem>
@@ -229,13 +233,16 @@ export default function AdminSideMenu() {
                       <RouterLink key={item.title} href={item.href}>
                         <MenuItem
                           sx={{
-                            color: "white",
+                            color:
+                              activeMenu === item.title ? "#ff0000" : "white", // กำหนดสีของเมนูเป็นแดงถ้ามีการคลิก
                             alignItems: "center",
                             py: 2,
                             svg: {
-                              color: "white",
+                              color:
+                                activeMenu === item.title ? "#ff0000" : "white", // กำหนดสีของไอคอนเป็นแดงถ้ามีการคลิก
                             },
                           }}
+                          onClick={() => setActiveMenu(item.title)} // เมื่อคลิกที่เมนู กำหนดเมนูที่ถูกคลิกให้เป็น active
                         >
                           <ListItemIcon>{item.icon}</ListItemIcon>
                           <Typography variant="inherit">
