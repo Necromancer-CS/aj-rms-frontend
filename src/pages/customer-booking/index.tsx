@@ -157,9 +157,7 @@ export default function CustomerBookingPage() {
         const timeToNotify = countdownTime - currentTime;
         setTimeout(() => {
           setStatusTime(true);
-          if (statusTime === true) {
-            toast.warning("หมดเวลาทานอาหารของท่านแล้ว");
-          }
+          toast.warning("หมดเวลาทานอาหารของท่านแล้ว");
         }, timeToNotify);
       } else {
         console.log("Countdown time has already passed.");
@@ -464,7 +462,7 @@ export default function CustomerBookingPage() {
             color: "#ffffff",
             fontSize: "18px",
           }}
-          disabled={item?.status === "processing" || statusTime < 0}
+          disabled={item?.status === "processing" || statusTime === true}
           onClick={() => navigate(`/customer-booking/${item?.qrLink}/menu`)}
         >
           สั่งอาหาร

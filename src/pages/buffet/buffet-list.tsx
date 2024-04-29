@@ -63,7 +63,7 @@ const BuffetTableList = () => {
                   alignItems="center"
                   justifyContent={"center"}
                 >
-                  <Typography variant="h4">จัดการข้อมูล</Typography>
+                  <Typography variant="h4">จัดการแพ็คเกจ</Typography>
                 </Stack>
               </CardContent>
             </Card>

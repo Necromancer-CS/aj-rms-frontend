@@ -63,7 +63,7 @@ const PaymentTableList = () => {
                   alignItems="center"
                   justifyContent={"center"}
                 >
-                  <Typography variant="h4">จัดการข้อมูล</Typography>
+                  <Typography variant="h4">จัดการช่องทางการชำระเงิน</Typography>
                 </Stack>
               </CardContent>
             </Card>
@@ -100,7 +100,7 @@ const PaymentTableList = () => {
                         <TableCell align="center">
                           ช่องทางการชําระเงิน
                         </TableCell>
-                        <TableCell align="center">ราคา</TableCell>
+                        <TableCell align="center">สถานะ</TableCell>
                         <TableCell align="center">จัดการ</TableCell>
                       </TableRow>
                     </TableHead>

@@ -76,7 +76,7 @@ const EditPayment = () => {
                 alignItems="center"
                 justifyContent={"center"}
               >
-                <Typography variant="h4">แก้ไขข้อมูล</Typography>
+                <Typography variant="h4">แก้ไขช่องทางการชำระเงิน</Typography>
               </Stack>
             </CardContent>
           </Card>
@@ -94,6 +94,7 @@ const EditPayment = () => {
                       label="ช่องทางการชําระเงิน"
                       variant="outlined"
                       fullWidth
+                      required
                       name="paymentName"
                       value={data.paymentName}
                       onChange={(event) => handleChange(event)}
@@ -101,13 +102,13 @@ const EditPayment = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
-                        สถานะโต๊ะ
+                      <InputLabel id="demo-simple-select-label" required>
+                        สถานะ
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="paymentStatus"
-                        label="สถานะโต๊ะ"
+                        label="สถานะ"
                         fullWidth
                         required
                         name="paymentStatus"

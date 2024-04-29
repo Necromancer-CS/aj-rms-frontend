@@ -70,7 +70,7 @@ export default function CreateDesk() {
               alignItems="center"
               justifyContent={"center"}
             >
-              <Typography variant="h4">เพิ่มข้อมูล</Typography>
+              <Typography variant="h4">เพิ่มโต๊ะ</Typography>
             </Stack>
           </CardContent>
         </Card>
@@ -93,7 +93,7 @@ export default function CreateDesk() {
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
+                    <InputLabel id="demo-simple-select-label" required>
                       สถานะโต๊ะ
                     </InputLabel>
                     <Select
@@ -122,6 +122,7 @@ export default function CreateDesk() {
                     label="จำนวนที่นั่ง"
                     variant="outlined"
                     fullWidth
+                    required
                     name="chairCount"
                     onChange={(event) => handleChange(event)}
                   />

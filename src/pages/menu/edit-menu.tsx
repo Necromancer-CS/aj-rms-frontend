@@ -130,7 +130,7 @@ const EditMenu = () => {
                 alignItems="center"
                 justifyContent={"center"}
               >
-                <Typography variant="h4">แก้ไขข้อมูล</Typography>
+                <Typography variant="h4">แก้ไขเมนู</Typography>
               </Stack>
             </CardContent>
           </Card>
@@ -160,7 +160,6 @@ const EditMenu = () => {
                       label="ราคา"
                       variant="outlined"
                       fullWidth
-                      required
                       disabled
                       value={data.menuPrice}
                       name="menuPrice"
@@ -169,7 +168,7 @@ const EditMenu = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
+                      <InputLabel id="demo-simple-select-label" required>
                         สถานะเมนู
                       </InputLabel>
                       <Select
@@ -195,7 +194,7 @@ const EditMenu = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
+                      <InputLabel id="demo-simple-select-label" required>
                         ประเภทเมนู
                       </InputLabel>
                       <Select
@@ -229,7 +228,7 @@ const EditMenu = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
+                      <InputLabel id="demo-simple-select-label" required>
                         ประเภทแพ็คเกจ
                       </InputLabel>
                       <Select
