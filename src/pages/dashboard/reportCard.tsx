@@ -37,7 +37,9 @@ const ReportCard = ({
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item>
               <Typography variant="h3" sx={{ color: color }}>
-                {primary}
+                {new Intl.NumberFormat("th-TH", {
+                  minimumFractionDigits: 2,
+                }).format(primary)}
               </Typography>
               <Typography variant="subtitle1" sx={{ marginTop: ".5rem" }}>
                 {secondary}
@@ -63,7 +65,7 @@ const ReportCard = ({
             }}
           >
             <Grid item>
-              <Typography variant="body2">{footerData}</Typography>
+              <Typography variant="body1">{footerData}</Typography>
             </Grid>
             <Grid item>
               <Typography variant="body2">{footerIcon}</Typography>

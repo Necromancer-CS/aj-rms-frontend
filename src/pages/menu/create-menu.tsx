@@ -116,7 +116,7 @@ export default function CreateMenu() {
               alignItems="center"
               justifyContent={"center"}
             >
-              <Typography variant="h4">เพิ่มข้อมูล</Typography>
+              <Typography variant="h4">เพิ่มเมนู</Typography>
             </Stack>
           </CardContent>
         </Card>
@@ -152,7 +152,7 @@ export default function CreateMenu() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
+                    <InputLabel id="demo-simple-select-label" required>
                       สถานะเมนู
                     </InputLabel>
                     <Select
@@ -177,7 +177,7 @@ export default function CreateMenu() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
+                    <InputLabel id="demo-simple-select-label" required>
                       ประเภทเมนู
                     </InputLabel>
                     <Select
@@ -211,7 +211,7 @@ export default function CreateMenu() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
+                    <InputLabel id="demo-simple-select-label" required>
                       ประเภทแพ็คเกจ
                     </InputLabel>
                     <Select

@@ -62,7 +62,7 @@ const MenuTableList = () => {
                   alignItems="center"
                   justifyContent={"center"}
                 >
-                  <Typography variant="h4">จัดการข้อมูล</Typography>
+                  <Typography variant="h4">จัดการเมนู</Typography>
                 </Stack>
               </CardContent>
             </Card>

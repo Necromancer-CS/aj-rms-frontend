@@ -142,7 +142,7 @@ export default function PrintBuilling() {
             หมายเลขโต๊ะ : {customerByBill?.deskNo}
           </Typography>
           <Typography sx={{ fontSize: 20 }}>
-            แพ็กเกจ : {customerByBill?.packageName}
+            แพ็คเกจ : {customerByBill?.packageName}
           </Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
@@ -160,14 +160,17 @@ export default function PrintBuilling() {
           </Typography>
         </Stack>
         <Stack direction="row" justifyContent="center">
-          <Typography variant="h6">รายการแพ็กเกจบุฟเฟต์</Typography>
+          <Typography variant="h6">รายการแพ็คเกจบุฟเฟต์</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography sx={{ fontSize: 20 }}>
-            ราคาแพ็กเกจ {customerByBill?.packageName} :{" "}
+            ราคาแพ็คเกจ {customerByBill?.packageName} :{" "}
           </Typography>
           <Typography sx={{ fontSize: 20 }}>
-            {billingByBill?.[0].packagePrice.toFixed(2)} บาท
+            {billingByBill?.[0].packagePrice.toLocaleString("th-TH", {
+              minimumFractionDigits: 2,
+            })}
+            บาท
           </Typography>
         </Stack>
 
@@ -222,12 +225,20 @@ export default function PrintBuilling() {
         <Stack direction="row" justifyContent="space-between">
           <Typography sx={{ fontSize: 20 }}>ราคารวม : </Typography>
           <Typography sx={{ fontSize: 20 }}>
-            {totalPrice.toFixed(2)} บาท
+            {totalPrice.toLocaleString("th-TH", {
+              minimumFractionDigits: 2,
+            })}
+            บาท
           </Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography sx={{ fontSize: 20 }}>ภาษี 7% : </Typography>
-          <Typography sx={{ fontSize: 20 }}>{vat} บาท</Typography>
+          <Typography sx={{ fontSize: 20 }}>
+            {vat.toLocaleString("th-TH", {
+              minimumFractionDigits: 2,
+            })}
+            บาท
+          </Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography sx={{ fontSize: 20 }}>Service Charge (11%) : </Typography>

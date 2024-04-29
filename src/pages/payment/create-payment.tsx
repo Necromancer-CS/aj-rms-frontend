@@ -66,7 +66,7 @@ export default function CreatePayment() {
               alignItems="center"
               justifyContent={"center"}
             >
-              <Typography variant="h4">เพิ่มข้อมูล</Typography>
+              <Typography variant="h4">เพิ่มช่องทางการชำระเงิน</Typography>
             </Stack>
           </CardContent>
         </Card>
@@ -89,7 +89,9 @@ export default function CreatePayment() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">สถานะ</InputLabel>
+                    <InputLabel id="demo-simple-select-label" required>
+                      สถานะ
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="paymentStatus"

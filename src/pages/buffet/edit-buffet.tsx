@@ -60,7 +60,7 @@ const EditBuffet = () => {
                 alignItems="center"
                 justifyContent={"center"}
               >
-                <Typography variant="h4">แก้ไขข้อมูล</Typography>
+                <Typography variant="h4">แก้ไขแพ็คเกจ</Typography>
               </Stack>
             </CardContent>
           </Card>
@@ -78,6 +78,7 @@ const EditBuffet = () => {
                       label="ชื่อแพ็คเกจ"
                       variant="outlined"
                       fullWidth
+                      required
                       name="packageName"
                       value={data.packageName}
                       onChange={(event) => handleChange(event)}
@@ -89,6 +90,7 @@ const EditBuffet = () => {
                       label="ราคา"
                       variant="outlined"
                       fullWidth
+                      required
                       name="packagePrice"
                       value={data.packagePrice}
                       onChange={(event) => handleChange(event)}
@@ -112,7 +114,7 @@ const EditBuffet = () => {
                     </Button>
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <Link to="/admin/menu/list">
+                    <Link to="/admin/buffet/list">
                       <Button
                         variant="contained"
                         fullWidth

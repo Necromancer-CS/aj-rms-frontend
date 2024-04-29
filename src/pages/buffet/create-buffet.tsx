@@ -50,7 +50,7 @@ export default function CreateBuffet() {
               alignItems="center"
               justifyContent={"center"}
             >
-              <Typography variant="h4">เพิ่มข้อมูล</Typography>
+              <Typography variant="h4">เพิ่มแพ็คเกจ</Typography>
             </Stack>
           </CardContent>
         </Card>

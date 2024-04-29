@@ -63,7 +63,7 @@ const DeskTableList = () => {
                   alignItems="center"
                   justifyContent={"center"}
                 >
-                  <Typography variant="h4">จัดการข้อมูล</Typography>
+                  <Typography variant="h4">จัดการโต๊ะ</Typography>
                 </Stack>
               </CardContent>
             </Card>
@@ -98,7 +98,7 @@ const DeskTableList = () => {
                       <TableRow>
                         <TableCell align="center">ลำดับ</TableCell>
                         <TableCell align="center">หมายเลขโต๊ะ</TableCell>
-                        <TableCell align="center">สถานะโต๊ะ</TableCell>
+                        <TableCell align="center">สถานะ</TableCell>
                         <TableCell align="center">จำนวนที่นั่ง</TableCell>
                         <TableCell align="center">จัดการ</TableCell>
                       </TableRow>

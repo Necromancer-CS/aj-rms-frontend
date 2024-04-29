@@ -81,7 +81,7 @@ const EditDesk = () => {
                 alignItems="center"
                 justifyContent={"center"}
               >
-                <Typography variant="h4">แก้ไขข้อมูล</Typography>
+                <Typography variant="h4">แก้ไขโต๊ะ</Typography>
               </Stack>
             </CardContent>
           </Card>
@@ -99,6 +99,7 @@ const EditDesk = () => {
                       label="หมายเลขโต๊ะ"
                       variant="outlined"
                       fullWidth
+                      required
                       name="deskNo"
                       value={data.deskNo}
                       onChange={(event) => handleChange(event)}
@@ -106,7 +107,7 @@ const EditDesk = () => {
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
+                      <InputLabel id="demo-simple-select-label" required>
                         สถานะโต๊ะ
                       </InputLabel>
                       <Select
@@ -133,6 +134,7 @@ const EditDesk = () => {
                       label="จำนวนที่นั่ง"
                       variant="outlined"
                       fullWidth
+                      required
                       name="chairCount"
                       value={data.chairCount}
                       onChange={(event) => handleChange(event)}

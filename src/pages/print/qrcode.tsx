@@ -49,13 +49,28 @@ export default function PrintQrCode() {
   return (
     <Container maxWidth="sm">
       <Stack justifyContent="center" sx={{ pt: 8 }} spacing={3}>
-        <Typography
-          sx={{
-            textAlign: "center",
-          }}
-        >
-          ร้าน A&J BUFFET GRILL
-        </Typography>
+        <Stack direction="row" justifyContent="center" height={"100%"}>
+          <img
+            src={import.meta.env.VITE_IMAGE_URL + "/Image/13.jpg"}
+            alt="LOGO"
+            style={{
+              height: "25%",
+              width: "25%",
+              borderRadius: "50%",
+              boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+              border: "2px solid rgba(0, 0, 0, 0.1)",
+            }}
+          />
+        </Stack>
+        <Stack direction="row" justifyContent="center">
+          <Typography
+            sx={{
+              textAlign: "center",
+            }}
+          >
+            ร้าน A&J BUFFET GRILL
+          </Typography>
+        </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography>
             วันที่ {dayjs(item?.createdAt).format("DD/MM/YYYY")}
