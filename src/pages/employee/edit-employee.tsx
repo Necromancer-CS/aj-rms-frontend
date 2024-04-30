@@ -81,7 +81,7 @@ const EditEmployee = () => {
                 alignItems="center"
                 justifyContent={"center"}
               >
-                <Typography variant="h4">แก้ไขข้อมูล</Typography>
+                <Typography variant="h4">แก้ไขผู้ใช้งาน</Typography>
               </Stack>
             </CardContent>
           </Card>
