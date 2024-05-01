@@ -3,7 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import { totalPriceForMonthSegments } from "src/functions/dashboard";
 import { DeshboardItem } from "src/types/deshboard";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { Card, CardContent, colors, Paper, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  colors,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import dayjs from "dayjs";
 
 const BarChartCard: React.FC = () => {
@@ -41,7 +48,10 @@ const BarChartCard: React.FC = () => {
           </Typography>
           <BarChart
             xAxis={[
-              { scaleType: "band", data: chartData.map((data) => data.group) },
+              {
+                scaleType: "band",
+                data: chartData.map((data) => data.group),
+              },
             ]}
             series={[{ data: chartData?.map((data) => data.value) }]}
             height={500}
