@@ -17,12 +17,31 @@ const BarChartPackageCard: React.FC = () => {
 
   // ตรวจสอบว่าข้อมูลถูกโหลดและไม่มีข้อผิดพลาด
   if (!packageSelectionInMonthData) {
-    return <div>Loading...</div>;
+    return (
+      <Paper elevation={24}>
+        <Card>
+          <CardContent>
+            <Typography
+              variant="h4"
+              gutterBottom
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+              }} // การจัดการตำแหน่งของข้อความ
+            >
+              รายงานแสดงแพ็คเกจยอดนิยมในระยะ 1 เดือน
+            </Typography>
+            <div>Loading</div>
+          </CardContent>
+        </Card>
+      </Paper>
+    );
   }
 
   const chartData = packageSelectionInMonthData?.map((item) => ({
-    group: item.packageName,
-    value: item.selectionCount,
+    group: item?.packageName,
+    value: item?.selectionCount,
   }));
 
   return (
