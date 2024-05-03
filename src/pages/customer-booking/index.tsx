@@ -275,25 +275,49 @@ export default function CustomerBookingPage() {
             </Typography>
           </Stack>
         </Stack>
-        <Stack direction="row" justifyContent="center">
+        <Stack direction="row" justifyContent="space-between">
           <Stack direction="row" spacing={1}>
-            <Typography>ผู้ใหญ่</Typography>
-            <Typography>
-              {billingRead && billingRead[0] && billingRead[0].countAdult}
-            </Typography>
-            <Typography>ท่าน</Typography>
-            <Typography>/</Typography>
-            <Typography>เด็กโต</Typography>
-            <Typography>
-              {billingRead && billingRead[0] && billingRead[0].countChildreng}
-            </Typography>
-            <Typography>ท่าน</Typography>
-            <Typography>/</Typography>
-            <Typography>เด็กเล็ก</Typography>
-            <Typography>
-              {billingRead && billingRead[0] && billingRead[0].countChild}
-            </Typography>
-            <Typography>ท่าน</Typography>
+            {billingRead &&
+              billingRead[0] &&
+              billingRead[0].countAdult != 0 && (
+                <Stack direction="row" spacing={1}>
+                  <Typography variant="subtitle1">ผู้ใหญ่</Typography>
+                  <Typography variant="subtitle1">
+                    {billingRead && billingRead[0] && billingRead[0].countAdult}
+                  </Typography>
+                  <Typography variant="subtitle1">ท่าน</Typography>
+                </Stack>
+              )}
+          </Stack>
+          <Stack direction="row" spacing={1}>
+            {billingRead &&
+              billingRead[0] &&
+              billingRead[0].countChildreng != 0 && (
+                <Stack direction="row" spacing={1}>
+                  <Typography variant="subtitle1">/</Typography>
+                  <Typography variant="subtitle1">เด็กโต</Typography>
+                  <Typography variant="subtitle1">
+                    {billingRead &&
+                      billingRead[0] &&
+                      billingRead[0].countChildreng}
+                  </Typography>
+                  <Typography variant="subtitle1">ท่าน</Typography>
+                </Stack>
+              )}
+          </Stack>
+          <Stack direction="row" spacing={1}>
+            {billingRead &&
+              billingRead[0] &&
+              billingRead[0].countChild != 0 && (
+                <Stack direction="row" spacing={1}>
+                  <Typography variant="subtitle1">/</Typography>
+                  <Typography variant="subtitle1">เด็กเล็ก</Typography>
+                  <Typography variant="subtitle1">
+                    {billingRead && billingRead[0] && billingRead[0].countChild}
+                  </Typography>
+                  <Typography variant="subtitle1">ท่าน</Typography>
+                </Stack>
+              )}
           </Stack>
         </Stack>
         <Card
