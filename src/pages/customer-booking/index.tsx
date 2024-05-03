@@ -281,11 +281,11 @@ export default function CustomerBookingPage() {
               billingRead[0] &&
               billingRead[0].countAdult != 0 && (
                 <Stack direction="row" spacing={1}>
-                  <Typography variant="subtitle1">ผู้ใหญ่</Typography>
-                  <Typography variant="subtitle1">
+                  <Typography variant="subtitle2">ผู้ใหญ่</Typography>
+                  <Typography variant="subtitle2">
                     {billingRead && billingRead[0] && billingRead[0].countAdult}
                   </Typography>
-                  <Typography variant="subtitle1">ท่าน</Typography>
+                  <Typography variant="subtitle2">ท่าน</Typography>
                 </Stack>
               )}
           </Stack>
@@ -294,14 +294,14 @@ export default function CustomerBookingPage() {
               billingRead[0] &&
               billingRead[0].countChildreng != 0 && (
                 <Stack direction="row" spacing={1}>
-                  <Typography variant="subtitle1">/</Typography>
-                  <Typography variant="subtitle1">เด็กโต</Typography>
-                  <Typography variant="subtitle1">
+                  <Typography variant="subtitle2">/</Typography>
+                  <Typography variant="subtitle2">เด็กโต</Typography>
+                  <Typography variant="subtitle2">
                     {billingRead &&
                       billingRead[0] &&
                       billingRead[0].countChildreng}
                   </Typography>
-                  <Typography variant="subtitle1">ท่าน</Typography>
+                  <Typography variant="subtitle2">ท่าน</Typography>
                 </Stack>
               )}
           </Stack>
@@ -310,12 +310,12 @@ export default function CustomerBookingPage() {
               billingRead[0] &&
               billingRead[0].countChild != 0 && (
                 <Stack direction="row" spacing={1}>
-                  <Typography variant="subtitle1">/</Typography>
-                  <Typography variant="subtitle1">เด็กเล็ก</Typography>
-                  <Typography variant="subtitle1">
+                  <Typography variant="subtitle2">/</Typography>
+                  <Typography variant="subtitle2">เด็กเล็ก</Typography>
+                  <Typography variant="subtitle2">
                     {billingRead && billingRead[0] && billingRead[0].countChild}
                   </Typography>
-                  <Typography variant="subtitle1">ท่าน</Typography>
+                  <Typography variant="subtitle2">ท่าน</Typography>
                 </Stack>
               )}
           </Stack>
