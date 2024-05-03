@@ -295,6 +295,14 @@ export default function CustomerBookingPage() {
               billingRead[0].countChildreng != 0 && (
                 <Stack direction="row" spacing={1}>
                   <Typography variant="subtitle2">/</Typography>
+                </Stack>
+              )}
+          </Stack>
+          <Stack direction="row" spacing={1}>
+            {billingRead &&
+              billingRead[0] &&
+              billingRead[0].countChildreng != 0 && (
+                <Stack direction="row" spacing={1}>
                   <Typography variant="subtitle2">เด็กโต</Typography>
                   <Typography variant="subtitle2">
                     {billingRead &&
@@ -311,6 +319,14 @@ export default function CustomerBookingPage() {
               billingRead[0].countChild != 0 && (
                 <Stack direction="row" spacing={1}>
                   <Typography variant="subtitle2">/</Typography>
+                </Stack>
+              )}
+          </Stack>
+          <Stack direction="row" spacing={1}>
+            {billingRead &&
+              billingRead[0] &&
+              billingRead[0].countChild != 0 && (
+                <Stack direction="row" spacing={1}>
                   <Typography variant="subtitle2">เด็กเล็ก</Typography>
                   <Typography variant="subtitle2">
                     {billingRead && billingRead[0] && billingRead[0].countChild}
