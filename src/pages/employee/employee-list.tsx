@@ -62,7 +62,7 @@ const EmployeeTableList = () => {
                   alignItems="center"
                   justifyContent={"center"}
                 >
-                  <Typography variant="h4">จัดการผู้ใช้งาน</Typography>
+                  <Typography variant="h4">จัดการข้อมูลพนักงาน</Typography>
                 </Stack>
               </CardContent>
             </Card>

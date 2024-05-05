@@ -80,7 +80,7 @@ export default function CreateUser() {
               alignItems="center"
               justifyContent={"center"}
             >
-              <Typography variant="h4">เพิ่มผู้ใช้งาน</Typography>
+              <Typography variant="h4">เพิ่มพนักงาน</Typography>
             </Stack>
           </CardContent>
         </Card>
