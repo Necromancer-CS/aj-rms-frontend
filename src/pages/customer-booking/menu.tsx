@@ -1,18 +1,7 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import LoadingCard from "src/components/card/LoadingCard";
 import { getCustomerBookingById } from "src/functions/booking";
@@ -20,6 +9,39 @@ import { list, listMenuByCustomerId } from "src/functions/menu-function";
 import { TMenuItem } from "src/types/menu";
 import MenuCard from "./menu-card";
 import { useCartStore } from "src/store/cart";
+import { menuTypeTextV2 } from "../../helper/menu";
+import { MenuTypeV2 } from "../../types/menu";
+
+function FilterButtons({
+  menuTypes,
+  setMenuType,
+}: {
+  menuTypes: MenuTypeV2[]; // Adjust the type of menuTypes
+  setMenuType: (type: MenuTypeV2) => void;
+}) {
+  return (
+    <Stack direction="row" spacing={2}>
+      {menuTypes.map((type) => (
+        <Button
+          key={type}
+          sx={{
+            ":hover": {
+              backgroundColor: "#202020",
+              opacity: 0.8,
+              borderRadius: "10px",
+            },
+            color: "#ffffff",
+            borderRadius: "10px",
+          }}
+          variant="text"
+          onClick={() => setMenuType(type)}
+        >
+          {menuTypeTextV2(type)}
+        </Button>
+      ))}
+    </Stack>
+  );
+}
 
 export default function CustomerBookingMenuPage() {
   const param = useParams();
@@ -39,6 +61,17 @@ export default function CustomerBookingMenuPage() {
     enabled: !!param.id,
   });
 
+  const [menuType, setMenuType] = useState("all");
+
+  const menuTypesV3: MenuTypeV2[] = [
+    "all",
+    "meat",
+    "dessert",
+    "seaFood",
+    "fruit",
+    "drink",
+  ] as MenuTypeV2[];
+
   return (
     <Stack
       sx={{
@@ -52,7 +85,6 @@ export default function CustomerBookingMenuPage() {
         <Stack
           sx={{
             top: 0,
-            p: 2,
             margin: 2,
             zIndex: 1,
           }}
@@ -67,7 +99,48 @@ export default function CustomerBookingMenuPage() {
             เมนูอาหาร
           </Typography>
         </Stack>
-
+        <Stack
+          direction="row"
+          justifyContent="center"
+          spacing={2}
+          sx={{
+            top: 0,
+            marginLeft: 1,
+            marginRight: 1,
+            zIndex: 1,
+            position: "sticky",
+            paddingTop: 2,
+            paddingBottom: 2,
+          }}
+        >
+          <Container
+            maxWidth="sm"
+            sx={{
+              padding: 1,
+              backgroundColor: "#b0120a",
+              borderRadius: "15px",
+            }}
+          >
+            <Stack
+              sx={{
+                // Your existing styles...
+                overflowX: "auto", // Enable horizontal scrolling
+                whiteSpace: "nowrap", // Prevent items from wrapping
+                msOverflowStyle: "none", // Hide scrollbar (IE)
+                scrollbarWidth: "none", // Hide scrollbar (Firefox)
+                "&::-webkit-scrollbar": {
+                  display: "none", // Hide scrollbar (Chrome, Safari)
+                },
+              }}
+              spacing={2}
+            >
+              <FilterButtons
+                menuTypes={menuTypesV3}
+                setMenuType={setMenuType}
+              />
+            </Stack>
+          </Container>
+        </Stack>
         <Container maxWidth="sm" sx={{ paddingBottom: 3 }}>
           <Stack
             sx={{
@@ -80,25 +153,52 @@ export default function CustomerBookingMenuPage() {
             }}
             spacing={2}
           >
-            <Box sx={{ flexGrow: 1 }}>
-              <Grid container spacing={2}>
-                {isLoading ? (
-                  <LoadingCard count={6} />
-                ) : (
-                  menuList?.map((item) => (
-                    <Grid item xs={12} key={item._id}>
-                      <Stack
-                        sx={{
-                          height: "100%",
-                        }}
-                      >
-                        <MenuCard data={item} />
-                      </Stack>
-                    </Grid>
-                  ))
-                )}
-              </Grid>
-            </Box>
+            {menuType === "all" && (
+              <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2}>
+                  {isLoading ? (
+                    <LoadingCard count={6} />
+                  ) : (
+                    menuList && // add this null check
+                    menuList.map((item) => (
+                      <Grid item xs={12} key={item._id}>
+                        <Stack
+                          sx={{
+                            height: "100%",
+                          }}
+                        >
+                          <MenuCard data={item} />
+                        </Stack>
+                      </Grid>
+                    ))
+                  )}
+                </Grid>
+              </Box>
+            )}
+            {menuType != "all" && (
+              <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2}>
+                  {isLoading ? (
+                    <LoadingCard count={6} />
+                  ) : (
+                    menuList && // add this null check
+                    menuList
+                      .filter((item) => item.menuType === menuType)
+                      .map((item) => (
+                        <Grid item xs={12} key={item._id}>
+                          <Stack
+                            sx={{
+                              height: "100%",
+                            }}
+                          >
+                            <MenuCard data={item} />
+                          </Stack>
+                        </Grid>
+                      ))
+                  )}
+                </Grid>
+              </Box>
+            )}
           </Stack>
         </Container>
 
