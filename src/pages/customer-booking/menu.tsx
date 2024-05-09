@@ -70,6 +70,7 @@ export default function CustomerBookingMenuPage() {
     "seaFood",
     "fruit",
     "drink",
+    "snacks",
   ] as MenuTypeV2[];
 
   return (
