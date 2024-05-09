@@ -39,7 +39,7 @@ export const menuTypeTextV2 = (type: MenuTypeV2): string => {
         case "drink":
             return "เครื่องดื่ม";
         case "fruit":
-            return "ผลไม้";
+            return "ผัก / ผลไม้";
         case "snacks":
             return "ของทานเล่น";
         case "all":
