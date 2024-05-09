@@ -23,6 +23,8 @@ export const menuTypeText = (status: MenuType) => {
             return "เครื่องดื่ม";
         case "fruit":
             return "ผลไม้";
+        case "snacks":
+            return "ของทานเล่น";
         default:
             return "ไม่พร้อมใช้งาน";
     }

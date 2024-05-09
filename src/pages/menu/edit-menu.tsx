@@ -44,10 +44,10 @@ const EditMenu = () => {
     });
   };
 
-  const { data: menuRead } = useQuery<TMenuItem[]>({
-    queryKey: ["menuRead"],
-    queryFn: () => read(id).then((res) => res.data),
-  });
+  // const { data: menuRead } = useQuery<TMenuItem[]>({
+  //   queryKey: ["menuRead"],
+  //   queryFn: () => read(id).then((res) => res.data),
+  // });
 
   const { data: buffetList } = useQuery<BuffetItem[]>({
     queryKey: ["buffetList"],
