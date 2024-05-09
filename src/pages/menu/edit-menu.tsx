@@ -75,7 +75,7 @@ const EditMenu = () => {
       value: "seaFood",
     },
     {
-      title: "ผลไม้",
+      title: "ผลไม้ / ผัก",
       value: "fruit",
     },
     {
@@ -85,6 +85,10 @@ const EditMenu = () => {
     {
       title: "ของหวาน",
       value: "dessert",
+    },
+    {
+      title: "ของทางเล่น",
+      value: "snacks",
     },
   ];
 
