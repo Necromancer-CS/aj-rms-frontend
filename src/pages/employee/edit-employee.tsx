@@ -46,10 +46,6 @@ const EditEmployee = () => {
       title: "chef",
       value: "chef",
     },
-    {
-      title: "admin",
-      value: "admin",
-    },
   ];
 
   const handleChange = (event: any) => {

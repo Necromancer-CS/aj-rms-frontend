@@ -32,10 +32,6 @@ export default function CreateUser() {
       title: "chef",
       value: "chef",
     },
-    {
-      title: "admin",
-      value: "admin",
-    },
   ];
 
   //บันทึกข้อมูล
