@@ -23,6 +23,7 @@ import { menuStatusText, menuTypeText } from "src/helper/menu";
 import { Stack } from "@mui/material";
 import ConfirmDialog from "src/components/dialog/confirm";
 import { useState } from "react";
+import { Bolt } from "@mui/icons-material";
 
 const MenuTableList = () => {
   //ใช้สำหรับ GET
@@ -100,13 +101,50 @@ const MenuTableList = () => {
                   >
                     <TableHead>
                       <TableRow>
-                        <TableCell align="center">ลำดับ</TableCell>
-                        <TableCell align="center">ชื่อเมนู</TableCell>
-                        <TableCell align="center">ราคา</TableCell>
-                        <TableCell align="center">สถานะ</TableCell>
-                        <TableCell align="center">ประเภท</TableCell>
-                        <TableCell align="center">แพ็คเกจ</TableCell>
-                        <TableCell align="center">จัดการ</TableCell>
+                        <TableCell align="center" sx={{ fontSize: 18 }}>
+                          ลำดับ
+                        </TableCell>
+                        <TableCell align="center" sx={{ fontSize: 18 }}>
+                          ชื่อเมนู
+                        </TableCell>
+                        <TableCell align="center" sx={{ fontSize: 18 }}>
+                          ราคา
+                        </TableCell>
+                        <TableCell align="center" sx={{ fontSize: 18 }}>
+                          สถานะ
+                        </TableCell>
+                        <TableCell align="center" sx={{ fontSize: 18 }}>
+                          ประเภท
+                        </TableCell>
+                        <TableCell align="center" sx={{ fontSize: 18 }}>
+                          แพ็คเกจ
+                        </TableCell>
+                        <TableCell align="center" sx={{ fontSize: 18 }}>
+                          จัดการ
+                        </TableCell>
+
+                        {/* <TableRow sx={{ fontSize: 20 }}>
+                        <TableCell align="center">
+                          ลำดับ
+                        </TableCell>
+                        <TableCell align="center">
+                          ชื่อเมนู
+                        </TableCell>
+                        <TableCell align="center" >
+                          ราคา
+                        </TableCell>
+                        <TableCell align="center">
+                          สถานะ
+                        </TableCell>
+                        <TableCell align="center" >
+                          ประเภท
+                        </TableCell>
+                        <TableCell align="center" >
+                          แพ็คเกจ
+                        </TableCell>
+                        <TableCell align="center">
+                          จัดการ
+                        </TableCell> */}
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -117,30 +155,35 @@ const MenuTableList = () => {
                           <TableRow
                             key={row._id}
                             sx={{
-                              "&:last-child td, &:last-child th": { border: 0 },
+                              "&:last-child td, &:last-child th": {
+                                border: 0,
+                              },
                             }}
                           >
                             <TableCell
                               component="th"
                               scope="row"
                               align="center"
+                              sx={{ fontSize: 18 }}
                             >
                               {index + 1}
                             </TableCell>
-                            <TableCell align="center">{row.menuName}</TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{ fontSize: 18 }}>
+                              {row.menuName}
+                            </TableCell>
+                            <TableCell align="center" sx={{ fontSize: 18 }}>
                               {row.menuPrice}
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{ fontSize: 18 }}>
                               {menuStatusText(row.menuStatus)}
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{ fontSize: 18 }}>
                               {menuTypeText(row.menuType)}
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{ fontSize: 18 }}>
                               {row.packageName}
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{ fontSize: 18 }}>
                               <Stack
                                 direction="row"
                                 spacing={2}

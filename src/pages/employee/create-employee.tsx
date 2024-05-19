@@ -111,9 +111,6 @@ export default function CreateUser() {
                       name="role"
                       onChange={(event) => handleChange(event)}
                     >
-                      <MenuItem value="">
-                        <em>กรุณาเลือกตำแหน่ง</em>
-                      </MenuItem>
                       {employeeRoleItem.map((item) => (
                         <MenuItem key={item.value} value={item.value}>
                           {item.title}

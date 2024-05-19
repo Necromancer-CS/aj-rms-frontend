@@ -80,6 +80,7 @@ const MainDashboard = () => {
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
                     primary={totalPriceForDayData?.totalPriceForDay}
+                    primaryTwo={totalPriceForDayData?.totalPriceForYesterday}
                     secondary="ยอดขายรายวัน"
                     color={"rgb(211, 47, 47)"}
                     iconPrimary={LocalAtmTwoToneIcon}
@@ -109,6 +110,7 @@ const MainDashboard = () => {
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
                     primary={totalPriceForWeekData?.totalPriceThisWeek}
+                    primaryTwo={totalPriceForWeekData?.totalPriceForWeek}
                     secondary="ยอดขายสัปดาห์"
                     color={"rgb(237, 108, 2)"}
                     iconPrimary={LocalAtmTwoToneIcon}
@@ -138,6 +140,7 @@ const MainDashboard = () => {
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
                     primary={totalPriceForMonthData?.totalPriceThisMonth}
+                    primaryTwo={totalPriceForMonthData?.totalPriceLastMonth}
                     secondary="ยอดขายรายเดือน"
                     color={"rgb(46, 125, 50)"}
                     iconPrimary={LocalAtmTwoToneIcon}
@@ -167,6 +170,7 @@ const MainDashboard = () => {
                 <Grid item lg={3} sm={6} xs={12}>
                   <ReportCard
                     primary={totalPriceForYearData?.totalPriceThisYear}
+                    primaryTwo={totalPriceForYearData?.totalPriceLastYear}
                     secondary="ยอดขายรายปี"
                     color={"rgb(25, 118, 210)"}
                     iconPrimary={LocalAtmTwoToneIcon}

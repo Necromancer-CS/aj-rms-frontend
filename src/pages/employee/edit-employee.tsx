@@ -37,6 +37,21 @@ const EditEmployee = () => {
     });
   };
 
+  const adminRoleItem: EmployeeRoleItem[] = [
+    {
+      title: "employee",
+      value: "employee",
+    },
+    {
+      title: "chef",
+      value: "chef",
+    },
+    {
+      title: "admin",
+      value: "admin",
+    },
+  ];
+
   const employeeRoleItem: EmployeeRoleItem[] = [
     {
       title: "employee",
@@ -89,7 +104,7 @@ const EditEmployee = () => {
             <CardContent>
               <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={4}>
                     <TextField
                       id="fullName"
                       label="ชื่อ - นามสกุล"
@@ -101,30 +116,63 @@ const EditEmployee = () => {
                       onChange={(event) => handleChange(event)}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      id="username"
+                      label="Username"
+                      variant="outlined"
+                      fullWidth
+                      required
+                      value={data.username}
+                      name="username"
+                      onChange={(event) => handleChange(event)}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-label" required>
                         ตำแหน่ง
                       </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="role"
-                        label="ตำแหน่ง"
-                        fullWidth
-                        required
-                        name="role"
-                        value={data.role}
-                        onChange={(event) => handleChange(event)}
-                      >
-                        <MenuItem value="">
-                          <em>กรุณาเลือกตำแหน่ง</em>
-                        </MenuItem>
-                        {employeeRoleItem.map((item) => (
-                          <MenuItem key={item.value} value={item.value}>
-                            {item.title}
-                          </MenuItem>
-                        ))}
-                      </Select>
+                      {data.role === "admin" && (
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="role"
+                          label="ตำแหน่ง"
+                          fullWidth
+                          required
+                          name="role"
+                          value={data.role}
+                          onChange={(event) => handleChange(event)}
+                        >
+                          {adminRoleItem.map((item) => (
+                            <MenuItem
+                              key={item.value}
+                              value={item.value}
+                              disabled
+                            >
+                              {item.title}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      )}
+                      {data.role != "admin" && (
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="role"
+                          label="ตำแหน่ง"
+                          fullWidth
+                          required
+                          name="role"
+                          value={data.role}
+                          onChange={(event) => handleChange(event)}
+                        >
+                          {employeeRoleItem.map((item) => (
+                            <MenuItem key={item.value} value={item.value}>
+                              {item.title}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      )}
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} sm={6}>

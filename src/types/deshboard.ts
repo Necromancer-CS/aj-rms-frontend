@@ -14,4 +14,8 @@ export interface DeshboardItem {
     totalPriceThisWeek: number
     totalPriceThisMonth: number
     totalPriceThisYear: number
+
+    totalPriceForYesterday: number
+    totalPriceLastMonth: number
+    totalPriceLastYear: number
 }

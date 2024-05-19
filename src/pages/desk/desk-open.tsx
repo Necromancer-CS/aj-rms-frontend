@@ -165,14 +165,12 @@ export default function DeskOpenPage() {
                       >
                         <InputLabel>หมายเลขโต๊ะ</InputLabel>
                         <Select {...field} label="หมายเลขโต๊ะ">
-                          <MenuItem value="">
-                            <em>กรุณาเลือกหมายเลขโต๊ะ</em>
-                          </MenuItem>
                           {deskList?.map((item) => (
                             <MenuItem
                               key={item._id}
                               value={item.deskNo}
                               disabled={item.deskStatus !== "ready"}
+                              sx={{ fontSize: 18 }}
                             >
                               {item.deskNo}
                             </MenuItem>
@@ -205,7 +203,7 @@ export default function DeskOpenPage() {
                         {...field}
                         error={!!errors?.userOpenTable?.message}
                         fullWidth
-                        label="พนังงานเปิดโต๊ะ"
+                        label="พนักงานเปิดโต๊ะ"
                         margin="dense"
                         type="string"
                         disabled
@@ -225,9 +223,6 @@ export default function DeskOpenPage() {
                       >
                         <InputLabel>แพ็คเกจบุฟเฟ่ต์</InputLabel>
                         <Select {...field} label="แพ็คเกจบุฟเฟ่ต์">
-                          <MenuItem value="">
-                            <em>กรุณาเลือกแพ็คเกจบุฟเฟ่ต์</em>
-                          </MenuItem>
                           {buffetList?.map((item) => (
                             <MenuItem key={item._id} value={item._id}>
                               {`${item.packageName}  (${item.packagePrice} ฿)`}

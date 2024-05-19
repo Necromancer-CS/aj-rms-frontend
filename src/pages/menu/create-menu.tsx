@@ -164,9 +164,6 @@ export default function CreateMenu() {
                       name="menuStatus"
                       onChange={(event) => handleChange(event)}
                     >
-                      <MenuItem value="">
-                        <em>กรุณาเลือกสถานะเมนู</em>
-                      </MenuItem>
                       {menuStatusItem.map((item) => (
                         <MenuItem key={item.value} value={item.value}>
                           {item.title}
@@ -189,9 +186,6 @@ export default function CreateMenu() {
                       name="menuType"
                       onChange={(event) => handleChange(event)}
                     >
-                      <MenuItem value="">
-                        <em>กรุณาเลือกประเภท</em>
-                      </MenuItem>
                       {menuTypeItem.map((item) => (
                         <MenuItem key={item.value} value={item.value}>
                           {item.title}
@@ -223,9 +217,6 @@ export default function CreateMenu() {
                       name="packageBufferId"
                       onChange={(event) => handleChange(event)}
                     >
-                      <MenuItem value="">
-                        <em>กรุณาเลือกประเภทแพ็คเกจ</em>
-                      </MenuItem>
                       {dataBuffet?.map((item: any) => (
                         <MenuItem key={item._id} value={item._id}>
                           {item.packageName} ( {item.packagePrice} ฿ )

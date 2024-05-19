@@ -9,6 +9,7 @@ import { Box, Card, CardContent, Grid, Paper, Typography } from "@mui/material";
 
 interface SalesMonthlyProps {
   primary: any;
+  primaryTwo: any;
   secondary: any;
   iconPrimary: React.ElementType; // Explicitly specify the type
   color: any;
@@ -18,6 +19,7 @@ interface SalesMonthlyProps {
 
 const ReportCard = ({
   primary,
+  primaryTwo,
   secondary,
   iconPrimary,
   color,
@@ -44,6 +46,13 @@ const ReportCard = ({
               <Typography variant="subtitle1" sx={{ marginTop: ".5rem" }}>
                 {secondary}
               </Typography>
+              {/* <Typography variant="body1">
+                ( ยอดขายรอบก่อน :{" "}
+                {new Intl.NumberFormat("th-TH", {
+                  minimumFractionDigits: 2,
+                }).format(primaryTwo)}{" "}
+                )
+              </Typography> */}
             </Grid>
             <Grid item>
               <Typography variant="h2" sx={{ color: color }}>
@@ -57,7 +66,7 @@ const ReportCard = ({
             container
             justifyContent="space-between"
             sx={{
-              textAlign: "center",
+              // textAlign: "center",
               padding: theme.spacing(1.2),
               pl: 2.5,
               pr: 2.5,

@@ -10,11 +10,9 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import QRCode from "react-qr-code";
 import { useNavigate, useParams } from "react-router-dom";
-import { getCustomerBookingById, getQrCodeById } from "src/functions/booking";
+import { getCustomerBookingById } from "src/functions/booking";
 import "dayjs/locale/en"; // นำเข้า locale ตามที่ต้องการใช้งาน
-import { CustomerBookingItem } from "src/types/booking";
 import { readBilling } from "src/functions/billing";
 
 interface Props {
@@ -169,7 +167,7 @@ export default function PrintBuilling() {
           <Typography sx={{ fontSize: 20 }}>
             {billingByBill?.[0].packagePrice.toLocaleString("th-TH", {
               minimumFractionDigits: 2,
-            })}
+            })}{" "}
             บาท
           </Typography>
         </Stack>
@@ -183,7 +181,7 @@ export default function PrintBuilling() {
               <Typography sx={{ fontSize: 20 }}>
                 {adultPrice.toLocaleString("th-TH", {
                   minimumFractionDigits: 2,
-                })}
+                })}{" "}
                 บาท
               </Typography>
             </Stack>
@@ -199,7 +197,7 @@ export default function PrintBuilling() {
               <Typography sx={{ fontSize: 20 }}>
                 {childrengPrice.toLocaleString("th-TH", {
                   minimumFractionDigits: 2,
-                })}
+                })}{" "}
                 บาท
               </Typography>
             </Stack>
@@ -215,7 +213,7 @@ export default function PrintBuilling() {
               <Typography sx={{ fontSize: 20 }}>
                 {childPrcie.toLocaleString("th-TH", {
                   minimumFractionDigits: 2,
-                })}
+                })}{" "}
                 บาท
               </Typography>
             </Stack>
@@ -227,7 +225,7 @@ export default function PrintBuilling() {
           <Typography sx={{ fontSize: 20 }}>
             {totalPrice.toLocaleString("th-TH", {
               minimumFractionDigits: 2,
-            })}
+            })}{" "}
             บาท
           </Typography>
         </Stack>
@@ -236,7 +234,7 @@ export default function PrintBuilling() {
           <Typography sx={{ fontSize: 20 }}>
             {vat.toLocaleString("th-TH", {
               minimumFractionDigits: 2,
-            })}
+            })}{" "}
             บาท
           </Typography>
         </Stack>
@@ -245,7 +243,7 @@ export default function PrintBuilling() {
           <Typography sx={{ fontSize: 20 }}>
             {serviceCharge.toLocaleString("th-TH", {
               minimumFractionDigits: 2,
-            })}
+            })}{" "}
             บาท
           </Typography>
         </Stack>
@@ -254,7 +252,7 @@ export default function PrintBuilling() {
           <Typography variant="h5">
             {totalPayment.toLocaleString("th-TH", {
               minimumFractionDigits: 2,
-            })}
+            })}{" "}
             บาท
           </Typography>
         </Stack>
@@ -263,7 +261,7 @@ export default function PrintBuilling() {
           <Typography sx={{ fontSize: 20 }}>
             {billingByBill?.[0].payment.toLocaleString("th-TH", {
               minimumFractionDigits: 2,
-            })}
+            })}{" "}
             บาท
           </Typography>
         </Stack>
@@ -273,7 +271,7 @@ export default function PrintBuilling() {
             <Typography sx={{ fontSize: 20 }}>
               {billingByBill?.[0].change.toLocaleString("th-TH", {
                 minimumFractionDigits: 2,
-              })}
+              })}{" "}
               บาท
             </Typography>
           </Stack>

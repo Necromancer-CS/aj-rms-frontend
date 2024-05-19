@@ -105,9 +105,6 @@ export default function CreateDesk() {
                       name="deskStatus"
                       onChange={(event) => handleChange(event)}
                     >
-                      <MenuItem value="">
-                        <em>กรุณาเลือกสถานะโต๊ะ</em>
-                      </MenuItem>
                       {deskStatusItem.map((item) => (
                         <MenuItem key={item.value} value={item.value}>
                           {item.title}
