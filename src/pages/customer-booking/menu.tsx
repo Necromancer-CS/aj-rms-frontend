@@ -255,7 +255,7 @@ export default function CustomerBookingMenuPage() {
                   navigate(`/customer-booking/${item?.qrLink}/cart`)
                 }
               >
-                ดูตระกร้ารายการสั่งซื้อ
+                ดูตะกร้ารายการสั่งซื้อ
               </Button>
             )}
           </Container>
