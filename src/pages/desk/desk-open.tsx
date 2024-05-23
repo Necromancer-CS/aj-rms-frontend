@@ -257,7 +257,7 @@ export default function DeskOpenPage() {
                         {...field}
                         error={!!errors?.countChildreng?.message}
                         fullWidth
-                        label="จำนวนผู้เด็กโต"
+                        label="จำนวนเด็กโต"
                         margin="dense"
                         type="number"
                       />
@@ -271,7 +271,7 @@ export default function DeskOpenPage() {
                         {...field}
                         error={!!errors?.countChild?.message}
                         fullWidth
-                        label="จำนวนผู้เด็กเล็ก"
+                        label="จำนวนเด็กเล็ก"
                         margin="dense"
                         type="number"
                       />
