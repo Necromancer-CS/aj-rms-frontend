@@ -57,7 +57,7 @@ const BarChartPackageCard: React.FC = () => {
               textAlign: "center",
             }} // การจัดการตำแหน่งของข้อความ
           >
-            รายงานแสดงแพ็คเกจยอดนิยมในระยะ 1 เดือน
+            รายงานแพ็คเกจยอดนิยมในระยะ 1 เดือน
           </Typography>
           <BarChart
             xAxis={[

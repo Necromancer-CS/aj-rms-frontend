@@ -44,7 +44,7 @@ const BarChartCard: React.FC = () => {
               textAlign: "center",
             }} // การจัดการตำแหน่งของข้อความ
           >
-            รายงานแสดงยอดขายรายสัปดาห์
+            รายงานยอดขายรายสัปดาห์
           </Typography>
           <BarChart
             xAxis={[
