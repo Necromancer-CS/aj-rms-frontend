@@ -221,8 +221,8 @@ export default function DeskOpenPage() {
                         fullWidth
                         error={!!errors.packageId?.message}
                       >
-                        <InputLabel>แพ็คเกจบุฟเฟ่ต์</InputLabel>
-                        <Select {...field} label="แพ็คเกจบุฟเฟ่ต์">
+                        <InputLabel>แพ็คเกจบุฟเฟต์</InputLabel>
+                        <Select {...field} label="แพ็คเกจบุฟเฟต์">
                           {buffetList?.map((item) => (
                             <MenuItem key={item._id} value={item._id}>
                               {`${item.packageName}  (${item.packagePrice} ฿)`}

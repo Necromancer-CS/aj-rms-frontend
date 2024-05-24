@@ -119,7 +119,7 @@ const EditEmployee = () => {
                   <Grid item xs={12} sm={4}>
                     <TextField
                       id="username"
-                      label="Username"
+                      label="ชื่อผู้ใช้งาน"
                       variant="outlined"
                       fullWidth
                       required
