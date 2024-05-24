@@ -25,6 +25,10 @@ export default function CreateUser() {
 
   const employeeRoleItem: EmployeeRoleItem[] = [
     {
+      title: "admin",
+      value: "admin",
+    },
+    {
       title: "employee",
       value: "employee",
     },
