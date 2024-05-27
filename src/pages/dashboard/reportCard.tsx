@@ -46,13 +46,13 @@ const ReportCard = ({
               <Typography variant="subtitle1" sx={{ marginTop: ".5rem" }}>
                 {secondary}
               </Typography>
-              {/* <Typography variant="body1">
+              <Typography variant="body1">
                 ( ยอดขายรอบก่อน :{" "}
                 {new Intl.NumberFormat("th-TH", {
                   minimumFractionDigits: 2,
                 }).format(primaryTwo)}{" "}
                 )
-              </Typography> */}
+              </Typography>
             </Grid>
             <Grid item>
               <Typography variant="h2" sx={{ color: color }}>

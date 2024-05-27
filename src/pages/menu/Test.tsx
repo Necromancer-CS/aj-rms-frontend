@@ -1,3 +1,4 @@
+import React, { useState, useMemo } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -22,13 +23,12 @@ import { TMenuItem } from "src/types/menu";
 import { menuStatusText, menuTypeText } from "src/helper/menu";
 import { Stack, TextField } from "@mui/material";
 import ConfirmDialog from "src/components/dialog/confirm";
-import { useState } from "react";
-import { Bolt } from "@mui/icons-material";
 
 const MenuTableList = () => {
-  //ใช้สำหรับ GET
+  // ใช้สำหรับ GET
   const [openConfirmDialog, setOpenConfirmDialog] = useState<boolean>(false);
   const [menuId, setMenuId] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const { data, isLoading, refetch } = useQuery<TMenuItem[]>({
     queryKey: ["menuList"],
@@ -43,6 +43,13 @@ const MenuTableList = () => {
       refetch();
     },
   });
+
+  const filteredData = useMemo(() => {
+    if (!data) return [];
+    return data.filter((menu) =>
+      menu.menuName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [data, searchTerm]);
 
   return (
     <>
@@ -74,7 +81,14 @@ const MenuTableList = () => {
             <Card sx={{ height: "100%" }}>
               <CardContent>
                 <Box>
-                  <Stack direction="row" justifyContent="right">
+                  <Stack direction="row" justifyContent="space-between">
+                    <TextField
+                      id="outlined-basic"
+                      label="ค้นหาเมนูอาหาร"
+                      variant="outlined"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                     <Link to={"/admin/menu/create"}>
                       <Button
                         sx={{
@@ -130,7 +144,7 @@ const MenuTableList = () => {
                       {isLoading ? (
                         <LoadingCard count={6} />
                       ) : (
-                        data?.map((row, index) => (
+                        filteredData?.map((row, index) => (
                           <TableRow
                             key={row._id}
                             sx={{
