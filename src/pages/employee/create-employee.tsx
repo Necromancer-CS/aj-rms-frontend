@@ -141,6 +141,7 @@ export default function CreateUser() {
                     variant="outlined"
                     fullWidth
                     required
+                    type="password"
                     name="password"
                     onChange={(event) => handleChange(event)}
                   />

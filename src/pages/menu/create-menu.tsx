@@ -144,7 +144,6 @@ export default function CreateMenu() {
                     variant="outlined"
                     type="number"
                     fullWidth
-                    disabled
                     value={0}
                     name="menuPrice"
                     onChange={(event) => handleChange(event)}

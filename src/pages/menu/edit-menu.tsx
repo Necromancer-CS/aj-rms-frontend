@@ -164,7 +164,6 @@ const EditMenu = () => {
                       label="ราคา"
                       variant="outlined"
                       fullWidth
-                      disabled
                       value={data.menuPrice}
                       name="menuPrice"
                       onChange={(event) => handleChange(event)}
