@@ -21,14 +21,15 @@ import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { DeskItem } from "src/types/desk";
 import { deskStatusText } from "src/helper/desk";
-import { Stack } from "@mui/material";
+import { Stack, TextField } from "@mui/material";
 import ConfirmDialog from "src/components/dialog/confirm";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const DeskTableList = () => {
   //ใช้สำหรับ GET
   const [openConfirmDialog, setOpenConfirmDialog] = useState<boolean>(false);
   const [deskId, setDeskId] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const { data, isLoading, refetch } = useQuery<DeskItem[]>({
     queryKey: ["deskList"],
@@ -43,6 +44,13 @@ const DeskTableList = () => {
       refetch();
     },
   });
+
+  const filteredData = useMemo(() => {
+    if (!data) return [];
+    return data.filter((desk) =>
+      desk.deskNo.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [data, searchTerm]);
 
   return (
     <>
@@ -73,23 +81,32 @@ const DeskTableList = () => {
           <Paper elevation={6}>
             <Card sx={{ height: "100%" }}>
               <CardContent>
-                <Box sx={{ textAlign: "right" }}>
-                  <Link to={"/admin/desk/create"}>
-                    <Button
-                      sx={{
-                        backgroundColor: "#00B900",
-                        ":hover": {
-                          backgroundColor: "#1b1b1b",
-                          opacity: 0.8,
-                        },
-                      }}
-                      variant="contained"
-                      size="large"
-                    >
-                      <AddCircleOutlineIcon sx={{ margin: 1 }} />
-                      เพิ่มโต๊ะ
-                    </Button>
-                  </Link>
+                <Box>
+                  <Stack direction="row" justifyContent="space-between">
+                    <TextField
+                      id="outlined-basic"
+                      label="ค้นหาหมายเลขโต๊ะ"
+                      variant="outlined"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <Link to={"/admin/menu/create"}>
+                      <Button
+                        sx={{
+                          backgroundColor: "#00B900",
+                          ":hover": {
+                            backgroundColor: "#1b1b1b",
+                            opacity: 0.8,
+                          },
+                        }}
+                        variant="contained"
+                        size="large"
+                      >
+                        <AddCircleOutlineIcon sx={{ margin: 1 }} />
+                        เพิ่มโต๊ะ
+                      </Button>
+                    </Link>
+                  </Stack>
                 </Box>
                 <br />
                 <TableContainer component={Paper}>
@@ -107,7 +124,7 @@ const DeskTableList = () => {
                       {isLoading ? (
                         <LoadingCard count={6} />
                       ) : (
-                        data?.map((row, index) => (
+                        filteredData?.map((row, index) => (
                           <TableRow
                             key={row._id}
                             sx={{
