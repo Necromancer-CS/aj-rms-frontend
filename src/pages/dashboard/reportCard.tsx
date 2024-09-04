@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -31,6 +31,11 @@ const ReportCard = ({
   const primaryIcon = iconPrimary ? <IconPrimary fontSize="large" /> : null;
   const IconFooter = iconFooter;
   const footerIcon = iconFooter ? <IconFooter /> : null;
+
+
+  if (primary) {
+    setValuePrimary(primary);
+  }
 
   return (
     <Paper elevation={12}>

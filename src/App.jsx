@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // Layout
-import { Container, CssBaseline, Stack } from "@mui/material";
+import { CssBaseline, Stack } from "@mui/material";
 
 // pages
 import Login from "./components/pages/auth/Login";

@@ -22,6 +22,7 @@ import {
 import { DeshboardItem } from "src/types/deshboard";
 import BarChartCard from "./barChartCard";
 import BarChartPackageCard from "./BarChartPackageCard";
+import { useState } from "react";
 
 const MainDashboard = () => {
   const theme = useTheme();
@@ -49,6 +50,8 @@ const MainDashboard = () => {
     queryFn: () => totalPriceForYear().then((res) => res.data),
   });
 
+  const [valuePrimary, setValuePrimary] = useState<boolean>(true);
+
   return (
     <>
       <Box sx={{ display: "flex", p: 2 }}>
@@ -74,7 +77,106 @@ const MainDashboard = () => {
             </Card>
           </Paper>
           <br />
-          <Grid container spacing={3}>
+
+          {valuePrimary != false && (
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <Grid container spacing={3}>
+                  <Grid item lg={3} sm={6} xs={12}>
+                    <ReportCard
+                      primary={totalPriceForDayData?.totalPriceForDay}
+                      primaryTwo={totalPriceForDayData?.totalPriceForYesterday}
+                      secondary="ยอดขายรายวัน"
+                      color={"rgb(211, 47, 47)"}
+                      iconPrimary={LocalAtmTwoToneIcon}
+                      footerData={
+                        totalPriceForDayData?.percentageChange > 0
+                          ? `กำไร ${Math.abs(
+                              totalPriceForDayData?.percentageChange
+                            )}%`
+                          : totalPriceForDayData?.percentageChange < 0
+                          ? `ขาดทุน ${Math.abs(
+                              totalPriceForDayData?.percentageChange
+                            )}%`
+                          : `เท่าเดิม ${Math.abs(
+                              totalPriceForDayData?.percentageChange
+                            )}%`
+                      }
+                      iconFooter={
+                        totalPriceForDayData?.percentageChange > 0
+                          ? TrendingUpIcon
+                          : totalPriceForDayData?.percentageChange < 0
+                          ? TrendingDownIcon
+                          : TrendingFlatIcon
+                      }
+                    />
+                  </Grid>
+
+                  <Grid item lg={3} sm={6} xs={12}>
+                    <ReportCard
+                      primary={totalPriceForWeekData?.totalPriceThisWeek}
+                      primaryTwo={totalPriceForWeekData?.totalPriceForWeek}
+                      secondary="ยอดขายสัปดาห์"
+                      color={"rgb(237, 108, 2)"}
+                      iconPrimary={LocalAtmTwoToneIcon}
+                      footerData={
+                        totalPriceForWeekData?.percentageChange > 0
+                          ? `กำไร ${Math.abs(
+                              totalPriceForWeekData?.percentageChange
+                            )}%`
+                          : totalPriceForWeekData?.percentageChange < 0
+                          ? `ขาดทุน ${Math.abs(
+                              totalPriceForWeekData?.percentageChange
+                            )}%`
+                          : `เท่าเดิม ${Math.abs(
+                              totalPriceForWeekData?.percentageChange
+                            )}%`
+                      }
+                      iconFooter={
+                        totalPriceForWeekData?.percentageChange > 0
+                          ? TrendingUpIcon
+                          : totalPriceForWeekData?.percentageChange < 0
+                          ? TrendingDownIcon
+                          : TrendingFlatIcon
+                      }
+                    />
+                  </Grid>
+
+                  <Grid item lg={3} sm={6} xs={12}>
+                    <ReportCard
+                      primary={totalPriceForMonthData?.totalPriceThisMonth}
+                      primaryTwo={totalPriceForMonthData?.totalPriceLastMonth}
+                      secondary="ยอดขายรายเดือน"
+                      color={"rgb(46, 125, 50)"}
+                      iconPrimary={LocalAtmTwoToneIcon}
+                      footerData={
+                        totalPriceForMonthData?.percentageChange > 0
+                          ? `กำไร ${Math.abs(
+                              totalPriceForMonthData?.percentageChange
+                            )}%`
+                          : totalPriceForMonthData?.percentageChange < 0
+                          ? `ขาดทุน ${Math.abs(
+                              totalPriceForMonthData?.percentageChange
+                            )}%`
+                          : `เท่าเดิม ${Math.abs(
+                              totalPriceForMonthData?.percentageChange
+                            )}%`
+                      }
+                      iconFooter={
+                        totalPriceForMonthData?.percentageChange > 0
+                          ? TrendingUpIcon
+                          : totalPriceForMonthData?.percentageChange < 0
+                          ? TrendingDownIcon
+                          : TrendingFlatIcon
+                      }
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          )}
+
+          {/* <Grid container spacing={3}>
             <Grid item xs={12}>
               <Grid container spacing={3}>
                 <Grid item lg={3} sm={6} xs={12}>
@@ -205,7 +307,7 @@ const MainDashboard = () => {
                 </Grid>
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> */}
         </Box>
       </Box>
     </>
