@@ -19,6 +19,8 @@ const BarChartCard: React.FC = () => {
     queryFn: () => totalPriceForMonthSegments().then((res) => res.data),
   });
 
+  console.log(totalPriceForMonthSegmentsData);
+
   if (!totalPriceForMonthSegmentsData) {
     return <div>Loading...</div>;
   }

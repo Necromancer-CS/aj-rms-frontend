@@ -15,6 +15,8 @@ const BarChartPackageCard: React.FC = () => {
     queryFn: () => packageSelectionInMonth().then((res) => res.data),
   });
 
+  console.log(packageSelectionInMonthData);
+
   // ตรวจสอบว่าข้อมูลถูกโหลดและไม่มีข้อผิดพลาด
   if (!packageSelectionInMonthData) {
     return (
