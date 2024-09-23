@@ -174,8 +174,8 @@ const MainDashboard = () => {
 
                   <Grid item lg={3} sm={6} xs={12}>
                     <ReportCard
-                      primary={totalPriceForYearData?.totalPriceLastYear}
-                      primaryTwo={totalPriceForYearData?.totalPriceThisYear}
+                      primary={totalPriceForYearData?.totalPriceThisYear}
+                      primaryTwo={totalPriceForYearData?.totalPriceLastYear}
                       secondary="ยอดขายรายปี"
                       color={"rgb(25, 118, 210)"}
                       iconPrimary={LocalAtmTwoToneIcon}
