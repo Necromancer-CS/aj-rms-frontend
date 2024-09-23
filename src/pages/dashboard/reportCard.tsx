@@ -32,11 +32,6 @@ const ReportCard = ({
   const IconFooter = iconFooter;
   const footerIcon = iconFooter ? <IconFooter /> : null;
 
-
-  if (primary) {
-    setValuePrimary(primary);
-  }
-
   return (
     <Paper elevation={12}>
       <Card>
