@@ -3,36 +3,72 @@ import { useQuery } from "@tanstack/react-query";
 import { totalPriceForMonthSegments } from "src/functions/dashboard";
 import { DeshboardItem } from "src/types/deshboard";
 import { BarChart } from "@mui/x-charts/BarChart";
-import {
-  Card,
-  CardContent,
-  colors,
-  Grid,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, Paper, Typography } from "@mui/material";
 import dayjs from "dayjs";
 
 const BarChartCard: React.FC = () => {
-  const { data: totalPriceForMonthSegmentsData } = useQuery<DeshboardItem>({
+  const {
+    data: totalPriceForMonthSegmentsData,
+    isLoading,
+    error,
+  } = useQuery<DeshboardItem[]>({
     queryKey: ["totalPriceForMonthSegments"],
     queryFn: () => totalPriceForMonthSegments().then((res) => res.data),
   });
 
-  console.log(totalPriceForMonthSegmentsData);
+  if (isLoading) {
+    return (
+      <Paper elevation={12}>
+        <Card>
+          <CardContent>
+            <Typography
+              variant="h4"
+              gutterBottom
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+              }}
+            >
+              รายงานยอดขายรายสัปดาห์
+            </Typography>
+            <div>Loading...</div>
+          </CardContent>
+        </Card>
+      </Paper>
+    );
+  }
 
-  if (!totalPriceForMonthSegmentsData) {
-    return <div>Loading...</div>;
+  if (error) {
+    return (
+      <Paper elevation={12}>
+        <Card>
+          <CardContent>
+            <Typography
+              variant="h4"
+              gutterBottom
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+              }}
+            >
+              รายงานยอดขายรายสัปดาห์
+            </Typography>
+            <div>Error loading data</div>
+          </CardContent>
+        </Card>
+      </Paper>
+    );
   }
 
   const chartData = totalPriceForMonthSegmentsData?.map((item) => ({
     group: `${dayjs(item.weekStartDate).format("DD/MM/YYYY")} - ${dayjs(
       item.weekEndDate
-    ).format("DD/MM/YYYY")}`, // ใช้ช่วงเวลาเป็นกลุ่ม
-    value: item.totalPriceInWeek, // ใช้ totalPriceInWeek เป็นค่าของแต่ละกลุ่ม
+    ).format("DD/MM/YYYY")}`,
+    value: item.totalPriceInWeek,
   }));
 
-  console.log(chartData);
   return (
     <Paper elevation={12}>
       <Card>
@@ -44,20 +80,33 @@ const BarChartCard: React.FC = () => {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-            }} // การจัดการตำแหน่งของข้อความ
+            }}
           >
             รายงานยอดขายรายสัปดาห์
           </Typography>
-          <BarChart
-            xAxis={[
-              {
-                scaleType: "band",
-                data: chartData.map((data) => data.group),
-              },
-            ]}
-            series={[{ data: chartData?.map((data) => data.value) }]}
-            height={500}
-          />
+          {chartData.length > 0 ? (
+            <BarChart
+              xAxis={[
+                {
+                  scaleType: "band",
+                  data: chartData.map((data) => data.group),
+                },
+              ]}
+              series={[{ data: chartData.map((data) => data.value) }]}
+              height={500}
+            />
+          ) : (
+            <Typography
+              variant="h6"
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+              }}
+            >
+              No data available for the selected period
+            </Typography>
+          )}
         </CardContent>
       </Card>
     </Paper>

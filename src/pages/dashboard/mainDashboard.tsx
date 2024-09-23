@@ -209,12 +209,12 @@ const MainDashboard = () => {
           <Grid container spacing={3} sx={{ marginTop: "0.005px" }}>
             <Grid item xs={12}>
               <Grid container spacing={3}>
-                {/* <Grid item lg={6} sm={6} xs={9}>
+                <Grid item lg={6} sm={6} xs={9}>
                   <BarChartCard />
-                </Grid> */}
-                {/* <Grid item lg={6} sm={6} xs={9}>
+                </Grid>
+                <Grid item lg={6} sm={6} xs={9}>
                   <BarChartPackageCard />
-                </Grid> */}
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
