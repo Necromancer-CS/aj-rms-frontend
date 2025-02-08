@@ -90,7 +90,7 @@ const DeskTableList = () => {
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <Link to={"/admin/menu/create"}>
+                    <Link to={"/admin/desk/create"}>
                       <Button
                         sx={{
                           backgroundColor: "#00B900",
